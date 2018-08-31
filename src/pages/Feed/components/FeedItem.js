@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react';
 import {
-  Box, Flex, Image, Text
+  Box, Flex, BackgroundImage, Text
 } from 'rebass';
+import styled from 'styled-components';
+
+const BackgroundImageFilled = styled(BackgroundImage)`
+  height: 100%;
+`;
 
 const FeedTitle = ({ text }) => (
-  <Text fontSize={2} fontWeight="bold" mb={2}>{text}</Text>
+  <Text fontSize={3} fontWeight="normal" mb={2}>{text}</Text>
 );
 
 const FeedTeaser = ({ text }) => (
@@ -16,10 +21,13 @@ class FeedItem extends PureComponent {
     const { title, teaser } = this.props;
     return (
       <Flex bg="white" p={2} m={2}>
-        <Box width={1 / 3}>
-          <Image src="https://via.placeholder.com/200x200" />
+        <Box width={1 / 4}>
+          <BackgroundImageFilled
+            pb={0}
+            src="https://via.placeholder.com/150x150"
+          />
         </Box>
-        <Box width={2 / 3} px={2}>
+        <Box width={3 / 4} px={2}>
           <FeedTitle text={title} />
           <FeedTeaser text={teaser} />
         </Box>

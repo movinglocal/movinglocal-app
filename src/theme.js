@@ -2,7 +2,7 @@
 
 export default {
   fonts: {
-    sans: '"Open Sans", sans-serif'
+    sans: '"Source Sans Pro", sans-serif'
   },
   fontWeights: {
     light: 300,

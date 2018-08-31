@@ -5,6 +5,10 @@ import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
 import ScrollWrapper from '~/components/ScrollWrapper';
 
+function renderItems(items) {
+  return items.map((item, i) => <FeedItem {...item} key={i} />);
+}
+
 class Feed extends PureComponent {
   componentDidMount() {
     this.props.loadData();
@@ -12,13 +16,10 @@ class Feed extends PureComponent {
 
   render() {
     const { isLoading, data } = this.props;
-    if (isLoading) {
-      return 'Loading...';
-    }
 
     return (
       <ScrollWrapper bg="gray">
-        {data.map((item, i) => <FeedItem {...item} key={i} />)}
+        {isLoading ? 'Lade Daten ...' : renderItems(data)}
       </ScrollWrapper>
     );
   }
