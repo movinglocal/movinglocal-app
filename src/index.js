@@ -11,6 +11,7 @@ import Favorites from '~/pages/Favorites';
 import Settings from '~/pages/Settings';
 import NoMatch from '~/pages/NoMatch';
 
+import Header from '~/components/Header';
 import Navigation from '~/components/Navigation';
 
 import theme from '~/theme';
@@ -33,6 +34,7 @@ ReactDOM.render(
     <RebassProviderStyled theme={theme}>
       <Router>
         <Wrapper flexDirection="column" mx="auto">
+          <Header />
           <Switch>
             <Route exact path="/" component={Feed} />
             <Route exact path="/favoriten" component={Favorites} />
