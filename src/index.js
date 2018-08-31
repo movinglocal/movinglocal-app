@@ -23,6 +23,7 @@ const Wrapper = styled(Flex)`
   height: 100%;
   max-width: 700px;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
 `;
 
 const RebassProviderStyled = styled(RebassProvider)`

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
+import { Text } from 'rebass';
 
 import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
@@ -7,6 +8,10 @@ import ScrollWrapper from '~/components/ScrollWrapper';
 
 function renderItems(items) {
   return items.map((item, i) => <FeedItem {...item} key={i} />);
+}
+
+function renderLoader() {
+  return <Text textAlign="center" pt={2}>Lade Daten ...</Text>;
 }
 
 class Feed extends PureComponent {
@@ -19,7 +24,7 @@ class Feed extends PureComponent {
 
     return (
       <ScrollWrapper bg="gray">
-        {isLoading ? 'Lade Daten ...' : renderItems(data)}
+        {isLoading ? renderLoader() : renderItems(data)}
       </ScrollWrapper>
     );
   }
