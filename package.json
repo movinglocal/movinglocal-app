@@ -93,9 +93,6 @@
     ],
     "env": {
       "production": {
-        "presets": [
-          "minify"
-        ],
         "plugins": [
           [
             "babel-plugin-styled-components",
