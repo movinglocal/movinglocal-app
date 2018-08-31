@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "moving local prototype app",
   "scripts": {
-    "build": "BABEL_ENV=production webpack --config webpack/webpack.config.prod.js --colors",
+    "build": "BABEL_ENV=production webpack --config webpack/webpack.config.prod.js --colors && cp _redirects build",
     "start": "webpack-dev-server --config webpack/webpack.config.dev.js"
   },
   "repository": {
