@@ -5,7 +5,7 @@ import {
 } from 'rebass';
 
 const StyledDrawer = styled(Drawer)`
-  box-shadow: 1px 0 6px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => (props.open ? '1px 0 6px 2px rgba(0, 0, 0, 0.1)' : 'none')};
 `;
 
 class Menu extends PureComponent {
