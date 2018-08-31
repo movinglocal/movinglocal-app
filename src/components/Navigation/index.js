@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { Flex, Box, Text } from 'rebass';
+import { Flex, Box, Text, Border } from 'rebass';
 
-const NavItem = ({ title }) => (
+const NavItem = ({ text }) => (
   <Box width={1 / 3}>
     <Text py={3} textAlign="center" fontSize={1}>
-      {title}
+      {text}
     </Text>
   </Box>
 );
@@ -13,11 +13,13 @@ class Navigation extends PureComponent {
   render() {
     return (
       <Box>
-        <Flex>
-          <NavItem title="News Feed" />
-          <NavItem title="Favoriten" />
-          <NavItem title="Einstellungen" />
-        </Flex>
+        <Border border={0} borderTop={1} borderColor="darken">
+          <Flex>
+            <NavItem text="News Feed" />
+            <NavItem text="Favoriten" />
+            <NavItem text="Einstellungen" />
+          </Flex>
+        </Border>
       </Box>
     );
   }

@@ -14,6 +14,8 @@ initStyle();
 
 const Wrapper = styled(Flex)`
   height: 100%;
+  max-width: 700px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const RebassProviderStyled = styled(RebassProvider)`
@@ -23,7 +25,7 @@ const RebassProviderStyled = styled(RebassProvider)`
 ReactDOM.render(
   <Provider store={Store}>
     <RebassProviderStyled>
-      <Wrapper flexDirection="column">
+      <Wrapper flexDirection="column" mx="auto">
         <Feed />
         <Navigation />
       </Wrapper>
