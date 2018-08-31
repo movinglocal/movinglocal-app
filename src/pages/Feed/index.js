@@ -1,15 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
-import { Box } from 'rebass';
-import styled from 'styled-components';
 
 import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
-
-const ScrollableBox = styled(Box)`
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-`;
+import ScrollWrapper from '~/components/ScrollWrapper';
 
 class Feed extends PureComponent {
   componentDidMount() {
@@ -23,9 +17,9 @@ class Feed extends PureComponent {
     }
 
     return (
-      <ScrollableBox flex="1 1 auto" bg="gray">
+      <ScrollWrapper bg="gray">
         {data.map((item, i) => <FeedItem {...item} key={i} />)}
-      </ScrollableBox>
+      </ScrollWrapper>
     );
   }
 }

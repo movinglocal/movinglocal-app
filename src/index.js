@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'unistore/react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider as RebassProvider, Flex } from 'rebass';
 import styled from 'styled-components';
 
 import { Store } from '~/Store';
 import Feed from '~/pages/Feed';
+import Favorites from '~/pages/Favorites';
+import Settings from '~/pages/Settings';
+import NoMatch from '~/pages/NoMatch';
+
 import Navigation from '~/components/Navigation';
 
 import theme from '~/theme';
@@ -26,10 +31,17 @@ const RebassProviderStyled = styled(RebassProvider)`
 ReactDOM.render(
   <Provider store={Store}>
     <RebassProviderStyled theme={theme}>
-      <Wrapper flexDirection="column" mx="auto">
-        <Feed />
-        <Navigation />
-      </Wrapper>
+      <Router>
+        <Wrapper flexDirection="column" mx="auto">
+          <Switch>
+            <Route exact path="/" component={Feed} />
+            <Route exact path="/favoriten" component={Favorites} />
+            <Route exact path="/einstellungen" component={Settings} />
+            <Route component={NoMatch} />
+          </Switch>
+          <Navigation />
+        </Wrapper>
+      </Router>
     </RebassProviderStyled>
   </Provider>,
   document.getElementById('app')
