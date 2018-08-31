@@ -8,7 +8,8 @@ import { Store } from '~/Store';
 import Feed from '~/pages/Feed';
 import Navigation from '~/components/Navigation';
 
-import initStyle from './initStyle';
+import theme from '~/theme';
+import initStyle from '~/initStyle';
 
 initStyle();
 
@@ -24,7 +25,7 @@ const RebassProviderStyled = styled(RebassProvider)`
 
 ReactDOM.render(
   <Provider store={Store}>
-    <RebassProviderStyled>
+    <RebassProviderStyled theme={theme}>
       <Wrapper flexDirection="column" mx="auto">
         <Feed />
         <Navigation />

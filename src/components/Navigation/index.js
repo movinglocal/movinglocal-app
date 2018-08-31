@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Flex, Box, Text, Border } from 'rebass';
+import {
+  Flex, Box, Text, Border
+} from 'rebass';
 
 const NavItem = ({ text }) => (
   <Box width={1 / 3}>

@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
-import { Box, Flex, Image, Text } from 'rebass';
+import {
+  Box, Flex, Image, Text
+} from 'rebass';
 
 const FeedTitle = ({ text }) => (
-  <Text fontSize={2} fontWeight={700} mb={2}>{text}</Text>
+  <Text fontSize={2} fontWeight="bold" mb={2}>{text}</Text>
 );
 
 const FeedTeaser = ({ text }) => (
-  <Text fontSize={1} fontWeight={400}>{text}</Text>
+  <Text fontSize={1} fontWeight="normal">{text}</Text>
 );
 
 class FeedItem extends PureComponent {
