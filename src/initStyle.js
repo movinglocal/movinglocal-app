@@ -23,4 +23,8 @@ export default () => injectGlobal`
     width: 100%;
     font-family: 'Open Sans', sans-serif;
   }
+
+  #app {
+    height: 100%;
+  }
 `;
