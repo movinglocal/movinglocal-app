@@ -18,7 +18,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build'], { root: Path.resolve(__dirname, '..') }),
     new CopyWebpackPlugin([
-      { from: Path.resolve(__dirname, '../public'), to: 'public' }
+      { from: Path.resolve(__dirname, '../public'), to: 'public' },
+      { from: Path.resolve(__dirname, '../manifest.json') },
+      { from: Path.resolve(__dirname, '../_redirects') }
     ]),
     new Webpack.ProvidePlugin({
       config: '~/../config.json'
