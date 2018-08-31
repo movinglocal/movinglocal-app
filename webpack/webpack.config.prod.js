@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
 
+const config = require('../config');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -33,6 +34,8 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       inject: true,
       template: './src/index.html',
+      meta: config.meta,
+      title: config.title,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

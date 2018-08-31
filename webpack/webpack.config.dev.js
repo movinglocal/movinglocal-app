@@ -2,7 +2,9 @@ const Path = require('path');
 const Webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const common = require('./webpack.common.js');
+const config = require('../config');
 
 const publicPath = process.env.BASENAME || '/';
 
@@ -22,6 +24,8 @@ module.exports = merge(common, {
     }),
     new HtmlWebpackPlugin({
       inject: true,
+      meta: config.meta,
+      title: config.title,
       template: Path.resolve(__dirname, '../src/index.html')
     })
   ],
