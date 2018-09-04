@@ -13,7 +13,7 @@ const FeedTitle = ({ text }) => (
 );
 
 const FeedTeaser = ({ text }) => (
-  <div dangerouslySetInnerHTML={{ __html: text }} />
+  <Text fontSize={1} fontWeight="normal">{text}</Text>
 );
 
 const FeedAttribution = ({ text }) => (
@@ -22,13 +22,13 @@ const FeedAttribution = ({ text }) => (
 
 class FeedItem extends PureComponent {
   render() {
-    const { title, content, source } = this.props;
+    const { title, content, image_url, source } = this.props;
     return (
       <Flex bg="white" p={2} m={2}>
         <Box width={1 / 4}>
           <BackgroundImageFilled
             pb={0}
-            src="https://via.placeholder.com/150x150"
+            src={ image_url || 'https://placehold.it/150x150' }
           />
         </Box>
         <Box width={3 / 4} px={2}>
