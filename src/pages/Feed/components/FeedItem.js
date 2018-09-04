@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react';
 import {
-  Box, Flex, BackgroundImage, Text
+  Box, Flex, BackgroundImage, Text, Link
 } from 'rebass';
 import styled from 'styled-components';
 
 const BackgroundImageFilled = styled(BackgroundImage)`
   height: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none
 `;
 
 const FeedTitle = ({ text }) => (
@@ -22,21 +26,23 @@ const FeedAttribution = ({ text }) => (
 
 class FeedItem extends PureComponent {
   render() {
-    const { title, content, image_url, source } = this.props;
+    const { title, content, image_url, link, source } = this.props;
     return (
-      <Flex bg="white" p={2} m={2}>
-        <Box width={1 / 4}>
-          <BackgroundImageFilled
-            pb={0}
-            src={ image_url || 'https://placehold.it/150x150' }
-          />
-        </Box>
-        <Box width={3 / 4} px={2}>
-          <FeedTitle text={title} />
-          <FeedTeaser text={content} />
-          <FeedAttribution text={source.name} />
-        </Box>
-      </Flex>
+      <StyledLink href={link} color="black">
+        <Flex bg="white" p={2} m={2}>
+          <Box width={1 / 4}>
+            <BackgroundImageFilled
+              pb={0}
+              src={ image_url || 'https://placehold.it/150x150' }
+            />
+          </Box>
+          <Box width={3 / 4} px={2}>
+            <FeedTitle text={title} />
+            <FeedTeaser text={content} />
+            <FeedAttribution text={source.name} />
+          </Box>
+        </Flex>
+      </StyledLink>
     );
   }
 }
