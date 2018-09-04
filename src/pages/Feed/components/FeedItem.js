@@ -13,12 +13,16 @@ const FeedTitle = ({ text }) => (
 );
 
 const FeedTeaser = ({ text }) => (
-  <Text fontSize={1} fontWeight="normal">{text}</Text>
+  <div dangerouslySetInnerHTML={{ __html: text }} />
+);
+
+const FeedAttribution = ({ text }) => (
+  <Text fontSize={1} fontWeight="bold">{text}</Text>
 );
 
 class FeedItem extends PureComponent {
   render() {
-    const { title, teaser } = this.props;
+    const { title, content, source } = this.props;
     return (
       <Flex bg="white" p={2} m={2}>
         <Box width={1 / 4}>
@@ -29,7 +33,8 @@ class FeedItem extends PureComponent {
         </Box>
         <Box width={3 / 4} px={2}>
           <FeedTitle text={title} />
-          <FeedTeaser text={teaser} />
+          <FeedTeaser text={content} />
+          <FeedAttribution text={source.name} />
         </Box>
       </Flex>
     );
