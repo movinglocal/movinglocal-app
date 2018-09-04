@@ -10,7 +10,9 @@ export const actions = () => ({
   loadData: async () => {
     let data = null;
     try {
-      data = await fetch('https://movinglocal-api.herokuapp.com/article').then(r => r.json());
+      data = await fetch('https://movinglocal-api.herokuapp.com/article')
+        .then(r => r.json())
+        .then(r => r.filter(e => !e.ignored));
     } catch (err) {
       console.log(err);
     }
