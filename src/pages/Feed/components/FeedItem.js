@@ -39,7 +39,7 @@ class FeedItem extends PureComponent {
           <Box width={3 / 4} px={2}>
             <FeedTitle text={title} />
             <FeedTeaser text={content} />
-            <FeedAttribution text={source.name} />
+            {source && <FeedAttribution text={source.name} />}
           </Box>
         </Flex>
       </StyledLink>
