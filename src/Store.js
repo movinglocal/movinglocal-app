@@ -35,7 +35,7 @@ export const actions = () => ({
     const { incrementPage, loadData } = actions();
 
     const { page: p } = incrementPage({ page });
-    const { data: d } = await loadData({ page, data });
+    const { data: d } = await loadData({ page: p, data });
     return { page: p, data: d };
   }
 });
