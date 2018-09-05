@@ -24,24 +24,33 @@ const FeedAttribution = ({ text }) => (
   <Text fontSize={1} fontWeight="bold">{text}</Text>
 );
 
+const FeedImage = ({ img }) => (
+  <Box width={1 / 4}>
+    <BackgroundImageFilled
+      pb={0}
+      src={img}
+    />
+  </Box>
+);
+
 class FeedItem extends PureComponent {
   render() {
     const {
+      id,
       title,
       content,
       image_url,
+      image,
       link,
       source
     } = this.props;
+    const img = image ? image.url : image_url;
+    const url = link ? link : `article/${id}`;
+
     return (
-      <StyledLink href={link} color="black">
+      <StyledLink href={url} color="black">
         <Flex bg="white" p={2} m={2}>
-          <Box width={1 / 4}>
-            <BackgroundImageFilled
-              pb={0}
-              src={image_url || 'https://placehold.it/150x150'}
-            />
-          </Box>
+          {img && <FeedImage img={img} />}
           <Box width={3 / 4} px={2}>
             <FeedTitle text={title} />
             <FeedTeaser text={content} />
