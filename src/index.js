@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import { Store } from '~/Store';
 import Feed from '~/pages/Feed';
+import Article from '~/pages/Article';
 import Favorites from '~/pages/Favorites';
 import Settings from '~/pages/Settings';
 import NoMatch from '~/pages/NoMatch';
@@ -40,6 +41,7 @@ ReactDOM.render(
             <Route exact path="/" component={Feed} />
             <Route exact path="/favoriten" component={Favorites} />
             <Route exact path="/einstellungen" component={Settings} />
+            <Route path="/artikel/:id" component={Article} />
             <Route component={NoMatch} />
           </Switch>
           <Navigation />

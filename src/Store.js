@@ -22,6 +22,16 @@ export const actions = () => ({
     return { data: res, isLoading: false };
   },
 
+  loadItem: async ({ item }, { id }) => {
+    try {
+      item = await fetch(`https://movinglocal-api.herokuapp.com/article/${id}`)
+        .then(r => r.json());
+    } catch (err) {
+      console.log(err);
+    }
+    return { item, isLoading: false };
+  },
+
   incrementPage: ({ page }) => (
     {
       page: {

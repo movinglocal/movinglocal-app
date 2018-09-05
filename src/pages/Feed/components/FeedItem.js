@@ -45,7 +45,7 @@ class FeedItem extends PureComponent {
       source
     } = this.props;
     const img = image ? image.url : image_url;
-    const url = link ? link : `article/${id}`;
+    const url = link || `artikel/${id}`;
 
     return (
       <StyledLink href={url} color="black">
