@@ -10,7 +10,8 @@ export const actions = () => ({
   loadData: async () => {
     let data = null;
     try {
-      data = await fetch('https://movinglocal-api.herokuapp.com/article')
+      const limit = 10;
+      data = await fetch(`https://movinglocal-api.herokuapp.com/article?_limit=${limit}`)
         .then(r => r.json())
         .then(r => r.filter(e => !e.ignored));
     } catch (err) {
