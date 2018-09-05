@@ -26,14 +26,20 @@ const FeedAttribution = ({ text }) => (
 
 class FeedItem extends PureComponent {
   render() {
-    const { title, content, image_url, link, source } = this.props;
+    const {
+      title,
+      content,
+      image_url,
+      link,
+      source
+    } = this.props;
     return (
       <StyledLink href={link} color="black">
         <Flex bg="white" p={2} m={2}>
           <Box width={1 / 4}>
             <BackgroundImageFilled
               pb={0}
-              src={ image_url || 'https://placehold.it/150x150' }
+              src={image_url || 'https://placehold.it/150x150'}
             />
           </Box>
           <Box width={3 / 4} px={2}>
