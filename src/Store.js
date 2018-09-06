@@ -18,7 +18,6 @@ export const actions = () => ({
   loadData: async ({ page, sortOptions }) => {
     let data = null;
     const { pageSize, pageStart } = page;
-    console.log(sortOptions)
     const { current } = sortOptions;
     try {
       data = await fetch(`https://movinglocal-api.herokuapp.com/article?_limit=${pageSize}&_start=${pageStart}&_sort=${current}`)
