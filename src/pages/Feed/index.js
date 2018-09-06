@@ -1,6 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Text, Button, Select, Input } from 'rebass';
+import {
+  Text,
+  Button,
+  Select,
+  Arrow,
+  Input,
+  Box,
+  Flex
+} from 'rebass';
 
 import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
@@ -8,20 +16,11 @@ import ScrollWrapper from '~/components/ScrollWrapper';
 import styled from 'styled-components';
 
 const FullWidthButton = styled(Button)`
-border-radius: 0;
 width: 100%;
 `;
 
-const WhiteSelect = styled(Select)`
-background-color: white;
-`;
-
-const WhiteInput = styled(Input)`
-background-color: white;
-`;
-
 function renderItems(items) {
-  return items.map((item) => <FeedItem {...item} key={item.id} />);
+  return items.map(item => <FeedItem {...item} key={item.id} />);
 }
 
 function renderLoader() {
@@ -30,7 +29,7 @@ function renderLoader() {
 
 function renderButton(action) {
   return (
-    <FullWidthButton onClick={action}>
+    <FullWidthButton onClick={action} width={1} borderRadius={0}>
       Load more...
     </FullWidthButton>
   );
@@ -45,21 +44,34 @@ class Feed extends PureComponent {
     const {
       isLoading,
       data,
+      loadData,
       loadNextPage,
       sortOptions,
+      toggleSortDirection,
       sort,
       search
     } = this.props;
 
+    const sortDirection = sortOptions.current.direction === ':DESC' ? 'down' : 'up';
     return (
-      <ScrollWrapper bg="gray">
-        <WhiteInput placeholder='Suche...' onChange={search} />
-        <WhiteSelect onChange={sort}>
-          {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
-        </WhiteSelect>
-        {isLoading ? renderLoader() : renderItems(data)}
-        {!isLoading && renderButton(loadNextPage)}
-      </ScrollWrapper>
+      <Fragment>
+        <Box p={2}>
+          <Flex>
+            <Input placeholder="Suche..." onChange={search} />
+            <Button onClick={loadData}> Suchen </Button>
+          </Flex>
+          <Flex pt={1}>
+            <Select onChange={sort}>
+              {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
+            </Select>
+            <Arrow direction={sortDirection} onClick={toggleSortDirection} m={2} mt={3} />
+          </Flex>
+        </Box>
+        <ScrollWrapper bg="gray">
+          {isLoading ? renderLoader() : renderItems(data)}
+          {!isLoading && renderButton(loadNextPage)}
+        </ScrollWrapper>
+      </Fragment>
     );
   }
 }
