@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
-import { Text, Button, Select } from 'rebass';
+import { Text, Button, Select, Input } from 'rebass';
 
 import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
@@ -13,6 +13,10 @@ width: 100%;
 `;
 
 const WhiteSelect = styled(Select)`
+background-color: white;
+`;
+
+const WhiteInput = styled(Input)`
 background-color: white;
 `;
 
@@ -43,11 +47,13 @@ class Feed extends PureComponent {
       data,
       loadNextPage,
       sortOptions,
-      sort
+      sort,
+      search
     } = this.props;
 
     return (
       <ScrollWrapper bg="gray">
+        <WhiteInput placeholder='Suche...' onChange={search} />
         <WhiteSelect onChange={sort}>
           {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
         </WhiteSelect>
