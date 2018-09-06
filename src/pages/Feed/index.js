@@ -17,7 +17,7 @@ background-color: white;
 `;
 
 function renderItems(items) {
-  return items.map((item, i) => <FeedItem {...item} key={i} />);
+  return items.map((item) => <FeedItem {...item} key={item.id} />);
 }
 
 function renderLoader() {
