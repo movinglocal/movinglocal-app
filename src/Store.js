@@ -1,6 +1,8 @@
 import createStore from 'unistore';
 import fetch from 'unfetch';
 
+import { loadData } from '~/services/api';
+
 export const Store = createStore({
   isLoading: true,
   data: [],
@@ -20,28 +22,19 @@ export const Store = createStore({
   searchTerm: ''
 });
 
-export const actions = () => ({
-  loadData: async ({ page, sortOptions, sources, searchTerm }) => {
-    let data = null;
-    const { pageSize, pageStart } = page;
-    const { current } = sortOptions;
-    const sort = current.option.concat(current.direction);
-    let url = `https://movinglocal-api.herokuapp.com/article?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
-    sources.forEach((source) => {
-      if (!source.active) url = url.concat(`&source_ne=${source.id}`);
-    });
-    if (searchTerm.length > 0) url = url.concat(`&_q=${searchTerm}`);
-    try {
-      data = await fetch(url)
-        .then(r => r.json())
-        .then(r => r.filter(e => !e.ignored))
-    } catch (err) {
-      console.log(err);
-    }
+export const actions = store => ({
+  loadData: async (state) => {
+    store.setState({ isLoading: true });
+
+    const data = await loadData(state);
+
     return { data, isLoading: false };
   },
 
-  loadItem: async ({ item }, { id }) => {
+  loadItem: async (state, { id }) => {
+    let item = null;
+    store.setState({ isLoading: true });
+
     try {
       item = await fetch(`https://movinglocal-api.herokuapp.com/article/${id}`)
         .then(r => r.json());
@@ -61,31 +54,37 @@ export const actions = () => ({
     }
   ),
 
-  loadNextPage: async ({ page, data, sortOptions, sources, searchTerm }) => {
-    const { incrementPage, loadData } = actions();
+  loadNextPage: async (state) => {
+    const { incrementPage } = actions();
+    const { page } = incrementPage({ page: state.page });
+    const nextData = await loadData(state);
 
-    const { page: p } = incrementPage({ page });
-    const { data: d } = await loadData({
-      page: p, sortOptions, sources, searchTerm
-    });
-    return { page: p, data: data.concat(d) };
+    return {
+      page,
+      data: state.data.concat(nextData)
+    };
   },
 
   sort: async ({ page, sortOptions, sources, searchTerm }, event) => {
-    const { loadData } = actions();
     sortOptions.current.option = event.target.value;
-    const { data } = await loadData({
+    const data = await loadData({
       page, sortOptions, sources, searchTerm
     });
-    return { data, page, sortOptions };
+    return { data, sortOptions };
   },
 
-  toggleSortDirection: ({ page, sortOptions, sources, searchTerm }) => {
+  toggleSortDirection: async ({ page, sortOptions, sources, searchTerm }) => {
+    store.setState({ isLoading: true });
+
     if (sortOptions.current.direction === ':DESC') sortOptions.current.direction = ':ASC';
     else if (sortOptions.current.direction === ':ASC') sortOptions.current.direction = ':DESC';
-    return actions().loadData({
-      page, sortOptions, sources, searchTerm
-    });
+
+    const data = await loadData({ page, sortOptions, sources, searchTerm });
+
+    return {
+      data,
+      isLoading: false
+    };
   },
 
   search: async (state, event) => {

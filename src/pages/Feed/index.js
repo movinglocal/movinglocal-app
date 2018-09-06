@@ -16,7 +16,7 @@ import ScrollWrapper from '~/components/ScrollWrapper';
 import styled from 'styled-components';
 
 const FullWidthButton = styled(Button)`
-width: 100%;
+  width: 100%;
 `;
 
 function renderItems(items) {
@@ -40,11 +40,18 @@ class Feed extends PureComponent {
     this.props.loadData();
   }
 
+  onSubmit = (evt) => {
+    evt.preventDefault();
+
+    const inputValue = evt.target.elements.input.value;
+
+    this.props.loadData(evt);
+  }
+
   render() {
     const {
       isLoading,
       data,
-      loadData,
       loadNextPage,
       sortOptions,
       toggleSortDirection,
@@ -56,10 +63,12 @@ class Feed extends PureComponent {
     return (
       <Fragment>
         <Box p={2}>
-          <Flex>
-            <Input placeholder="Suche..." onChange={search} />
-            <Button onClick={loadData}> Suchen </Button>
-          </Flex>
+          <form onSubmit={this.onSubmit}>
+            <Flex>
+              <Input placeholder="Suche..." onChange={search} name="input" />
+              <Button type="submit">Suchen</Button>
+            </Flex>
+          </form>
           <Flex pt={1}>
             <Select onChange={sort}>
               {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
