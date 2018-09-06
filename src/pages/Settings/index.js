@@ -10,7 +10,7 @@ import {
 import ScrollWrapper from '~/components/ScrollWrapper';
 
 import { connect } from 'unistore/react';
-import { settingsActions } from '~/Store';
+import { settingsActions } from '~/pages/Settings/actions';
 
 function renderSource(source, toggleSource) {
   const {
