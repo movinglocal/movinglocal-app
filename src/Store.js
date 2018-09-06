@@ -4,22 +4,30 @@ import fetch from 'unfetch';
 export const Store = createStore({
   isLoading: true,
   data: [],
-  page: { pageSize: 10, pageStart: 0 }
+  page: { pageSize: 100, pageStart: 0 },
+  sortOptions: {
+    current: 'date:DESC',
+    options: [
+      { label: 'Datum', value: 'date:DESC' },
+      { label: 'Quelle', value: 'source:ASC' }
+    ]
+  }
 });
 
 export const actions = () => ({
-  loadData: async ({ page, data }) => {
-    let res = null;
+  loadData: async ({ page, sortOptions }) => {
+    let data = null;
     const { pageSize, pageStart } = page;
+    console.log(sortOptions)
+    const { current } = sortOptions;
     try {
-      res = await fetch(`https://movinglocal-api.herokuapp.com/article?_limit=${pageSize}&_start=${pageStart}`)
+      data = await fetch(`https://movinglocal-api.herokuapp.com/article?_limit=${pageSize}&_start=${pageStart}&_sort=${current}`)
         .then(r => r.json())
         .then(r => r.filter(e => !e.ignored))
-        .then(r => data.concat(r));
     } catch (err) {
       console.log(err);
     }
-    return { data: res, isLoading: false };
+    return { data, isLoading: false };
   },
 
   loadItem: async ({ item }, { id }) => {
@@ -41,12 +49,19 @@ export const actions = () => ({
     }
   ),
 
-  loadNextPage: async ({ page, data }) => {
+  loadNextPage: async ({ page, data, sortOptions }) => {
     const { incrementPage, loadData } = actions();
 
     const { page: p } = incrementPage({ page });
-    const { data: d } = await loadData({ page: p, data });
-    return { page: p, data: d };
+    const { data: d } = await loadData({ page: p, sortOptions });
+    return { page: p, data: data.concat(d) };
+  },
+
+  sort: async ({ page, sortOptions }, event) => {
+    const { loadData } = actions();
+    sortOptions.current = event.target.value;
+    const { data } = await loadData({ page, sortOptions });
+    return { data, page, sortOptions };
   }
 });
 

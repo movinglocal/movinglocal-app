@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
-import { Text, Button } from 'rebass';
+import { Text, Button, Select } from 'rebass';
 
 import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
@@ -10,6 +10,10 @@ import styled from 'styled-components';
 const FullWidthButton = styled(Button)`
 border-radius: 0;
 width: 100%;
+`;
+
+const WhiteSelect = styled(Select)`
+background-color: white;
 `;
 
 function renderItems(items) {
@@ -34,10 +38,19 @@ class Feed extends PureComponent {
   }
 
   render() {
-    const { isLoading, data, loadNextPage } = this.props;
+    const {
+      isLoading,
+      data,
+      loadNextPage,
+      sortOptions,
+      sort
+    } = this.props;
 
     return (
       <ScrollWrapper bg="gray">
+        <WhiteSelect onChange={sort}>
+          {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
+        </WhiteSelect>
         {isLoading ? renderLoader() : renderItems(data)}
         {!isLoading && renderButton(loadNextPage)}
       </ScrollWrapper>
