@@ -30,7 +30,7 @@ function renderLoader() {
 function renderButton(action) {
   return (
     <FullWidthButton onClick={action} width={1} borderRadius={0}>
-      Load more...
+      Mehr laden...
     </FullWidthButton>
   );
 }
