@@ -49,7 +49,7 @@ export const actions = store => ({
   loadNextPage: async (state) => {
     const { incrementPage } = actions();
     const { page } = incrementPage({ page: state.page });
-    const nextData = await loadData(store, state);
+    const nextData = await loadData(store, { ...state, page });
 
     return {
       page,
