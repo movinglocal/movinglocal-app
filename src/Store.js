@@ -1,5 +1,4 @@
 import createStore from 'unistore';
-import fetch from 'unfetch';
 
 import { loadData, loadItem } from '~/services/api';
 
@@ -22,7 +21,7 @@ export const Store = createStore({
 export const actions = store => ({
   loadData: state => loadData(store, state),
 
-  loadItem: state => loadItem(store, state),
+  loadItem: (state, { id }) => loadItem(store, state, { id }),
 
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;

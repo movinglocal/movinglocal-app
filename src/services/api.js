@@ -1,3 +1,5 @@
+import fetch from 'unfetch';
+
 function createURL(state) {
   const {
     pageSize,
@@ -49,7 +51,23 @@ export async function loadItem(store, state, { id }) {
   return { item, isLoading: false };
 }
 
+export async function loadSources({ sources }) {
+  if (sources.length) return { sources };
+  try {
+    sources = await fetch('https://movinglocal-api.herokuapp.com/source')
+      .then(r => r.json())
+      .then(r => r.map((s) => {
+        s.active = true;
+        return s;
+      }));
+  } catch (err) {
+    console.log(err);
+  }
+  return { sources };
+}
+
 export default {
   loadData,
-  loadItem
+  loadItem,
+  loadSources
 };
