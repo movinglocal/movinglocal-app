@@ -6,7 +6,7 @@ import {
 } from 'rebass';
 
 import { actions } from '~/Store';
-import FeedItem from '~/pages/Feed/components/FeedItem';
+import ArticleTeaser from '~/components/ArticleTeaser';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
@@ -18,7 +18,7 @@ const FullWidthButton = styled(Button)`
 `;
 
 function renderItems(items) {
-  return items.map(item => <FeedItem {...item} key={item.id} />);
+  return items.map(item => <ArticleTeaser {...item} key={item.id} />);
 }
 
 function renderLoader() {

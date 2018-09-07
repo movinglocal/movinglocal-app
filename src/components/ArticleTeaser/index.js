@@ -40,11 +40,11 @@ const FeedDate = ({ text }) => (
   <Text fontSize={1} fontWeight="lighter">{text}</Text>
 );
 
-class FeedItem extends PureComponent {
+class ArticleTeaser extends PureComponent {
   addToFavorites = (evt) => {
     evt.preventDefault();
-    const { id, title, addToFavs } = this.props;
-    this.props.addToFavs({id, title});
+    const { id, title, content, image_url, image, link, source, date, addToFavs } = this.props;
+    this.props.addOrRemoveFav({id, title, content, image_url, image, link, source, date});
   }
 
   render() {
@@ -83,4 +83,4 @@ class FeedItem extends PureComponent {
 export default connect(
   state => state,
   favsActions
-)(FeedItem);
+)(ArticleTeaser);

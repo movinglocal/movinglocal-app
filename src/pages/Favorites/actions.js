@@ -1,13 +1,16 @@
-import db from '~/services/db';
+import db, { addFav, getFavs, removeFav } from '~/services/db';
 
 export const favsActions = () => ({
-  addToFavs: async (state, { id, title }) => db.add({ id, title }),
+  addOrRemoveFav: (state, fav) => {
+    const found = state.favs.find(f => f.id === fav.id);
+    if (found) removeFav(fav.id);
+    else addFav(fav);
+    return getFavs();
+  },
 
-  getFavs: async () => {
-    const favs = await db.toArray();
-    console.log(favs);
-    return { favs };
-  }
+  getFavs: () => getFavs(),
+
+  removeFav: (state, { id }) => removeFav(id)
 });
 
 export default {
