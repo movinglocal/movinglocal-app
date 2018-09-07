@@ -56,10 +56,13 @@ class ArticleTeaser extends PureComponent {
       image,
       link,
       source,
-      date
+      date,
+      favs
     } = this.props;
     const img = image ? image.url : image_url;
     const url = link || `artikel/${id}`;
+    const isFav = favs.find(f => f.id === id);
+    const favColor = isFav ? 'black' : 'white';
 
     return (
       <StyledLink href={url} color="black">
@@ -72,7 +75,7 @@ class ArticleTeaser extends PureComponent {
             <FeedDate text={date} />
           </Box>
           <Box>
-            <ButtonCircle onClick={this.addToFavorites}>★</ButtonCircle>
+            <ButtonCircle color={favColor} onClick={this.addToFavorites}>★</ButtonCircle>
           </Box>
         </Flex>
       </StyledLink>
