@@ -9,6 +9,8 @@ import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ScrollWrapper from '~/components/ScrollWrapper';
+import Loader from '~/components/Loader';
+
 import styled from 'styled-components';
 
 const FullWidthButton = styled(Button)`
@@ -47,7 +49,7 @@ class Feed extends PureComponent {
       <Fragment>
         <FeedControls />
         <ScrollWrapper bg="gray">
-          {isLoading ? renderLoader() : renderItems(data)}
+          {isLoading ? <Loader /> : renderItems(data)}
           {!isLoading && renderButton(loadNextPage)}
         </ScrollWrapper>
       </Fragment>

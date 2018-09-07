@@ -65,7 +65,7 @@ export async function loadSources({ sources }) {
   } catch (err) {
     console.log(err);
   }
-  return { sources };
+  return { sources, isLoading: false };
 }
 
 export default {

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import ScrollWrapper from '~/components/ScrollWrapper';
+import Loader from '~/components/Loader';
 import { Text, Box, Image } from 'rebass';
 
 import { connect } from 'unistore/react';
@@ -37,10 +38,6 @@ function renderItem(item) {
   );
 }
 
-function renderLoader() {
-  return <Text textAlign="center" pt={2}>Lade Daten ...</Text>;
-}
-
 class Article extends PureComponent {
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -52,7 +49,7 @@ class Article extends PureComponent {
 
     return (
       <ScrollWrapper bg="gray">
-        {isLoading ? renderLoader() : renderItem(item)}
+        {isLoading ? <Loader /> : renderItem(item)}
       </ScrollWrapper>
     );
   }

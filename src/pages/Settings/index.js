@@ -8,6 +8,7 @@ import {
   Box
 } from 'rebass';
 import ScrollWrapper from '~/components/ScrollWrapper';
+import Loader from '~/components/Loader';
 
 import { connect } from 'unistore/react';
 import { settingsActions } from '~/pages/Settings/actions';
@@ -40,12 +41,12 @@ class Settings extends PureComponent {
   }
 
   render() {
-    const { sources, toggleSource } = this.props;
+    const { sources, toggleSource, isLoading } = this.props;
     return (
       <ScrollWrapper p={3}>
         <Heading>Einstellungen</Heading>
         <Subhead>Quellen:</Subhead>
-        {sources.map(s => renderSource(s, toggleSource))}
+        {isLoading ? <Loader /> : sources.map(s => renderSource(s, toggleSource))}
       </ScrollWrapper>
     );
   }
