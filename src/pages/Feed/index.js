@@ -12,6 +12,7 @@ import {
 
 import { actions } from '~/Store';
 import FeedItem from '~/pages/Feed/components/FeedItem';
+import FeedControls from '~/pages/Feed/components/FeedControls';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import styled from 'styled-components';
 
@@ -40,42 +41,16 @@ class Feed extends PureComponent {
     this.props.loadData();
   }
 
-  onSubmit = (evt) => {
-    evt.preventDefault();
-
-    const inputValue = evt.target.elements.input.value;
-
-    this.props.loadData(evt);
-  }
-
   render() {
     const {
       isLoading,
       data,
-      loadNextPage,
-      sortOptions,
-      toggleSortDirection,
-      sort,
-      search
+      loadNextPage
     } = this.props;
 
-    const sortDirection = sortOptions.current.direction === ':DESC' ? 'down' : 'up';
     return (
       <Fragment>
-        <Box p={2}>
-          <form onSubmit={this.onSubmit}>
-            <Flex>
-              <Input placeholder="Suche..." onChange={search} name="input" />
-              <Button type="submit">Suchen</Button>
-            </Flex>
-          </form>
-          <Flex pt={1}>
-            <Select onChange={sort}>
-              {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
-            </Select>
-            <Arrow direction={sortDirection} onClick={toggleSortDirection} m={2} mt={3} />
-          </Flex>
-        </Box>
+        <FeedControls />
         <ScrollWrapper bg="gray">
           {isLoading ? renderLoader() : renderItems(data)}
           {!isLoading && renderButton(loadNextPage)}
