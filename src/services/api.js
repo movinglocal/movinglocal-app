@@ -1,5 +1,7 @@
 import fetch from 'unfetch';
 
+const BASE_URL = 'https://movinglocal-api.herokuapp.com';
+
 function createURL(state) {
   const {
     pageSize,
@@ -11,7 +13,7 @@ function createURL(state) {
   } = state;
 
   const sort = currentSortOption.concat(currentSortDirection);
-  let url = `https://movinglocal-api.herokuapp.com/article?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
+  let url = `${BASE_URL}/article?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
 
   if (searchTerm.length > 0) url = url.concat(`&_q=${searchTerm}`);
 
@@ -43,7 +45,7 @@ export async function loadItem(store, state, { id }) {
 
   let item = null;
   try {
-    item = await fetch(`https://movinglocal-api.herokuapp.com/article/${id}`)
+    item = await fetch(`${BASE_URL}/article/${id}`)
       .then(r => r.json());
   } catch (err) {
     console.log(err);
@@ -54,7 +56,7 @@ export async function loadItem(store, state, { id }) {
 export async function loadSources({ sources }) {
   if (sources.length) return { sources };
   try {
-    sources = await fetch('https://movinglocal-api.herokuapp.com/source')
+    sources = await fetch(`${BASE_URL}/source`)
       .then(r => r.json())
       .then(r => r.map((s) => {
         s.active = true;
