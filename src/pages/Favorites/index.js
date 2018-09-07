@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Heading, Text } from 'rebass';
+import { Text } from 'rebass';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import ArticleTeaser from '~/components/ArticleTeaser';
 
