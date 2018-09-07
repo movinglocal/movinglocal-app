@@ -15,7 +15,8 @@ export const Store = createStore({
   ],
   sortDirections: [':ASC', ':DESC'],
   sources: [],
-  searchTerm: ''
+  searchTerm: '',
+  favs: []
 });
 
 export const actions = store => ({

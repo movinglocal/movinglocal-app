@@ -1,15 +1,27 @@
 import React, { PureComponent } from 'react';
-import { Heading } from 'rebass';
+import { Heading, Text } from 'rebass';
 import ScrollWrapper from '~/components/ScrollWrapper';
 
+import { connect } from 'unistore/react';
+import { favsActions } from '~/pages/Favorites/actions';
+
 class Favorites extends PureComponent {
+  componentDidMount() {
+    this.props.getFavs();
+  }
+
   render() {
+    const { favs } = this.props;
     return (
       <ScrollWrapper p={3}>
         <Heading>Favoriten</Heading>
+        { favs.map(fav => <Text> { fav.name } </Text>)}
       </ScrollWrapper>
     );
   }
 }
 
-export default Favorites;
+export default connect(
+  state => state,
+  favsActions
+)(Favorites);

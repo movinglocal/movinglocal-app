@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 import {
-  Box, Flex, BackgroundImage, Text, Link
+  Box, Flex, BackgroundImage, Text, Link, ButtonCircle
 } from 'rebass';
 import styled from 'styled-components';
+
+import { connect } from 'unistore/react';
+import { favsActions } from '~/pages/Favorites/actions';
 
 const BackgroundImageFilled = styled(BackgroundImage)`
   height: 100%;
@@ -38,6 +41,12 @@ const FeedDate = ({ text }) => (
 );
 
 class FeedItem extends PureComponent {
+  addToFavorites = (evt) => {
+    evt.preventDefault();
+    const { id, title, addToFavs } = this.props;
+    this.props.addToFavs({id, title});
+  }
+
   render() {
     const {
       id,
@@ -62,10 +71,16 @@ class FeedItem extends PureComponent {
             {source && <FeedAttribution text={source.name} />}
             <FeedDate text={date} />
           </Box>
+          <Box>
+            <ButtonCircle onClick={this.addToFavorites}>★</ButtonCircle>
+          </Box>
         </Flex>
       </StyledLink>
     );
   }
 }
 
-export default FeedItem;
+export default connect(
+  state => state,
+  favsActions
+)(FeedItem);
