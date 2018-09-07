@@ -15,9 +15,9 @@ class FeedControls extends PureComponent {
   onSubmit = (evt) => {
     evt.preventDefault();
 
-    const inputValue = evt.target.elements.input.value;
-
-    this.props.loadData(evt);
+    const searchTerm = evt.target.elements.input.value;
+    this.props.search({searchTerm});
+    this.props.loadData();
   }
 
   render() {
@@ -34,7 +34,7 @@ class FeedControls extends PureComponent {
       <Box p={2}>
         <form onSubmit={this.onSubmit}>
           <Flex>
-            <Input placeholder="Suche..." onChange={search} name="input" />
+            <Input placeholder="Suche..." name="input" />
             <Button type="submit">Suchen</Button>
           </Flex>
         </form>
