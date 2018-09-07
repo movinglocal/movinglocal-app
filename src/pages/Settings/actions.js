@@ -11,4 +11,6 @@ export const settingsActions = () => ({
   })
 });
 
-export default { settingsActions };
+export default {
+  settingsActions
+};
