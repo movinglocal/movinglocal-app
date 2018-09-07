@@ -33,6 +33,10 @@ const FeedImage = ({ img }) => (
   </Box>
 );
 
+const FeedDate = ({ text }) => (
+  <Text fontSize={1} fontWeight="lighter">{text}</Text>
+);
+
 class FeedItem extends PureComponent {
   render() {
     const {
@@ -42,7 +46,8 @@ class FeedItem extends PureComponent {
       image_url,
       image,
       link,
-      source
+      source,
+      date
     } = this.props;
     const img = image ? image.url : image_url;
     const url = link || `artikel/${id}`;
@@ -55,6 +60,7 @@ class FeedItem extends PureComponent {
             <FeedTitle text={title} />
             <FeedTeaser text={content} />
             {source && <FeedAttribution text={source.name} />}
+            <FeedDate text={date} />
           </Box>
         </Flex>
       </StyledLink>
