@@ -20,7 +20,7 @@ export const Store = createStore({
 });
 
 export const actions = store => ({
-  loadData: state => (state.data.length === 0) && loadData(store, state),
+  loadData: state => loadData(store, state),
 
   loadItem: (state, { id }) => loadItem(store, state, { id }),
 
@@ -33,8 +33,8 @@ export const actions = store => ({
 
   sort: (state, event) => {
     const sortOption = event.target.value;
-    store.setState({ currentSortOption: sortOption });
-    return loadData(store, { ...state, currentSortOption: sortOption });
+    store.setState({ currentSortOption: sortOption, pageStart: 0 });
+    return loadData(store, { ...state, pageStart: 0, currentSortOption: sortOption });
   },
 
   toggleSortDirection: (state) => {
