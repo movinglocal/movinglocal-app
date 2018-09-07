@@ -62,7 +62,7 @@ class ArticleTeaser extends PureComponent {
     const img = image ? image.url : image_url;
     const url = link || `artikel/${id}`;
     const isFav = favs.find(f => f.id === id);
-    const favColor = isFav ? 'black' : 'white';
+    const favColor = isFav ? 'yellow' : 'white';
 
     return (
       <StyledLink href={url} color="black">
