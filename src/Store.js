@@ -32,18 +32,18 @@ export const actions = store => ({
   },
 
   sort: (state, event) => {
-    let { currentSortOption } = state;
-    currentSortOption = event.target.value;
-    store.setState({ currentSortOption });
-    return loadData(store, { ...state, currentSortOption });
+    const sortOption = event.target.value;
+    store.setState({ currentSortOption: sortOption });
+    return loadData(store, { ...state, currentSortOption: sortOption });
   },
 
   toggleSortDirection: (state) => {
-    let { currentSortDirection } = state;
-    if (currentSortDirection === ':DESC') currentSortDirection = ':ASC';
-    else if (currentSortDirection === ':ASC') currentSortDirection = ':DESC';
-    store.setState({ currentSortDirection });
-    return loadData(store, { ...state, currentSortDirection });
+    let sortDirection;
+    const { currentSortDirection } = state;
+    if (currentSortDirection === ':DESC') sortDirection = ':ASC';
+    else sortDirection = ':DESC';
+    store.setState({ currentSortDirection: sortDirection });
+    return loadData(store, { ...state, currentSortDirection: sortDirection });
   },
 
   search: (state, searchTerm) => (searchTerm)
