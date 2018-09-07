@@ -2,12 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
 import {
   Text,
-  Button,
-  Select,
-  Arrow,
-  Input,
-  Box,
-  Flex
+  Button
 } from 'rebass';
 
 import { actions } from '~/Store';
