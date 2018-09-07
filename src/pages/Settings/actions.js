@@ -7,7 +7,7 @@ export const settingsActions = () => ({
   loadSources: state => loadSources(state),
 
   toggleSource: async ({ sources }, id) => {
-    const found = sources.find(s => s.id === id)
+    const found = sources.find(s => s.id === id);
     if (found.active) await add(COLLECTION, { id, active: false });
     else await remove(COLLECTION, id);
     return {

@@ -44,7 +44,6 @@ class Settings extends PureComponent {
     const { sources, toggleSource, isLoading } = this.props;
     return (
       <ScrollWrapper p={3}>
-        <Heading>Einstellungen</Heading>
         <Subhead>Quellen:</Subhead>
         {isLoading ? <Loader /> : sources.map(s => renderSource(s, toggleSource))}
       </ScrollWrapper>
