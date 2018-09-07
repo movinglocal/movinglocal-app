@@ -49,7 +49,8 @@ class Feed extends PureComponent {
       <Fragment>
         <FeedControls />
         <ScrollWrapper bg="gray">
-          {isLoading ? <Loader /> : renderItems(data)}
+          {renderItems(data)}
+          {isLoading && <Loader />}
           {!isLoading && renderButton(loadNextPage)}
         </ScrollWrapper>
       </Fragment>
