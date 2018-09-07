@@ -5,30 +5,31 @@ const DB_NAME = 'movinglocal';
 const db = new Dexie(DB_NAME);
 
 db.version(1).stores({
-  favs: 'id,name'
+  favs: 'id,name',
+  sources: 'id,active'
 });
 
-export async function addFav(fav) {
+export async function add(collection, fav) {
   try {
-    await db.favs.add(fav);
+    await db[collection].add(fav);
   } catch (err) {
     console.log('Error saving to the IndexedDB:', err);
   }
 }
 
-export async function getFavs() {
+export async function get(collection) {
   let favs = null;
   try {
-    favs = await db.favs.toArray();
+    favs = await db[collection].toArray();
   } catch (err) {
     console.log('Error accessing IndexedDB:', err);
   }
   return { favs };
 }
 
-export async function removeFav(id) {
+export async function remove(collection, id) {
   try {
-    await db.favs.delete(id);
+    await db[collection].delete(id);
   } catch (err) {
     console.log('Error deleting entry from IndexedDB:', err);
   }
@@ -38,7 +39,7 @@ export async function removeFav(id) {
 
 export default {
   db,
-  addFav,
-  getFavs,
-  removeFav
+  add,
+  get,
+  remove
 };

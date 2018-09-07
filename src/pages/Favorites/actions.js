@@ -1,16 +1,18 @@
-import { addFav, getFavs, removeFav } from '~/services/db';
+import { add, get, remove } from '~/services/db';
+
+const COLLECTION = 'favs';
 
 export const favsActions = () => ({
   addOrRemoveFav: (state, fav) => {
     const found = state.favs.find(f => f.id === fav.id);
-    if (found) removeFav(fav.id);
-    else addFav(fav);
-    return getFavs();
+    if (found) remove(COLLECTION, fav.id);
+    else add(COLLECTION, fav);
+    return get(COLLECTION);
   },
 
-  getFavs: () => getFavs(),
+  getFavs: () => get(COLLECTION),
 
-  removeFav: (state, { id }) => removeFav(id)
+  removeFav: (state, { id }) => remove(COLLECTION, id)
 });
 
 export default {
