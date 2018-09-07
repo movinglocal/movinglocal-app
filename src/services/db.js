@@ -36,4 +36,9 @@ export async function removeFav(id) {
   return this.getFavs();
 }
 
-export default db.favs;
+export default {
+  db,
+  addFav,
+  getFavs,
+  removeFav
+};

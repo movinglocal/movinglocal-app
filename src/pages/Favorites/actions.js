@@ -1,4 +1,4 @@
-import db, { addFav, getFavs, removeFav } from '~/services/db';
+import { addFav, getFavs, removeFav } from '~/services/db';
 
 export const favsActions = () => ({
   addOrRemoveFav: (state, fav) => {
