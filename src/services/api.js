@@ -1,4 +1,5 @@
-export async function loadData({ page, sortOptions, searchTerm, sources }) {
+export async function loadData(store, { page, sortOptions, searchTerm, sources }) {
+  store.setState({ isLoading: true });
   const { pageSize, pageStart } = page;
   const { current } = sortOptions;
   const sort = current.option.concat(current.direction);

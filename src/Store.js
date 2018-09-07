@@ -24,10 +24,7 @@ export const Store = createStore({
 
 export const actions = store => ({
   loadData: async (state) => {
-    store.setState({ isLoading: true });
-
-    const data = await loadData(state);
-
+    const data = await loadData(store, state);
     return { data, isLoading: false };
   },
 
@@ -49,37 +46,34 @@ export const actions = store => ({
       page: {
         pageSize: page.pageSize,
         pageStart: page.pageStart + page.pageSize
-      },
-      isLoading: true
+      }
     }
   ),
 
   loadNextPage: async (state) => {
     const { incrementPage } = actions();
     const { page } = incrementPage({ page: state.page });
-    const nextData = await loadData(state);
+    const nextData = await loadData(store, state);
 
     return {
       page,
-      data: state.data.concat(nextData)
+      data: state.data.concat(nextData),
+      isLoading: false
     };
   },
 
-  sort: async ({ page, sortOptions, sources, searchTerm }, event) => {
+  sort: async (state, event) => {
+    const { sortOptions } = state;
     sortOptions.current.option = event.target.value;
-    const data = await loadData({
-      page, sortOptions, sources, searchTerm
-    });
-    return { data, sortOptions };
+    const data = await loadData(store, state);
+    return { data, sortOptions, isLoading: false };
   },
 
   toggleSortDirection: async ({ page, sortOptions, sources, searchTerm }) => {
-    store.setState({ isLoading: true });
-
     if (sortOptions.current.direction === ':DESC') sortOptions.current.direction = ':ASC';
     else if (sortOptions.current.direction === ':ASC') sortOptions.current.direction = ':DESC';
 
-    const data = await loadData({ page, sortOptions, sources, searchTerm });
+    const data = await loadData(store, { page, sortOptions, sources, searchTerm });
 
     return {
       data,
