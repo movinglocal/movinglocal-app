@@ -20,7 +20,7 @@ export const Store = createStore({
 });
 
 export const actions = store => ({
-  loadData: state => loadData(store, state),
+  loadData: state => (state.data.length === 0) && loadData(store, state),
 
   loadItem: (state, { id }) => loadItem(store, state, { id }),
 
