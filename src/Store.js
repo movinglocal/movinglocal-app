@@ -7,17 +7,13 @@ export const Store = createStore({
   isLoading: true,
   data: [],
   page: { pageSize: 100, pageStart: 0 },
-  sortOptions: {
-    current: {
-      option: 'date',
-      direction: ':DESC'
-    },
-    options: [
-      { label: 'Datum', value: 'date' },
-      { label: 'Quelle', value: 'source' }
-    ],
-    directions: [':ASC', ':DESC']
-  },
+  currentSortOption: 'date',
+  currentSortDirection: ':DESC',
+  sortOptions: [
+    { label: 'Datum', value: 'date' },
+    { label: 'Quelle', value: 'source' }
+  ],
+  sortDirections: [':ASC', ':DESC'],
   sources: [],
   searchTerm: ''
 });
@@ -63,22 +59,20 @@ export const actions = store => ({
   },
 
   sort: async (state, event) => {
-    const { sortOptions } = state;
-    sortOptions.current.option = event.target.value;
-    const data = await loadData(store, state);
-    return { data, sortOptions, isLoading: false };
+    let { currentSortOption } = state;
+    currentSortOption = event.target.value;
+    const data = await loadData(store, { ...state, currentSortOption });
+    return { data, currentSortOption, isLoading: false };
   },
 
-  toggleSortDirection: async ({ page, sortOptions, sources, searchTerm }) => {
-    if (sortOptions.current.direction === ':DESC') sortOptions.current.direction = ':ASC';
-    else if (sortOptions.current.direction === ':ASC') sortOptions.current.direction = ':DESC';
+  toggleSortDirection: async (state) => {
+    let { currentSortDirection } = state;
+    if (currentSortDirection === ':DESC') currentSortDirection = ':ASC';
+    else if (currentSortDirection === ':ASC') currentSortDirection = ':DESC';
 
-    const data = await loadData(store, { page, sortOptions, sources, searchTerm });
+    const data = await loadData(store, { ...state, currentSortDirection });
 
-    return {
-      data,
-      isLoading: false
-    };
+    return { data, currentSortDirection, isLoading: false };
   },
 
   search: async (state, event) => {

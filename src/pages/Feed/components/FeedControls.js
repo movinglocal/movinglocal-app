@@ -24,11 +24,12 @@ class FeedControls extends PureComponent {
     const {
       sortOptions,
       toggleSortDirection,
+      currentSortDirection,
       sort,
       search
     } = this.props;
 
-    const sortDirection = sortOptions.current.direction === ':DESC' ? 'down' : 'up';
+    const sortDirection = currentSortDirection === ':DESC' ? 'down' : 'up';
     return (
       <Box p={2}>
         <form onSubmit={this.onSubmit}>
@@ -39,7 +40,7 @@ class FeedControls extends PureComponent {
         </form>
         <Flex pt={1}>
           <Select onChange={sort}>
-            {sortOptions.options.map(option => <option value={option.value}> {option.label} </option>)}
+            {sortOptions.map(option => <option value={option.value} key={option.value}> {option.label} </option>)}
           </Select>
           <Arrow direction={sortDirection} onClick={toggleSortDirection} m={2} mt={3} />
         </Flex>
