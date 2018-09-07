@@ -14,7 +14,7 @@ class Favorites extends PureComponent {
   render() {
     const { favs } = this.props;
     return (
-      <ScrollWrapper p={3}>
+      <ScrollWrapper bg="gray" p={3}>
         <Heading>Favoriten</Heading>
         { favs.map(fav => (<ArticleTeaser {...fav} key={fav.id} />))}
       </ScrollWrapper>
