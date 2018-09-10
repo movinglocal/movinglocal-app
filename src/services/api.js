@@ -2,6 +2,19 @@ import fetch from 'unfetch';
 
 const BASE_URL = 'https://movinglocal-api.herokuapp.com';
 
+function appendSearch(url, searchTerm) {
+  if (searchTerm.length > 0) url = url.concat(`&_q=${searchTerm}`);
+  return url;
+}
+
+function appendSources(url, sources) {
+  sources.forEach((source) => {
+    if (!source.active) url = url.concat(`&source_ne=${source.id}`);
+  });
+
+  return url;
+}
+
 function createURL(state) {
   const {
     pageSize,
@@ -15,11 +28,8 @@ function createURL(state) {
   const sort = currentSortOption.concat(currentSortDirection);
   let url = `${BASE_URL}/article?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
 
-  if (searchTerm.length > 0) url = url.concat(`&_q=${searchTerm}`);
-
-  sources.forEach((source) => {
-    if (!source.active) url = url.concat(`&source_ne=${source.id}`);
-  });
+  url = appendSearch(url, searchTerm);
+  url = appendSources(url, sources);
   return url;
 }
 
@@ -38,6 +48,23 @@ export async function loadData(store, state) {
   }
 
   return { data, isLoading: false };
+}
+
+export async function countItems(state) {
+  const { sources, searchTerm } = state;
+  let url = `${BASE_URL}/article/count?`;
+  url = appendSources(url, sources);
+  url = appendSearch(url, searchTerm);
+
+  let count = null;
+  try {
+    count = await fetch(url)
+      .then(r => r.json());
+  } catch (err) {
+    console.log(err);
+  }
+
+  return { count, isLoading: false };
 }
 
 export async function loadItem(store, state, { id }) {
@@ -70,6 +97,7 @@ export async function loadSources({ sources }) {
 
 export default {
   loadData,
+  countItems,
   loadItem,
   loadSources
 };

@@ -12,6 +12,7 @@ import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
 
 import styled from 'styled-components';
+import { settingsActions } from '../Settings/actions';
 
 const FullWidthButton = styled(Button)`
   width: 100%;
@@ -38,8 +39,13 @@ class Feed extends PureComponent {
     const {
       isLoading,
       data,
-      loadNextPage
+      loadNextPage,
+      count,
+      pageSize,
+      pageStart
     } = this.props;
+
+    const hasNext = pageStart + pageSize < count;
 
     return (
       <Fragment>
@@ -47,7 +53,7 @@ class Feed extends PureComponent {
         <ScrollWrapper bg="gray">
           {renderItems(data)}
           {isLoading && <Loader />}
-          {!isLoading && renderButton(loadNextPage)}
+          {(!isLoading && hasNext) && renderButton(loadNextPage)}
         </ScrollWrapper>
       </Fragment>
     );

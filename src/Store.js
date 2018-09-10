@@ -1,6 +1,6 @@
 import createStore from 'unistore';
 
-import { loadData, loadItem } from '~/services/api';
+import { loadData, loadItem, countItems } from '~/services/api';
 import { settingsActions } from '~/pages/Settings/actions';
 
 
@@ -9,6 +9,7 @@ export const Store = createStore({
   data: [],
   pageSize: 100,
   pageStart: 0,
+  count: -1,
   currentSortOption: 'date',
   currentSortDirection: ':DESC',
   sortOptions: [
@@ -24,8 +25,14 @@ export const Store = createStore({
 export const actions = store => ({
   loadData: async (state) => {
     const { sources } = await settingsActions().loadSources(state);
+    const { count } = await countItems({ ...state, sources });
     const { data, isLoading } = await loadData(store, { ...state, sources });
-    return { sources, data, isLoading };
+    return {
+      sources,
+      count,
+      data,
+      isLoading
+    };
   },
 
   loadItem: (state, { id }) => loadItem(store, state, { id }),
