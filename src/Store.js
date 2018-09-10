@@ -1,6 +1,8 @@
 import createStore from 'unistore';
 
 import { loadData, loadItem } from '~/services/api';
+import { settingsActions } from '~/pages/Settings/actions';
+
 
 export const Store = createStore({
   isLoading: true,
@@ -20,7 +22,11 @@ export const Store = createStore({
 });
 
 export const actions = store => ({
-  loadData: state => loadData(store, state),
+  loadData: async (state) => {
+    const { sources } = await settingsActions().loadSources(state);
+    const { data, isLoading } = await loadData(store, { ...state, sources });
+    return { sources, data, isLoading };
+  },
 
   loadItem: (state, { id }) => loadItem(store, state, { id }),
 
