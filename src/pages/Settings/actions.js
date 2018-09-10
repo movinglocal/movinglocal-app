@@ -3,17 +3,19 @@ import { add, get, remove } from '~/services/db';
 
 const COLLECTION = 'sources';
 
-export const settingsActions = () => ({
-  loadSources: async (state) => {
-    const { favs } = await get(COLLECTION);
-    const { sources } = await loadSources(state);
-    favs.forEach((fav) => {
-      const found = sources.find(source => source.id === fav.id);
-      found.active = fav.active;
-    });
+export const getSources = async (state) => {
+  const { favs } = await get(COLLECTION);
+  const { sources } = await loadSources(state);
+  favs.forEach((fav) => {
+    const found = sources.find(source => source.id === fav.id);
+    found.active = fav.active;
+  });
 
-    return { sources };
-  },
+  return { sources };
+};
+
+export const settingsActions = () => ({
+  loadSources: async state => getSources(state),
 
   toggleSource: async ({ sources }, id) => {
     const found = sources.find(s => s.id === id);
@@ -31,5 +33,6 @@ export const settingsActions = () => ({
 });
 
 export default {
-  settingsActions
+  settingsActions,
+  getSources
 };

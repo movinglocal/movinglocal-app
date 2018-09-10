@@ -1,7 +1,7 @@
 import createStore from 'unistore';
 
 import api from '~/services/api';
-import { settingsActions } from '~/pages/Settings/actions';
+import { getSources } from '~/pages/Settings/actions';
 
 
 export const Store = createStore({
@@ -25,7 +25,7 @@ export const Store = createStore({
 export const actions = store => ({
   loadData: async (state) => {
     if (state.data.length > 1) return {};
-    const { sources } = await settingsActions().loadSources(state);
+    const { sources } = await getSources(state);
     const { count } = await api.countItems({ ...state, sources });
     const { data, isLoading } = await api.loadItems(store, { ...state, sources });
     return {
