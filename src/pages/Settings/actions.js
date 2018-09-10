@@ -4,7 +4,16 @@ import { add, get, remove } from '~/services/db';
 const COLLECTION = 'sources';
 
 export const settingsActions = () => ({
-  loadSources: state => loadSources(state),
+  loadSources: async (state) => {
+    const { favs } = await get(COLLECTION);
+    const { sources, isLoading } = await loadSources(state);
+    favs.forEach((fav) => {
+      const found = sources.find(source => source.id === fav.id);
+      found.active = fav.active;
+    });
+
+    return { sources, isLoading };
+  },
 
   toggleSource: async ({ sources }, id) => {
     const found = sources.find(s => s.id === id);

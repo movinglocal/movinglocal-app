@@ -34,7 +34,7 @@ export async function remove(collection, id) {
     console.log('Error deleting entry from IndexedDB:', err);
   }
 
-  return this.getFavs();
+  return get(collection);
 }
 
 export default {
