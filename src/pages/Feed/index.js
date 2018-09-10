@@ -1,18 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import {
-  Text,
-  Button
-} from 'rebass';
+import { Button } from 'rebass';
 
-import { actions } from '~/Store';
+import { actions } from '~/pages/Feed/actions';
 import ArticleTeaser from '~/components/ArticleTeaser';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
 
 import styled from 'styled-components';
-import { settingsActions } from '../Settings/actions';
 
 const FullWidthButton = styled(Button)`
   width: 100%;

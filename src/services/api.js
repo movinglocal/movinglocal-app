@@ -33,7 +33,7 @@ function createURL(state) {
   return url;
 }
 
-export async function loadItems(store) {
+export async function loadItems() {
   Store.setState({ isLoading: true });
   const state = Store.getState();
 

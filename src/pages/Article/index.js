@@ -4,7 +4,7 @@ import Loader from '~/components/Loader';
 import { Text, Box, Image } from 'rebass';
 
 import { connect } from 'unistore/react';
-import { actions } from '~/Store';
+import { actions } from '~/pages/Feed/actions';
 
 import styled from 'styled-components';
 

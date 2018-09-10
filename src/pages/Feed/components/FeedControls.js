@@ -9,7 +9,7 @@ import {
   Flex
 } from 'rebass';
 
-import { actions } from '~/Store';
+import { actions } from '~/pages/Feed/actions';
 
 class FeedControls extends PureComponent {
   onSubmit = (evt) => {
