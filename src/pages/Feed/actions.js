@@ -36,7 +36,7 @@ export const actions = store => ({
     const { currentSortDirection } = state;
     if (currentSortDirection === ':DESC') sortDirection = ':ASC';
     else sortDirection = ':DESC';
-    store.setState({ currentSortDirection: sortDirection });
+    store.setState({ currentSortDirection: sortDirection, pageStart: 0 });
     return api.loadItems();
   },
 
