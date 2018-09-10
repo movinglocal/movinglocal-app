@@ -33,7 +33,7 @@ function createURL(state) {
   return url;
 }
 
-export async function loadData(store, state) {
+export async function loadItems(store, state) {
   store.setState({ isLoading: true });
 
   const url = createURL(state);
@@ -96,7 +96,7 @@ export async function loadSources({ sources }) {
 }
 
 export default {
-  loadData,
+  loadItems,
   countItems,
   loadItem,
   loadSources

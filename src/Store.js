@@ -1,6 +1,6 @@
 import createStore from 'unistore';
 
-import { loadData, loadItem, countItems } from '~/services/api';
+import api from '~/services/api';
 import { settingsActions } from '~/pages/Settings/actions';
 
 
@@ -26,8 +26,8 @@ export const actions = store => ({
   loadData: async (state) => {
     if (state.data.length > 1) return {};
     const { sources } = await settingsActions().loadSources(state);
-    const { count } = await countItems({ ...state, sources });
-    const { data, isLoading } = await loadData(store, { ...state, sources });
+    const { count } = await api.countItems({ ...state, sources });
+    const { data, isLoading } = await api.loadItems(store, { ...state, sources });
     return {
       sources,
       count,
@@ -36,19 +36,19 @@ export const actions = store => ({
     };
   },
 
-  loadItem: (state, { id }) => loadItem(store, state, { id }),
+  loadItem: (state, { id }) => api.loadItem(store, state, { id }),
 
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
-    const { data, isLoading } = await loadData(store, { ...state, pageStart });
+    const { data, isLoading } = await api.loadItems(store, { ...state, pageStart });
     return { data: state.data.concat(data), isLoading };
   },
 
   sort: (state, event) => {
     const sortOption = event.target.value;
     store.setState({ currentSortOption: sortOption, pageStart: 0 });
-    return loadData(store, { ...state, pageStart: 0, currentSortOption: sortOption });
+    return api.loadItems(store, { ...state, pageStart: 0, currentSortOption: sortOption });
   },
 
   toggleSortDirection: (state) => {
@@ -57,7 +57,7 @@ export const actions = store => ({
     if (currentSortDirection === ':DESC') sortDirection = ':ASC';
     else sortDirection = ':DESC';
     store.setState({ currentSortDirection: sortDirection });
-    return loadData(store, { ...state, currentSortDirection: sortDirection });
+    return api.loadItems(store, { ...state, currentSortDirection: sortDirection });
   },
 
   search: (state, searchTerm) => ({
