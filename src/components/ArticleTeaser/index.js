@@ -12,7 +12,7 @@ const BackgroundImageFilled = styled(BackgroundImage)`
 `;
 
 const StyledLink = styled(Link)`
-  text-decoration: none
+  text-decoration: none;
 `;
 
 const FeedTitle = ({ text }) => (
@@ -74,7 +74,7 @@ class ArticleTeaser extends PureComponent {
             {source && <FeedAttribution text={source.name} />}
             <FeedDate text={date} />
           </Box>
-          <Box>
+          <Box ml="auto">
             <ButtonCircle color={favColor} onClick={this.addToFavorites}>★</ButtonCircle>
           </Box>
         </Flex>
