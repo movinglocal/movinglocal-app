@@ -5,6 +5,7 @@ export const actions = store => ({
   loadData: async (state) => {
     if (state.data.length > 1) return {};
     const { sources } = await mergeSources();
+    store.setState({ sources });
     const { count } = await api.countItems();
     const { data, isLoading } = await api.loadItems();
     return {
