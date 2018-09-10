@@ -6,13 +6,13 @@ const COLLECTION = 'sources';
 export const settingsActions = () => ({
   loadSources: async (state) => {
     const { favs } = await get(COLLECTION);
-    const { sources, isLoading } = await loadSources(state);
+    const { sources } = await loadSources(state);
     favs.forEach((fav) => {
       const found = sources.find(source => source.id === fav.id);
       found.active = fav.active;
     });
 
-    return { sources, isLoading };
+    return { sources };
   },
 
   toggleSource: async ({ sources }, id) => {
@@ -20,6 +20,8 @@ export const settingsActions = () => ({
     if (found.active) await add(COLLECTION, { id, active: false });
     else await remove(COLLECTION, id);
     return {
+      data: [],
+      isLoading: true,
       sources: sources.map(s => ({
         ...s,
         active: s.id === id ? !s.active : s.active

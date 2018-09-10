@@ -24,6 +24,7 @@ export const Store = createStore({
 
 export const actions = store => ({
   loadData: async (state) => {
+    if (state.data.length > 1) return {};
     const { sources } = await settingsActions().loadSources(state);
     const { count } = await countItems({ ...state, sources });
     const { data, isLoading } = await loadData(store, { ...state, sources });
@@ -59,7 +60,12 @@ export const actions = store => ({
     return loadData(store, { ...state, currentSortDirection: sortDirection });
   },
 
-  search: (state, searchTerm) => ({ searchTerm, pageStart: 0 })
+  search: (state, searchTerm) => ({
+    searchTerm,
+    data: [],
+    pageStart: 0,
+    isLoading: true
+  })
 });
 
 export default {
