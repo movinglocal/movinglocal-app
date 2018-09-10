@@ -1,9 +1,9 @@
 import { add, remove } from '~/services/db';
-import { getSources } from '~/services/settings';
+import { mergeSources } from '~/services/settings';
 import { SOURCES_COLLECTION } from '~/config';
 
 export const settingsActions = () => ({
-  loadSources: async state => getSources(state),
+  getSources: async () => mergeSources(),
 
   toggleSource: async ({ sources }, id) => {
     const found = sources.find(s => s.id === id);

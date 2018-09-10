@@ -3,7 +3,7 @@ import { loadSources } from '~/services/api';
 import { get } from '~/services/db';
 import { SOURCES_COLLECTION } from '~/config';
 
-export const getSources = async () => {
+export const mergeSources = async () => {
   const { favs } = await get(SOURCES_COLLECTION);
   const state = Store.getState();
   const { sources } = await loadSources(state);
@@ -16,5 +16,5 @@ export const getSources = async () => {
 };
 
 export default {
-  getSources
+  mergeSources
 };

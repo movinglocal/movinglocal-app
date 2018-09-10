@@ -36,7 +36,7 @@ function renderSource(source, toggleSource) {
 
 class Settings extends PureComponent {
   componentDidMount() {
-    this.props.loadSources();
+    this.props.getSources();
   }
 
   render() {

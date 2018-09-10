@@ -1,10 +1,10 @@
 import api from '~/services/api';
-import { getSources } from '~/services/settings';
+import { mergeSources } from '~/services/settings';
 
 export const actions = store => ({
   loadData: async (state) => {
     if (state.data.length > 1) return {};
-    const { sources } = await getSources();
+    const { sources } = await mergeSources();
     const { count } = await api.countItems();
     const { data, isLoading } = await api.loadItems();
     return {
