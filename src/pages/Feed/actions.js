@@ -1,4 +1,4 @@
-import api from '~/services/api';
+import { loadItem, loadItems, countItems } from '~/services/api';
 import { mergeSources } from '~/services/settings';
 
 export const actions = store => ({
@@ -6,8 +6,8 @@ export const actions = store => ({
     if (state.data.length > 1) return {};
     const { sources } = await mergeSources();
     store.setState({ sources });
-    const { count } = await api.countItems();
-    const { data, isLoading } = await api.loadItems();
+    const { count } = await countItems();
+    const { data, isLoading } = await loadItems();
     return {
       sources,
       count,
@@ -16,28 +16,26 @@ export const actions = store => ({
     };
   },
 
-  loadItem: (state, { id }) => api.loadItem({ id }),
+  loadItem: (state, { id }) => loadItem({ id }),
 
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
-    const { data, isLoading } = await api.loadItems();
+    const { data, isLoading } = await loadItems();
     return { data: state.data.concat(data), isLoading };
   },
 
   sort: (state, event) => {
     const sortOption = event.target.value;
     store.setState({ currentSortOption: sortOption, pageStart: 0 });
-    return api.loadItems();
+    return loadItems();
   },
 
   toggleSortDirection: (state) => {
-    let sortDirection;
-    const { currentSortDirection } = state;
-    if (currentSortDirection === ':DESC') sortDirection = ':ASC';
-    else sortDirection = ':DESC';
-    store.setState({ currentSortDirection: sortDirection, pageStart: 0 });
-    return api.loadItems();
+    const sortIndex = state.sortDirections[state.currentSortDirection] === 0 ? 1 : 0;
+    store.setState({ currentSortDirection: state.sortDirections[sortIndex], pageStart: 0 });
+
+    return loadItems();
   },
 
   search: (state, searchTerm) => ({

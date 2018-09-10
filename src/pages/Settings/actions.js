@@ -12,6 +12,7 @@ export const settingsActions = () => ({
     return {
       data: [],
       isLoading: true,
+      pageStart: 0,
       sources: sources.map(s => ({
         ...s,
         active: s.id === id ? !s.active : s.active
