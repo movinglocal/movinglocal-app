@@ -1,6 +1,6 @@
 import fetch from 'unfetch';
-
-const BASE_URL = 'https://movinglocal-api.herokuapp.com';
+import { Store } from '~/Store';
+import { BASE_URL } from '~/config';
 
 function appendSearch(url, searchTerm) {
   if (searchTerm.length > 0) url = url.concat(`&_q=${searchTerm}`);
@@ -33,8 +33,9 @@ function createURL(state) {
   return url;
 }
 
-export async function loadItems(store, state) {
-  store.setState({ isLoading: true });
+export async function loadItems(store) {
+  Store.setState({ isLoading: true });
+  const state = Store.getState();
 
   const url = createURL(state);
 
@@ -50,8 +51,8 @@ export async function loadItems(store, state) {
   return { data, isLoading: false };
 }
 
-export async function countItems(state) {
-  const { sources, searchTerm } = state;
+export async function countItems() {
+  const { sources, searchTerm } = Store.getState();
   let url = `${BASE_URL}/article/count?`;
   url = appendSources(url, sources);
   url = appendSearch(url, searchTerm);
@@ -67,8 +68,8 @@ export async function countItems(state) {
   return { count, isLoading: false };
 }
 
-export async function loadItem(store, state, { id }) {
-  store.setState({ isLoading: true });
+export async function loadItem({ id }) {
+  Store.setState({ isLoading: true });
 
   let item = null;
   try {

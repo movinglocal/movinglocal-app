@@ -1,6 +1,5 @@
 import Dexie from 'dexie';
-
-const DB_NAME = 'movinglocal';
+import { DB_NAME } from '~/config';
 
 const db = new Dexie(DB_NAME);
 
