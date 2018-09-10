@@ -21,10 +21,6 @@ function renderItems(items) {
   return items.map(item => <ArticleTeaser {...item} key={item.id} />);
 }
 
-function renderLoader() {
-  return <Text textAlign="center" pt={2}>Lade Daten ...</Text>;
-}
-
 function renderButton(action) {
   return (
     <FullWidthButton onClick={action} width={1} borderRadius={0}>

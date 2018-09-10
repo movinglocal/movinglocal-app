@@ -46,7 +46,7 @@ export const actions = store => ({
     return loadData(store, { ...state, currentSortDirection: sortDirection });
   },
 
-  search: (state, searchTerm) =>  ({searchTerm, pageStart: 0 })
+  search: (state, searchTerm) => ({ searchTerm, pageStart: 0 })
 });
 
 export default {
