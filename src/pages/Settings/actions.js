@@ -1,26 +1,14 @@
-import { loadSources } from '~/services/api';
-import { add, get, remove } from '~/services/db';
-
-const COLLECTION = 'sources';
-
-export const getSources = async (state) => {
-  const { favs } = await get(COLLECTION);
-  const { sources } = await loadSources(state);
-  favs.forEach((fav) => {
-    const found = sources.find(source => source.id === fav.id);
-    found.active = fav.active;
-  });
-
-  return { sources };
-};
+import { add, remove } from '~/services/db';
+import { getSources } from '~/services/settings';
+import { SOURCES_COLLECTION } from '~/config';
 
 export const settingsActions = () => ({
   loadSources: async state => getSources(state),
 
   toggleSource: async ({ sources }, id) => {
     const found = sources.find(s => s.id === id);
-    if (found.active) await add(COLLECTION, { id, active: false });
-    else await remove(COLLECTION, id);
+    if (found.active) await add(SOURCES_COLLECTION, { id, active: false });
+    else await remove(SOURCES_COLLECTION, id);
     return {
       data: [],
       isLoading: true,
@@ -33,6 +21,5 @@ export const settingsActions = () => ({
 });
 
 export default {
-  settingsActions,
-  getSources
+  settingsActions
 };

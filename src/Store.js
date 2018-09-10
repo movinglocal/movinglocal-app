@@ -1,8 +1,7 @@
 import createStore from 'unistore';
 
 import api from '~/services/api';
-import { getSources } from '~/pages/Settings/actions';
-
+import { getSources } from '~/services/settings';
 
 export const Store = createStore({
   isLoading: true,
