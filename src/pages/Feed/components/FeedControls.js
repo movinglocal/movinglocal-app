@@ -26,7 +26,8 @@ class FeedControls extends PureComponent {
       toggleSortDirection,
       currentSortDirection,
       sort,
-      search
+      search,
+      searchTerm
     } = this.props;
 
     const sortDirection = currentSortDirection === ':DESC' ? 'down' : 'up';
@@ -34,7 +35,7 @@ class FeedControls extends PureComponent {
       <Box p={2}>
         <form onSubmit={this.onSubmit}>
           <Flex>
-            <Input placeholder="Suche..." name="input" />
+            <Input placeholder="Suche..." name="input" defaultValue={searchTerm} />
             <Button type="submit">Suchen</Button>
           </Flex>
         </form>
