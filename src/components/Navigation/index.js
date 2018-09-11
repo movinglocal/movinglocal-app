@@ -26,8 +26,8 @@ class Navigation extends PureComponent {
         <Border border={0} borderTop={1} borderColor="darken">
           <Flex>
             <NavItem text="News Feed" to="/" />
-            <NavItem text="Favoriten" to="favoriten" />
-            <NavItem text="Einstellungen" to="einstellungen" />
+            <NavItem text="Favoriten" to="/favoriten" />
+            <NavItem text="Einstellungen" to="/einstellungen" />
           </Flex>
         </Border>
       </Box>
