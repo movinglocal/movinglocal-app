@@ -45,7 +45,7 @@ class Article extends PureComponent {
   }
 
   render() {
-    const { isLoading, item } = this.props;
+    const { item } = this.props;
 
     return (
       <ScrollWrapper bg="gray">
