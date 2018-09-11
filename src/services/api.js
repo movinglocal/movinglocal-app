@@ -3,16 +3,16 @@ import { Store } from '~/Store';
 import { BASE_URL } from '~/config';
 
 function appendSearch(url, searchTerm) {
-  if (searchTerm.length > 0) url = url.concat(`&_q=${searchTerm}`);
-  return url;
+  return (searchTerm.length > 0) ? url.concat(`&_q=${searchTerm}`) : url;
 }
 
 function appendSources(url, sources) {
+  let newUrl = url;
   sources.forEach((source) => {
-    if (!source.active) url = url.concat(`&source_ne=${source.id}`);
+    if (!source.active) newUrl = newUrl.concat(`&source_ne=${source.id}`);
   });
 
-  return url;
+  return newUrl;
 }
 
 function createURL(state) {
@@ -30,6 +30,7 @@ function createURL(state) {
 
   url = appendSearch(url, searchTerm);
   url = appendSources(url, sources);
+  console.log(url);
   return url;
 }
 
@@ -83,17 +84,16 @@ export async function loadItem({ id }) {
 
 export async function loadSources({ sources }) {
   if (sources.length) return { sources };
+
+  let newSources = [];
   try {
-    sources = await fetch(`${BASE_URL}/source`)
+    newSources = await fetch(`${BASE_URL}/source`)
       .then(r => r.json())
-      .then(r => r.map((s) => {
-        s.active = true;
-        return s;
-      }));
+      .then(r => r.map(s => ({ ...s, active: true })));
   } catch (err) {
     console.log(err);
   }
-  return { sources, isLoading: false };
+  return { sources: newSources, isLoading: false };
 }
 
 export default {
