@@ -49,7 +49,7 @@ class Article extends PureComponent {
 
     return (
       <ScrollWrapper bg="gray">
-        {isLoading ? <Loader /> : renderItem(item)}
+        {item ? renderItem(item) : <Loader />}
       </ScrollWrapper>
     );
   }
