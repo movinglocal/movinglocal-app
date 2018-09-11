@@ -26,8 +26,9 @@ export const actions = store => ({
   },
 
   toggleSortDirection: (state) => {
-    const sortIndex = state.sortDirections[state.currentSortDirection] === 0 ? 1 : 0;
-    store.setState({ currentSortDirection: state.sortDirections[sortIndex], pageStart: 0 });
+    const { sortDirections, currentSortDirection } = state;
+    const sortIndex = sortDirections.indexOf(currentSortDirection) === 0 ? 1 : 0;
+    store.setState({ currentSortDirection: sortDirections[sortIndex], pageStart: 0 });
 
     return loadItems();
   },
