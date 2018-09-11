@@ -1,4 +1,4 @@
-import { loadItem, loadItems, countItems } from '~/services/api';
+import { loadItems, countItems } from '~/services/api';
 
 export const actions = store => ({
   initData: async (state) => {
@@ -9,8 +9,6 @@ export const actions = store => ({
 
     return loadItems();
   },
-
-  loadItem: (state, { id }) => loadItem({ id }),
 
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
