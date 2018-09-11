@@ -30,7 +30,6 @@ function createURL(state) {
 
   url = appendSearch(url, searchTerm);
   url = appendSources(url, sources);
-  console.log(url);
   return url;
 }
 
