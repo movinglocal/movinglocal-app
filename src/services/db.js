@@ -23,7 +23,7 @@ export async function get(collection) {
   } catch (err) {
     console.log('Error accessing IndexedDB:', err);
   }
-  return { favs };
+  return favs;
 }
 
 export async function remove(collection, id) {

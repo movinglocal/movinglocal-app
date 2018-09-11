@@ -81,18 +81,18 @@ export async function loadItem({ id }) {
   return { item, isLoading: false };
 }
 
-export async function loadSources({ sources }) {
-  if (sources.length) return { sources };
+export async function loadSources() {
+  let sources = [];
 
-  let newSources = [];
   try {
-    newSources = await fetch(`${BASE_URL}/source`)
+    sources = await fetch(`${BASE_URL}/source`)
       .then(r => r.json())
       .then(r => r.map(s => ({ ...s, active: true })));
   } catch (err) {
     console.log(err);
   }
-  return { sources: newSources, isLoading: false };
+
+  return sources;
 }
 
 export default {

@@ -11,7 +11,7 @@ export const actions = store => ({
     const { sources } = await mergeSources();
     store.setState({ sources });
     const { count } = await countItems();
-    const { favs } = await get(FAVS_COLLECTION);
+    const favs = await get(FAVS_COLLECTION);
     store.setState({ count, favs });
 
     return loadItems();
