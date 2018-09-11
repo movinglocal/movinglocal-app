@@ -7,10 +7,6 @@ import { connect } from 'unistore/react';
 import { favsActions } from '~/pages/Favorites/actions';
 
 class Favorites extends PureComponent {
-  componentDidMount() {
-    this.props.getFavs();
-  }
-
   render() {
     const { favs } = this.props;
     return (

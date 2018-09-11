@@ -35,10 +35,6 @@ function renderSource(source, toggleSource) {
 }
 
 class Settings extends PureComponent {
-  componentDidMount() {
-    this.props.getSources();
-  }
-
   render() {
     const { sources, toggleSource, isLoading } = this.props;
     return (

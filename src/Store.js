@@ -1,6 +1,7 @@
 import createStore from 'unistore';
 
 export const Store = createStore({
+  isAppLoading: true,
   isLoading: true,
   data: [],
   pageSize: 100,
