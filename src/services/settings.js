@@ -11,7 +11,7 @@ export const mergeSources = async () => {
   return {
     sources: sources.map(source => ({
       ...source,
-      active: favs.find(fav => fav.id === source.id)
+      active: !favs.find(fav => fav.id === source.id)
     }))
   };
 };
