@@ -17,8 +17,6 @@ import NoMatch from '~/pages/NoMatch';
 import Header from '~/components/Header';
 import Navigation from '~/components/Navigation';
 
-import Loader from '~/components/Loader';
-
 const Wrapper = styled(Flex)`
 height: 100%;
 max-width: 700px;

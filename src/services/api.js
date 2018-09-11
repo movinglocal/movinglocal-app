@@ -65,7 +65,7 @@ export async function countItems() {
     console.log(err);
   }
 
-  return { count, isLoading: false };
+  return { count };
 }
 
 export async function loadItem({ id }) {
