@@ -27,8 +27,9 @@ function renderButton(action) {
 }
 
 class Feed extends PureComponent {
-  componentDidMount() {
-    this.props.loadData();
+  async componentDidMount() {
+    await this.props.initSources();
+    this.props.initData();
   }
 
   render() {

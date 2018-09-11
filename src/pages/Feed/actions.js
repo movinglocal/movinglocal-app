@@ -2,18 +2,15 @@ import { loadItem, loadItems, countItems } from '~/services/api';
 import { mergeSources } from '~/services/settings';
 
 export const actions = store => ({
-  loadData: async (state) => {
+  initSources: () => mergeSources(),
+
+  initData: async (state) => {
     if (state.data.length > 1) return {};
-    const { sources } = await mergeSources();
-    store.setState({ sources });
+
     const { count } = await countItems();
-    const { data, isLoading } = await loadItems();
-    return {
-      sources,
-      count,
-      data,
-      isLoading
-    };
+    store.setState({ count });
+
+    return loadItems();
   },
 
   loadItem: (state, { id }) => loadItem({ id }),

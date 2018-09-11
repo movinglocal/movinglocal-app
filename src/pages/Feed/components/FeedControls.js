@@ -17,7 +17,7 @@ class FeedControls extends PureComponent {
 
     const searchTerm = evt.target.elements.input.value;
     this.props.search(searchTerm);
-    this.props.loadData();
+    this.props.initData();
   }
 
   render() {
