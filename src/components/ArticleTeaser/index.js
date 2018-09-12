@@ -4,9 +4,6 @@ import {
 } from 'rebass';
 import styled from 'styled-components';
 
-import { connect } from 'unistore/react';
-import { favsActions } from '~/pages/Favorites/actions';
-
 import FavControl from '~/components/FavControl';
 
 import { ARTICLE_PATH } from '~/config';
@@ -79,7 +76,4 @@ class ArticleTeaser extends PureComponent {
   }
 }
 
-export default connect(
-  state => state,
-  favsActions
-)(ArticleTeaser);
+export default ArticleTeaser;
