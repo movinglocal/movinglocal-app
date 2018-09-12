@@ -45,12 +45,6 @@ const FeedDate = ({ text }) => (
 );
 
 class ArticleTeaser extends PureComponent {
-  addToFavorites = (evt) => {
-    evt.preventDefault();
-    const { item, addOrRemoveFav } = this.props;
-    addOrRemoveFav(item);
-  }
-
   render() {
     const { item } = this.props;
 
