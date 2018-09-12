@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import {
-  Box, Flex, BackgroundImage, Text, Link, ButtonCircle
+  Box, Flex, BackgroundImage, Text, Link
 } from 'rebass';
 import styled from 'styled-components';
 
 import { connect } from 'unistore/react';
 import { favsActions } from '~/pages/Favorites/actions';
+
+import FavControl from '~/components/FavControl';
 
 const BackgroundImageFilled = styled(BackgroundImage)`
   height: 100%;
@@ -43,12 +45,12 @@ const FeedDate = ({ text }) => (
 class ArticleTeaser extends PureComponent {
   addToFavorites = (evt) => {
     evt.preventDefault();
-    const { item, addToFavs } = this.props;
-    this.props.addOrRemoveFav(item);
+    const { item, addOrRemoveFav } = this.props;
+    addOrRemoveFav(item);
   }
 
   render() {
-    const { favs } = this.props;
+    const { item } = this.props;
 
     const {
       id,
@@ -59,12 +61,10 @@ class ArticleTeaser extends PureComponent {
       link,
       source,
       date
-    } = this.props.item;
+    } = item;
 
     const img = image ? image.url : image_url;
     const url = link || `artikel/${id}`;
-    const isFav = favs.find(f => f.id === id);
-    const favColor = isFav ? 'yellow' : 'white';
 
     return (
       <StyledLink href={url} color="black">
@@ -76,9 +76,7 @@ class ArticleTeaser extends PureComponent {
             {source && <FeedAttribution text={source.name} />}
             <FeedDate text={date} />
           </Box>
-          <Box ml="auto">
-            <ButtonCircle color={favColor} onClick={this.addToFavorites}>★</ButtonCircle>
-          </Box>
+          <FavControl item={item} />
         </Flex>
       </StyledLink>
     );
