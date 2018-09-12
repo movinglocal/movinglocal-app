@@ -2,24 +2,20 @@ import { add, get, remove } from '~/services/db';
 import { FAVS_COLLECTION } from '~/config';
 
 export const favsActions = () => ({
-  addOrRemoveFav: (state, fav) => {
+  addOrRemoveFav: async (state, fav) => {
     const found = state.favs.find(f => f.id === fav.id);
     if (found) remove(FAVS_COLLECTION, fav.id);
     else add(FAVS_COLLECTION, fav);
 
-    const favs = get(FAVS_COLLECTION);
+    const favs = await get(FAVS_COLLECTION);
 
-    return {
-      favs
-    };
+    return { favs };
   },
 
   removeFav: (state, { id }) => {
     const favs = remove(FAVS_COLLECTION, id);
 
-    return {
-      favs
-    };
+    return { favs };
   }
 });
 
