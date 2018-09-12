@@ -48,7 +48,7 @@ export async function loadItems() {
     console.log(err);
   }
 
-  return { data, isLoading: false, isAppLoading: false };
+  return data;
 }
 
 export async function countItems() {
@@ -65,7 +65,7 @@ export async function countItems() {
     console.log(err);
   }
 
-  return { count };
+  return count;
 }
 
 export async function loadItem({ id }) {
@@ -78,7 +78,7 @@ export async function loadItem({ id }) {
   } catch (err) {
     console.log(err);
   }
-  return { item, isLoading: false };
+  return item;
 }
 
 export async function loadSources() {

@@ -6,13 +6,10 @@ export const mergeSources = async () => {
   const localSources = await get(SOURCES_COLLECTION);
   const sources = await loadSources();
 
-  return {
-    sources: sources.map(source => ({
-      ...source,
-      active: !localSources.find(s => s.id === source.id)
-    })),
-    isLoading: false
-  };
+  return sources.map(source => ({
+    ...source,
+    active: !localSources.find(s => s.id === source.id)
+  }));
 };
 
 export default {

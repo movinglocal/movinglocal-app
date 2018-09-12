@@ -8,13 +8,19 @@ export const actions = store => ({
   init: async (state) => {
     if (state.data.length > 1) return {};
     store.setState({ isLoading: true });
-    const { sources } = await mergeSources();
+    const sources = await mergeSources();
     store.setState({ sources });
-    const { count } = await countItems();
+    const count = await countItems();
     const favs = await get(FAVS_COLLECTION);
-    store.setState({ count, favs });
+    const data = await loadItems();
 
-    return loadItems();
+    return {
+      data,
+      count,
+      favs,
+      isLoading: false,
+      isAppLoading: false
+    };
   }
 });
 

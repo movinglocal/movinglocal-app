@@ -4,31 +4,46 @@ export const actions = store => ({
   initData: async (state) => {
     if (state.data.length > 0) return {};
 
-    const { count } = await countItems();
-    store.setState({ count });
+    const count = await countItems();
+    const data = await loadItems();
 
-    return loadItems();
+    return {
+      data,
+      count,
+      isLoading: false,
+      isAppLoading: false
+    };
   },
 
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
-    const { data, isLoading } = await loadItems();
-    return { data: state.data.concat(data), isLoading };
+    const data = await loadItems();
+
+    return { data: state.data.concat(data), isLoading: false };
   },
 
-  sort: (state, event) => {
+  sort: async (state, event) => {
     const sortOption = event.target.value;
     store.setState({ currentSortOption: sortOption, pageStart: 0 });
-    return loadItems();
+    const data = await loadItems();
+
+    return {
+      data,
+      isLoading: false
+    };
   },
 
-  toggleSortDirection: (state) => {
+  toggleSortDirection: async (state) => {
     const { sortDirections, currentSortDirection } = state;
     const sortIndex = sortDirections.indexOf(currentSortDirection) === 0 ? 1 : 0;
     store.setState({ currentSortDirection: sortDirections[sortIndex], pageStart: 0 });
+    const data = await loadItems();
 
-    return loadItems();
+    return {
+      data,
+      isLoading: false
+    };
   },
 
   search: (state, searchTerm) => ({
