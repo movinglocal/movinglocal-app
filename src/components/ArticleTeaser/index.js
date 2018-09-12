@@ -48,10 +48,7 @@ class ArticleTeaser extends PureComponent {
   }
 
   render() {
-    const {
-      item,
-      favs
-    } = this.props;
+    const { favs } = this.props;
 
     const {
       id,
@@ -62,7 +59,7 @@ class ArticleTeaser extends PureComponent {
       link,
       source,
       date
-    } = item;
+    } = this.props.item;
 
     const img = image ? image.url : image_url;
     const url = link || `artikel/${id}`;
