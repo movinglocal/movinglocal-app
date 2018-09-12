@@ -5,6 +5,8 @@ import {
 import styled from 'styled-components';
 import Link from 'react-router-dom/Link';
 
+import { SETTINGS_PATH, FAVORITE_PATH } from '~/config';
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
@@ -19,6 +21,9 @@ const NavItem = ({ text, to }) => (
   </Box>
 );
 
+const favoriteRoute = `/${FAVORITE_PATH}`;
+const settingsRoute = `/${SETTINGS_PATH}`;
+
 class Navigation extends PureComponent {
   render() {
     return (
@@ -26,8 +31,8 @@ class Navigation extends PureComponent {
         <Border border={0} borderTop={1} borderColor="darken">
           <Flex>
             <NavItem text="News Feed" to="/" />
-            <NavItem text="Favoriten" to="/favoriten" />
-            <NavItem text="Einstellungen" to="/einstellungen" />
+            <NavItem text="Favoriten" to={favoriteRoute} />
+            <NavItem text="Einstellungen" to={settingsRoute} />
           </Flex>
         </Border>
       </Box>

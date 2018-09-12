@@ -17,6 +17,8 @@ import NoMatch from '~/pages/NoMatch';
 import Header from '~/components/Header';
 import Navigation from '~/components/Navigation';
 
+import { ARTICLE_PATH, SETTINGS_PATH, FAVORITE_PATH } from '~/config';
+
 const Wrapper = styled(Flex)`
 height: 100%;
 max-width: 700px;
@@ -27,6 +29,10 @@ display: flex;
 const RebassProviderStyled = styled(RebassProvider)`
 height: 100%;
 `;
+
+const articleRoute = `/${ARTICLE_PATH}/:id`;
+const settingsRoute = `/${SETTINGS_PATH}`;
+const favoriteRoute = `/${FAVORITE_PATH}`;
 
 class App extends PureComponent {
   componentDidMount() {
@@ -44,9 +50,9 @@ class App extends PureComponent {
             { !isAppLoading && (
             <Switch>
               <Route exact path="/" component={Feed} />
-              <Route exact path="/favoriten" component={Favorites} />
-              <Route exact path="/einstellungen" component={Settings} />
-              <Route path="/artikel/:id" component={Article} />
+              <Route exact path={favoriteRoute} component={Favorites} />
+              <Route exact path={settingsRoute} component={Settings} />
+              <Route path={articleRoute} component={Article} />
               <Route component={NoMatch} />
             </Switch>
             )}

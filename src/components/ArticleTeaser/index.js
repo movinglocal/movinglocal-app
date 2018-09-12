@@ -9,6 +9,8 @@ import { favsActions } from '~/pages/Favorites/actions';
 
 import FavControl from '~/components/FavControl';
 
+import { ARTICLE_PATH } from '~/config';
+
 const BackgroundImageFilled = styled(BackgroundImage)`
   height: 100%;
 `;
@@ -64,7 +66,7 @@ class ArticleTeaser extends PureComponent {
     } = item;
 
     const img = image ? image.url : image_url;
-    const url = link || `artikel/${id}`;
+    const url = link || `${ARTICLE_PATH}/${id}`;
 
     return (
       <StyledLink href={url} color="black">
