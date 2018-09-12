@@ -4,7 +4,7 @@ import {
 } from 'rebass';
 import styled from 'styled-components';
 
-import FavControl from '~/components/FavControl';
+import FavButton from '~/components/FavButton';
 
 import { ARTICLE_PATH } from '~/config';
 
@@ -69,7 +69,7 @@ class ArticleTeaser extends PureComponent {
             {source && <FeedAttribution text={source.name} />}
             <FeedDate text={date} />
           </Box>
-          <FavControl item={item} />
+          <FavButton item={item} />
         </Flex>
       </StyledLink>
     );

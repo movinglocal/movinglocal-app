@@ -8,7 +8,7 @@ import { favsActions } from '~/pages/Favorites/actions';
 
 import Loader from '~/components/Loader';
 
-class FavControl extends PureComponent {
+class FavButton extends PureComponent {
   addToFavorites = (evt) => {
     evt.preventDefault();
     const { addOrRemoveFav, item } = this.props;
@@ -34,4 +34,4 @@ class FavControl extends PureComponent {
 export default connect(
   state => state,
   favsActions
-)(FavControl);
+)(FavButton);

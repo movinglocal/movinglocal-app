@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
-import FavControl from '~/components/FavControl';
+import FavButton from '~/components/FavButton';
 import { Text, Box, Image } from 'rebass';
 
 import { connect } from 'unistore/react';
@@ -35,7 +35,7 @@ function renderItem(item) {
       <Text fontSize={1} fontWeight="normal" mb={2}>{content}</Text>
       {users && renderAuthor(users)}
       {image && <Image src={image.url} />}
-      <FavControl item={item} />
+      <FavButton item={item} />
     </FullHeightBox>
   );
 }
