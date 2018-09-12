@@ -26,9 +26,8 @@ class FavControl extends PureComponent {
           <ButtonCircle color={favColor} onClick={this.addToFavorites}>★</ButtonCircle>
         </Box>
       );
-    } else {
-      return '';
     }
+    return '';
   }
 }
 
