@@ -12,7 +12,7 @@ class Favorites extends PureComponent {
     return (
       <ScrollWrapper bg="gray">
         { favs.length === 0 && <Text> Noch keine Favoriten vorhanden... </Text>}
-        { favs.map(fav => (<ArticleTeaser {...fav} key={fav.id} />))}
+        { favs.map(fav => (<ArticleTeaser item={fav} key={fav.id} />))}
       </ScrollWrapper>
     );
   }

@@ -43,11 +43,16 @@ const FeedDate = ({ text }) => (
 class ArticleTeaser extends PureComponent {
   addToFavorites = (evt) => {
     evt.preventDefault();
-    const { id, title, content, image_url, image, link, source, date, addToFavs } = this.props;
-    this.props.addOrRemoveFav({id, title, content, image_url, image, link, source, date});
+    const { item, addToFavs } = this.props;
+    this.props.addOrRemoveFav(item);
   }
 
   render() {
+    const {
+      item,
+      favs
+    } = this.props;
+
     const {
       id,
       title,
@@ -56,9 +61,9 @@ class ArticleTeaser extends PureComponent {
       image,
       link,
       source,
-      date,
-      favs
-    } = this.props;
+      date
+    } = item;
+
     const img = image ? image.url : image_url;
     const url = link || `artikel/${id}`;
     const isFav = favs.find(f => f.id === id);

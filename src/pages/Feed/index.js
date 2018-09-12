@@ -15,7 +15,7 @@ const FullWidthButton = styled(Button)`
 `;
 
 function renderItems(items) {
-  return items.map(item => <ArticleTeaser {...item} key={item.id} />);
+  return items.map(item => <ArticleTeaser item={item} key={item.id} />);
 }
 
 function renderButton(action) {
