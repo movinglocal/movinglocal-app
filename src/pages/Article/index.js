@@ -9,11 +9,6 @@ import { actions } from '~/pages/Article/actions';
 
 import styled from 'styled-components';
 
-
-const FullHeightBox = styled(Box)`
-height: 100%;
-`;
-
 function renderAuthor(users) {
   return (
     <Text fontSize={1} fontWeight="normal" mb={2}>
@@ -30,13 +25,13 @@ function renderItem(item) {
   } = item;
 
   return (
-    <FullHeightBox bg="white" p={2} m={2}>
+    <Box bg="white" p={2} m={2}>
       <Text fontSize={3} fontWeight="normal" mb={2}>{title}</Text>
-      <Text fontSize={1} fontWeight="normal" mb={2}>{content}</Text>
+      <Text fontSize={1} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />
       {users && renderAuthor(users)}
       {image && <Image src={image.url} />}
       <FavButton item={item} />
-    </FullHeightBox>
+    </Box>
   );
 }
 

@@ -48,7 +48,7 @@ class ArticleTeaser extends PureComponent {
     const {
       id,
       title,
-      content,
+      teaser,
       image_url,
       image,
       link,
@@ -65,7 +65,7 @@ class ArticleTeaser extends PureComponent {
           {img && <FeedImage img={img} />}
           <Box width={3 / 4} px={2}>
             <FeedTitle text={title} />
-            <FeedTeaser text={content} />
+            <FeedTeaser text={teaser} />
             {source && <FeedAttribution text={source.name} />}
             <FeedDate text={date} />
           </Box>
