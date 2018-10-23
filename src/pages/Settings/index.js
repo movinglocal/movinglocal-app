@@ -14,7 +14,7 @@ import { settingsActions } from '~/pages/Settings/actions';
 
 function renderSource(source, toggleSource) {
   const {
-    id, name, location, active
+    id, name, organisation, active
   } = source;
 
   return (
@@ -24,7 +24,7 @@ function renderSource(source, toggleSource) {
           {name}
         </Text>
         <Text fontSize={1}>
-          {location.name}
+          {organisation && organisation.address}
         </Text>
       </Box>
       <Box>

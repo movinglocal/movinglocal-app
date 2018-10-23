@@ -9,26 +9,26 @@ import { actions } from '~/pages/Article/actions';
 
 import styled from 'styled-components';
 
-function renderAuthor(users) {
+function renderAuthor(source) {
   return (
     <Text fontSize={1} fontWeight="normal" mb={2}>
       Author:
       {' '}
-      {users.map(user => user.username).join(',')}
+      {source.name}
     </Text>
   );
 }
 
 function renderItem(item) {
   const {
-    title, content, image, users
+    title, content, image, source
   } = item;
 
   return (
     <Box bg="white" p={2} m={2}>
       <Text fontSize={3} fontWeight="normal" mb={2}>{title}</Text>
       <Text fontSize={1} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />
-      {users && renderAuthor(users)}
+      {source && renderAuthor(source)}
       {image && <Image src={image.url} />}
       <FavButton item={item} />
     </Box>
