@@ -3,7 +3,7 @@ import { mergeSources } from '~/services/settings';
 import { get } from '~/services/db';
 
 export const actions = store => ({
-  init: async (state) => {
+  init: async (state, userConfig) => {
     if (state.data.length > 1) return {};
     store.setState({ isLoading: true });
     const sources = await mergeSources();
@@ -17,7 +17,8 @@ export const actions = store => ({
       count,
       favs,
       isLoading: false,
-      isAppLoading: false
+      isAppLoading: false,
+      isInitial: userConfig.isInitial
     };
   }
 });

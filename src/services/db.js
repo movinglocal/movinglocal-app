@@ -4,8 +4,11 @@ const db = new Dexie(config.DB_NAME);
 
 db.version(1).stores({
   favs: 'id,name',
-  sources: 'id,active'
+  sources: 'id,active',
+  config: '++id,isInitial'
 });
+
+window.db = db;
 
 export async function add(collection, fav) {
   try {
@@ -35,9 +38,37 @@ export async function remove(collection, id) {
   return get(collection);
 }
 
+export async function initConfig() {
+  let item = null;
+  try {
+    item = await db.config.get(1);
+
+    if (!item) {
+      item = await db.config.add({ isInitial: true });
+    }
+  } catch (err) {
+    console.log('Error initializing IndexDB:', err);
+  }
+
+  return item;
+}
+
+export async function updateConfig(changes) {
+  let item = null;
+  try {
+    item = await db.config.update(1, changes);
+  } catch (err) {
+    console.log('Error updating IndexDB:', err);
+  }
+
+  return item;
+}
+
 export default {
   db,
   add,
   get,
-  remove
+  remove,
+  initConfig,
+  updateConfig
 };

@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Box } from 'rebass';
+import { Box, Heading } from 'rebass';
 
 import { actions } from '~/pages/Feed/actions';
 import ArticleTeaser from '~/components/ArticleTeaser';
@@ -14,6 +14,19 @@ class Feed extends PureComponent {
     this.props.initData();
   }
 
+  onOnboardingEnd = () => {
+    this.props.finishOnboarding();
+  }
+
+  renderOnboarding() {
+    return (
+      <Box p={3} css={{ flexGrow: 1 }}>
+        <Heading>Onboarding</Heading>
+        <Button onClick={this.onOnboardingEnd}>beenden</Button>
+      </Box>
+    );
+  }
+
   render() {
     const {
       isLoading,
@@ -21,11 +34,16 @@ class Feed extends PureComponent {
       loadNextPage,
       count,
       pageSize,
-      pageStart
+      pageStart,
+      isInitial
     } = this.props;
 
     const hasNext = pageStart + pageSize < count;
     const showMoreButton = !isLoading && hasNext;
+
+    if (isInitial && !isLoading) {
+      return this.renderOnboarding();
+    }
 
     return (
       <Fragment>

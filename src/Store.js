@@ -16,7 +16,8 @@ export const Store = createStore({
   sortDirections: [':ASC', ':DESC'],
   sources: [],
   searchTerm: '',
-  favs: []
+  favs: [],
+  isInitial: false
 });
 
 export default {
