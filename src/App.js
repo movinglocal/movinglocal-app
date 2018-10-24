@@ -10,6 +10,7 @@ import { actions } from '~/actions';
 import Feed from '~/pages/Feed';
 import Article from '~/pages/Article';
 import Favorites from '~/pages/Favorites';
+import Feedback from '~/pages/Feedback';
 import Settings from '~/pages/Settings';
 import Imprint from '~/pages/Imprint';
 import Privacy from '~/pages/Privacy';
@@ -19,7 +20,8 @@ import Header from '~/components/Header';
 import Navigation from '~/components/Navigation';
 
 const {
-  ARTICLE_PATH, SETTINGS_PATH, FAVORITE_PATH, IMPRINT_PATH, PRIVACY_PATH
+  ARTICLE_PATH, FILTER_PATH, FAVORITE_PATH,
+  IMPRINT_PATH, PRIVACY_PATH, FEEDBACK_PATH
 } = config;
 
 const Wrapper = styled(Flex)`
@@ -43,9 +45,10 @@ class App extends PureComponent {
             <Switch>
               <Route exact path="/" component={Feed} />
               <Route exact path={FAVORITE_PATH} component={Favorites} />
-              <Route exact path={SETTINGS_PATH} component={Settings} />
+              <Route exact path={FILTER_PATH} component={Settings} />
               <Route exact path={IMPRINT_PATH} component={Imprint} />
               <Route exact path={PRIVACY_PATH} component={Privacy} />
+              <Route exact path={FEEDBACK_PATH} component={Feedback} />
               <Route path={`${ARTICLE_PATH}/:id`} component={Article} />
               <Route component={NoMatch} />
             </Switch>
@@ -58,6 +61,6 @@ class App extends PureComponent {
 }
 
 export default connect(
-  state => state,
+  state => {},
   actions
 )(App);

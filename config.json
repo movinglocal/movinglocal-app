@@ -11,7 +11,8 @@
   "BASE_URL": "https://movinglocal-api.herokuapp.com",
   "ARTICLE_PATH": "/artikel",
   "FAVORITE_PATH": "/favoriten",
-  "SETTINGS_PATH": "/einstellungen",
+  "FILTER_PATH": "/filter",
   "IMPRINT_PATH": "/impressum",
-  "PRIVACY_PATH": "/datenschutz"
+  "PRIVACY_PATH": "/datenschutz",
+  "FEEDBACK_PATH": "/feedback"
 }
