@@ -1,30 +1,37 @@
 const Path = require('path');
 const Webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const Config = require('../config.json');
 
 module.exports = {
   entry: {
-    app: [
-      require.resolve('./polyfills'),
-      Path.resolve(__dirname, '../src/index.js')
-    ],
-    vendor: ['react', 'react-dom']
+    app: Path.resolve(__dirname, '../src/index.js')
   },
   output: {
     path: Path.join(__dirname, '../build'),
-    filename:  'js/[name].js',
-    publicPath: '/'
+    filename: 'js/[name].js'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: false
+    }
   },
   plugins: [
     new CleanWebpackPlugin(['build'], { root: Path.resolve(__dirname, '..') }),
     new CopyWebpackPlugin([
-      { from: Path.resolve(__dirname, '../public'), to: 'public' },
-      { from: Path.resolve(__dirname, '../manifest.json') },
-      { from: Path.resolve(__dirname, '../_redirects') }
+      { from: Path.resolve(__dirname, '../public'), to: 'public' }
     ]),
     new Webpack.ProvidePlugin({
       config: '~/../config.json'
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: Path.resolve(__dirname, '../src/index.html'),
+      meta: Config.meta
     })
   ],
   resolve: {
@@ -35,13 +42,30 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
+      },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
         use: {
           loader: 'file-loader',
           options: {
             name: '[path][name].[ext]'
           }
         }
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'react-svg-loader',
+            options: {
+              jsx: true
+            }
+          }
+        ]
       }
     ]
   }

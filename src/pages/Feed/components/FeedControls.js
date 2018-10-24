@@ -12,9 +12,8 @@ import {
 import { actions } from '~/pages/Feed/actions';
 
 class FeedControls extends PureComponent {
-  onSubmit = (evt) => {
+  onSubmit(evt) {
     evt.preventDefault();
-
     const searchTerm = evt.target.elements.input.value;
     this.props.search(searchTerm);
     this.props.initData();
@@ -27,7 +26,6 @@ class FeedControls extends PureComponent {
       currentSortDirection,
       currentSortOption,
       sort,
-      search,
       searchTerm
     } = this.props;
 
@@ -35,7 +33,7 @@ class FeedControls extends PureComponent {
 
     return (
       <Box p={2}>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={() => this.onSubmit()}>
           <Flex>
             <Input placeholder="Suche..." name="input" defaultValue={searchTerm} />
             <Button type="submit">Suchen</Button>
@@ -43,7 +41,11 @@ class FeedControls extends PureComponent {
         </form>
         <Flex pt={1}>
           <Select onChange={sort} value={currentSortOption}>
-            {sortOptions.map(option => <option value={option.value} key={option.value}> {option.label} </option>)}
+            {sortOptions.map(option => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+            ))}
           </Select>
           <Arrow direction={sortDirection} onClick={toggleSortDirection} m={2} mt={3} />
         </Flex>

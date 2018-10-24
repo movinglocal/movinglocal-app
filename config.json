@@ -1,6 +1,8 @@
 {
   "title": "Moving Local App",
   "meta": {
-    "description": "Moving Local App Description"
+    "description": "Moving Local App Description",
+    "viewport": "width=device-width, initial-scale=1",
+    "robots": "noindex,nofollow"
   }
 }
