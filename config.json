@@ -4,5 +4,14 @@
     "description": "Moving Local App Description",
     "viewport": "width=device-width, initial-scale=1",
     "robots": "noindex,nofollow"
-  }
+  },
+  "SOURCES_COLLECTION": "sources",
+  "FAVS_COLLECTION": "favs",
+  "DB_NAME": "movinglocal",
+  "BASE_URL": "https://movinglocal-api.herokuapp.com",
+  "ARTICLE_PATH": "/artikel",
+  "FAVORITE_PATH": "/favoriten",
+  "SETTINGS_PATH": "/einstellungen",
+  "IMPRINT_PATH": "/impressum",
+  "PRIVACY_PATH": "/datenschutz"
 }

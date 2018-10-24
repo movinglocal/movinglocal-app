@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import { Box, Button } from 'rebass';
+import { Box } from 'rebass';
 import { connect } from 'unistore/react';
 import styled from 'styled-components';
 
+import Button from '~/components/Button';
 import { favsActions } from '~/pages/Favorites/actions';
 
 const StyledButton = styled(Button)`
@@ -15,11 +16,6 @@ const StyledButton = styled(Button)`
   align-items: center;
   line-height: 1;
   padding: 0;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.75;
-  }
 `;
 
 class FavButton extends PureComponent {

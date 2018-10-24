@@ -11,12 +11,16 @@ import Feed from '~/pages/Feed';
 import Article from '~/pages/Article';
 import Favorites from '~/pages/Favorites';
 import Settings from '~/pages/Settings';
+import Imprint from '~/pages/Imprint';
+import Privacy from '~/pages/Privacy';
 import NoMatch from '~/pages/NoMatch';
 
 import Header from '~/components/Header';
 import Navigation from '~/components/Navigation';
 
-import { ARTICLE_PATH, SETTINGS_PATH, FAVORITE_PATH } from '~/config';
+const {
+  ARTICLE_PATH, SETTINGS_PATH, FAVORITE_PATH, IMPRINT_PATH, PRIVACY_PATH
+} = config;
 
 const Wrapper = styled(Flex)`
   height: 100%;
@@ -24,10 +28,6 @@ const Wrapper = styled(Flex)`
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
   display: flex;
 `;
-
-const articleRoute = `/${ARTICLE_PATH}/:id`;
-const settingsRoute = `/${SETTINGS_PATH}`;
-const favoriteRoute = `/${FAVORITE_PATH}`;
 
 class App extends PureComponent {
   componentDidMount() {
@@ -42,9 +42,11 @@ class App extends PureComponent {
             <Header />
             <Switch>
               <Route exact path="/" component={Feed} />
-              <Route exact path={favoriteRoute} component={Favorites} />
-              <Route exact path={settingsRoute} component={Settings} />
-              <Route path={articleRoute} component={Article} />
+              <Route exact path={FAVORITE_PATH} component={Favorites} />
+              <Route exact path={SETTINGS_PATH} component={Settings} />
+              <Route exact path={IMPRINT_PATH} component={Imprint} />
+              <Route exact path={PRIVACY_PATH} component={Privacy} />
+              <Route path={`${ARTICLE_PATH}/:id`} component={Article} />
               <Route component={NoMatch} />
             </Switch>
             <Navigation />

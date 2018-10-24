@@ -3,8 +3,6 @@ import { Flex, Box, Text } from 'rebass';
 import styled from 'styled-components';
 import Link from 'react-router-dom/Link';
 
-import { SETTINGS_PATH, FAVORITE_PATH } from '~/config';
-
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
@@ -20,17 +18,14 @@ const NavItem = ({ text, to }) => (
   </Box>
 );
 
-const favoriteRoute = `/${FAVORITE_PATH}`;
-const settingsRoute = `/${SETTINGS_PATH}`;
-
 class Navigation extends PureComponent {
   render() {
     return (
       <Box css={{ borderTop: '1px solid #ddd' }}>
         <Flex>
           <NavItem text="News Feed" to="/" />
-          <NavItem text="Favoriten" to={favoriteRoute} />
-          <NavItem text="Einstellungen" to={settingsRoute} />
+          <NavItem text="Favoriten" to={config.FAVORITE_PATH} />
+          <NavItem text="Einstellungen" to={config.SETTINGS_PATH} />
         </Flex>
       </Box>
     );

@@ -1,7 +1,6 @@
 import Dexie from 'dexie';
-import { DB_NAME } from '~/config';
 
-const db = new Dexie(DB_NAME);
+const db = new Dexie(config.DB_NAME);
 
 db.version(1).stores({
   favs: 'id,name',

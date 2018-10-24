@@ -1,5 +1,6 @@
 import { add, get, remove } from '~/services/db';
-import { FAVS_COLLECTION } from '~/config';
+
+const { FAVS_COLLECTION } = config;
 
 export const favsActions = () => ({
   addOrRemoveFav: async (state, fav) => {

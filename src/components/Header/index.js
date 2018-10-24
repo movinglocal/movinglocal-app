@@ -20,7 +20,7 @@ class Header extends PureComponent {
       <Fragment>
         <Box p={3} bg="main" color="white">
           <Flex alignItems="center">
-            <MenuIcon onClick={this.toggleMenu}/>
+            <MenuIcon onClick={this.toggleMenu} />
             <Text ml={2} fontWeight="bold">Moving Local</Text>
           </Flex>
         </Box>

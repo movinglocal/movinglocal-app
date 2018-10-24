@@ -1,6 +1,7 @@
 import fetch from 'unfetch';
 import { Store } from '~/Store';
-import { BASE_URL } from '~/config';
+
+const { BASE_URL } = config;
 
 function appendSearch(url, searchTerm) {
   return (searchTerm.length > 0) ? url.concat(`&_q=${searchTerm}`) : url;

@@ -1,11 +1,11 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Button } from 'rebass';
 
 import { actions } from '~/pages/Feed/actions';
 import ArticleTeaser from '~/components/ArticleTeaser';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ScrollWrapper from '~/components/ScrollWrapper';
+import Button from '~/components/Button';
 import Loader from '~/components/Loader';
 
 class Feed extends PureComponent {
@@ -33,7 +33,12 @@ class Feed extends PureComponent {
           {data.map(item => <ArticleTeaser item={item} key={item.id} />)}
           {isLoading && <Loader />}
           {showMoreButton && (
-            <Button bg="main" onClick={loadNextPage} width={1} borderRadius={0} css={{ cursor: 'pointer' }}>
+            <Button
+              bg="main"
+              onClick={loadNextPage}
+              width={1}
+              borderRadius={0}
+            >
               Mehr laden...
             </Button>
           )}

@@ -1,13 +1,27 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Text, Box } from 'rebass';
+import { Box } from 'rebass';
+import Link from 'react-router-dom/Link';
+
+import MenuHeader from './MenuHeader';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid ${props => props.theme.colors.lightgray};
+  padding: 16px;
+
+  &:hover {
+    background: ${props => props.theme.colors.lightgray};
+  }
+`;
 
 const Drawer = styled(Box)`
   box-shadow: ${props => (props.open ? '1px 0 6px 2px rgba(0, 0, 0, 0.1)' : 'none')};
   position: absolute;
   left:0;
   height: 100%;
-  width: 250px;
+  width: 300px;
   transform: translate(${props => (props.open ? '0' : '-100%')}, 0);
   transition: transform .2s;
 `;
@@ -17,16 +31,13 @@ class Menu extends PureComponent {
     return (
       <Drawer
         open={this.props.open}
-        side="left"
-        p={3}
         bg="white"
-        color="black"
       >
-        <Box css={{ position: 'relative' }}>
-          <Box css={{ position: 'absolute', right: '5px', top: 0 }}>
-            <Box px={0} py={0} onClick={this.props.onClose}>x</Box>
-          </Box>
-          <Text>Menu</Text>
+        <MenuHeader onClose={this.props.onClose} />
+        <Box>
+          <StyledLink to="/">News Feed</StyledLink>
+          <StyledLink to={config.IMPRINT_PATH}>Impressum</StyledLink>
+          <StyledLink to={config.PRIVACY_PATH}>Datenschutz</StyledLink>
         </Box>
       </Drawer>
     );

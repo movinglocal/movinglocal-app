@@ -1,5 +1,6 @@
 import { add, remove } from '~/services/db';
-import { SOURCES_COLLECTION } from '~/config';
+
+const { SOURCES_COLLECTION } = config;
 
 export const settingsActions = () => ({
   toggleSource: async ({ sources }, id) => {

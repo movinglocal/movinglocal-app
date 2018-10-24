@@ -5,14 +5,13 @@ import {
 import styled from 'styled-components';
 
 import FavButton from '~/components/FavButton';
-import { ARTICLE_PATH } from '~/config';
 import { formatDate } from '~/utils';
-
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   display: flex;
   flex-grow: 1;
+  padding-right: 16px;
 
   .teaser__title {
     transition: color .1s;
@@ -26,7 +25,7 @@ const StyledLink = styled(Link)`
 `;
 
 const FeedImage = ({ img }) => (
-  <Box width={1 / 3} mr={2}>
+  <Box style={{ minWidth: '25%', width: '25%' }} mr={2}>
     <Card
       pb={0}
       backgroundImage={`url(${img})`}
@@ -49,7 +48,7 @@ class ArticleTeaser extends PureComponent {
     } = this.props.item;
 
     const img = image ? image.url : imageUrl;
-    const url = link || `${ARTICLE_PATH}/${id}`;
+    const url = link || `${config.ARTICLE_PATH}/${id}`;
 
     return (
       <Flex bg="white" p={3} m={2}>
