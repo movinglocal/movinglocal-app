@@ -1,19 +1,22 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { Box } from 'rebass';
-import Link from 'react-router-dom/Link';
+import NavLink from 'react-router-dom/NavLink';
+import withRouter from 'react-router/withRouter';
 
 import MenuHeader from './MenuHeader';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   text-decoration: none;
   display: block;
   border-bottom: 1px solid ${props => props.theme.colors.lightgray};
   padding: 16px;
-  color: ${props => props.theme.colors.main};
+  color: ${props => props.theme.colors.black};
+  font-weight: ${props => props.theme.fontWeights.bold};
 
+  &.active,
   &:hover {
-    background: ${props => props.theme.colors.lightgray};
+    color: ${props => props.theme.colors.main};
   }
 `;
 
@@ -36,13 +39,16 @@ class Menu extends PureComponent {
       >
         <MenuHeader onClose={this.props.onClose} />
         <Box>
-          <StyledLink to="/">News Feed</StyledLink>
-          <StyledLink to={config.IMPRINT_PATH}>Impressum</StyledLink>
-          <StyledLink to={config.PRIVACY_PATH}>Datenschutz</StyledLink>
+          <StyledLink exact to="/">News Feed</StyledLink>
+          <StyledLink exact to={config.FAVORITE_PATH}>Favoriten</StyledLink>
+          <StyledLink exact to={config.FEEDBACK_PATH}>Feedback</StyledLink>
+          <StyledLink exact to={config.FILTER_PATH}>Filter</StyledLink>
+          <StyledLink exact to={config.IMPRINT_PATH}>Impressum</StyledLink>
+          <StyledLink exact to={config.PRIVACY_PATH}>Datenschutz</StyledLink>
         </Box>
       </Drawer>
     );
   }
 }
 
-export default Menu;
+export default withRouter(Menu);
