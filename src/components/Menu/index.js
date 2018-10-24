@@ -10,6 +10,7 @@ const StyledLink = styled(Link)`
   display: block;
   border-bottom: 1px solid ${props => props.theme.colors.lightgray};
   padding: 16px;
+  color: ${props => props.theme.colors.main};
 
   &:hover {
     background: ${props => props.theme.colors.lightgray};

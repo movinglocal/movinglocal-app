@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.input`
+export default styled.textarea`
   width: 100%;
   border: 0;
   border-color: #eee;
@@ -9,6 +9,8 @@ export default styled.input`
   padding: 8px 16px;
   background-color: white;
   display: inline-block;
+  min-height: 200px;
+  resize: vertical;
 
   &:focus {
     outline: none;

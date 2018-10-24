@@ -1,42 +1,54 @@
 import React, { PureComponent } from 'react';
-import { Flex, Box, Text } from 'rebass';
+import { Flex, Box } from 'rebass';
 import styled, { withTheme } from 'styled-components';
-import Link from 'react-router-dom/Link';
+import NavLink from 'react-router-dom/NavLink';
+import withRouter from 'react-router/withRouter';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   text-decoration: none;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 14px;
+  color: ${props => props.theme.colors.black};
+  font-weight: ${props => props.theme.fontWeights.bold};
+  display: block;
+  cursor: pointer;
+
+  &.active, &:hover {
+    color: ${props => props.theme.colors.main};
+  }
 `;
 
-const NavItem = ({ text, to, color, noBorder }) => (
+const NavItem = ({
+  text, to, color, noBorder
+}) => (
   <Box
     width={1 / 4}
     css={{
       borderRight: noBorder ? 'none' : `1px solid ${color}`,
-      cursor: 'pointer',
-      '&:hover': { backgroundColor: color }
+      cursor: 'pointer'
     }}
   >
-    <StyledLink to={to}>
-      <Text py={3} textAlign="center" fontSize={1} color="black">
-        {text}
-      </Text>
+    <StyledLink exact to={to}>
+      {text}
     </StyledLink>
   </Box>
 );
 
 class Navigation extends PureComponent {
   render() {
+    const { lightgray, gray } = this.props.theme.colors;
     return (
-      <Box css={{ borderTop: '1px solid #ddd' }}>
+      <Box css={{ borderTop: `1px solid ${gray}` }}>
         <Flex>
-          <NavItem text="News Feed" to="/" color={this.props.theme.colors.lightgray} />
-          <NavItem text="Favoriten" to={config.FAVORITE_PATH} color={this.props.theme.colors.lightgray} />
-          <NavItem text="Feedback" to={config.FEEDBACK_PATH} color={this.props.theme.colors.lightgray} />
-          <NavItem text="Filter" to={config.FILTER_PATH} noBorder color={this.props.theme.colors.lightgray} />
+          <NavItem text="News Feed" to="/" color={lightgray} />
+          <NavItem text="Favoriten" to={config.FAVORITE_PATH} color={lightgray} />
+          <NavItem text="Feedback" to={config.FEEDBACK_PATH} color={lightgray} />
+          <NavItem text="Filter" to={config.FILTER_PATH} noBorder color={lightgray} />
         </Flex>
       </Box>
     );
   }
 }
 
-export default withTheme(Navigation);
+export default withRouter(withTheme(Navigation));

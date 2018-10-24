@@ -5,8 +5,12 @@ const { FAVS_COLLECTION } = config;
 export const favsActions = () => ({
   addOrRemoveFav: async (state, fav) => {
     const found = state.favs.find(f => f.id === fav.id);
-    if (found) remove(FAVS_COLLECTION, fav.id);
-    else add(FAVS_COLLECTION, fav);
+
+    if (found) {
+      remove(FAVS_COLLECTION, fav.id);
+    } else {
+      add(FAVS_COLLECTION, fav);
+    }
 
     const favs = await get(FAVS_COLLECTION);
 

@@ -10,8 +10,10 @@ export default {
     bold: 700
   },
   colors: {
-    lightgray: '#f6f6f6',
     main: '#6450E5',
-    darkgray: '#888'
+    lightgray: '#f1f1f1',
+    gray: '#d2d2d2',
+    darkgray: '#888',
+    black: '#222'
   }
 };

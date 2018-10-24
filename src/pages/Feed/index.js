@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
+import { Box } from 'rebass';
 
 import { actions } from '~/pages/Feed/actions';
 import ArticleTeaser from '~/components/ArticleTeaser';

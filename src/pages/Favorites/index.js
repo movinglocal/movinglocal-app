@@ -1,18 +1,20 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'unistore/react';
 import { Text } from 'rebass';
+
 import ScrollWrapper from '~/components/ScrollWrapper';
 import ArticleTeaser from '~/components/ArticleTeaser';
-
-import { connect } from 'unistore/react';
+import Loader from '~/components/Loader';
 import { favsActions } from '~/pages/Favorites/actions';
 
 class Favorites extends PureComponent {
   render() {
-    const { favs } = this.props;
+    const { favs, isLoading } = this.props;
     return (
       <ScrollWrapper bg="lightgray">
-        { favs.length === 0 && <Text> Noch keine Favoriten vorhanden... </Text>}
-        { favs.map(fav => (<ArticleTeaser item={fav} key={fav.id} />))}
+        {isLoading && <Loader />}
+        {(favs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Noch keine Favoriten vorhanden... </Text>}
+        {favs.map(fav => (<ArticleTeaser item={fav} key={fav.id} />))}
       </ScrollWrapper>
     );
   }
@@ -20,7 +22,8 @@ class Favorites extends PureComponent {
 
 export default connect(
   state => ({
-    favs: state.favs
+    favs: state.favs,
+    isLoading: state.isLoading
   }),
   favsActions
 )(Favorites);

@@ -16,13 +16,13 @@ export async function add(collection, fav) {
 }
 
 export async function get(collection) {
-  let favs = null;
+  let items = null;
   try {
-    favs = await db[collection].toArray();
+    items = await db[collection].toArray();
   } catch (err) {
     console.log('Error accessing IndexedDB:', err);
   }
-  return favs;
+  return items;
 }
 
 export async function remove(collection, id) {

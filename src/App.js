@@ -60,7 +60,4 @@ class App extends PureComponent {
   }
 }
 
-export default connect(
-  state => {},
-  actions
-)(App);
+export default connect(() => {}, actions)(App);
