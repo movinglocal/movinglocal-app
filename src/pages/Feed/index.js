@@ -8,24 +8,6 @@ import FeedControls from '~/pages/Feed/components/FeedControls';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
 
-import styled from 'styled-components';
-
-const FullWidthButton = styled(Button)`
-  width: 100%;
-`;
-
-function renderItems(items) {
-  return items.map(item => <ArticleTeaser item={item} key={item.id} />);
-}
-
-function renderButton(action) {
-  return (
-    <FullWidthButton onClick={action} width={1} borderRadius={0}>
-      Mehr laden...
-    </FullWidthButton>
-  );
-}
-
 class Feed extends PureComponent {
   componentDidMount() {
     this.props.initData();
@@ -42,14 +24,19 @@ class Feed extends PureComponent {
     } = this.props;
 
     const hasNext = pageStart + pageSize < count;
+    const showMoreButton = !isLoading && hasNext;
 
     return (
       <Fragment>
         <FeedControls />
-        <ScrollWrapper bg="gray">
-          {renderItems(data)}
+        <ScrollWrapper bg="lightgray">
+          {data.map(item => <ArticleTeaser item={item} key={item.id} />)}
           {isLoading && <Loader />}
-          {(!isLoading && hasNext) && renderButton(loadNextPage)}
+          {showMoreButton && (
+            <Button bg="main" onClick={loadNextPage} width={1} borderRadius={0} css={{ cursor: 'pointer' }}>
+              Mehr laden...
+            </Button>
+          )}
         </ScrollWrapper>
       </Fragment>
     );

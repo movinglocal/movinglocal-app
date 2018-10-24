@@ -8,5 +8,10 @@ export default {
     light: 300,
     normal: 400,
     bold: 700
+  },
+  colors: {
+    lightgray: '#f6f6f6',
+    main: '#6450E5',
+    darkgray: '#888'
   }
 };

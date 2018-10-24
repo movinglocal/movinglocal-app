@@ -1,30 +1,34 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import {
-  Text, Drawer, Relative, Absolute, Close
-} from 'rebass';
+import { Text, Box } from 'rebass';
 
-const StyledDrawer = styled(Drawer)`
+const Drawer = styled(Box)`
   box-shadow: ${props => (props.open ? '1px 0 6px 2px rgba(0, 0, 0, 0.1)' : 'none')};
+  position: absolute;
+  left:0;
+  height: 100%;
+  width: 250px;
+  transform: translate(${props => (props.open ? '0' : '-100%')}, 0);
+  transition: transform .2s;
 `;
 
 class Menu extends PureComponent {
   render() {
     return (
-      <StyledDrawer
+      <Drawer
         open={this.props.open}
         side="left"
         p={3}
         bg="white"
         color="black"
       >
-        <Relative>
-          <Absolute right={5} top={0}>
-            <Close px={0} py={0} onClick={this.props.onClose} />
-          </Absolute>
+        <Box css={{ position: 'relative' }}>
+          <Box css={{ position: 'absolute', right: '5px', top: 0 }}>
+            <Box px={0} py={0} onClick={this.props.onClose}>x</Box>
+          </Box>
           <Text>Menu</Text>
-        </Relative>
-      </StyledDrawer>
+        </Box>
+      </Drawer>
     );
   }
 }

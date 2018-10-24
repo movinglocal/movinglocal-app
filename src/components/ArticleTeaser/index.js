@@ -1,77 +1,74 @@
 import React, { PureComponent } from 'react';
 import {
-  Box, Flex, BackgroundImage, Text, Link
+  Box, Flex, Card, Text, Link
 } from 'rebass';
 import styled from 'styled-components';
 
 import FavButton from '~/components/FavButton';
-
 import { ARTICLE_PATH } from '~/config';
+import { formatDate } from '~/utils';
 
-const BackgroundImageFilled = styled(BackgroundImage)`
-  height: 100%;
-`;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  display: flex;
+  flex-grow: 1;
+
+  .teaser__title {
+    transition: color .1s;
+  }
+
+  &:hover {
+    .teaser__title {
+      color: ${props => props.theme.colors.main};
+    }
+  }
 `;
 
-const FeedTitle = ({ text }) => (
-  <Text fontSize={3} fontWeight="normal" mb={2}>{text}</Text>
-);
-
-const FeedTeaser = ({ text }) => (
-  <Text fontSize={1} fontWeight="normal">{text}</Text>
-);
-
-const FeedAttribution = ({ text }) => (
-  <Text fontSize={1} fontWeight="bold">{text}</Text>
-);
-
 const FeedImage = ({ img }) => (
-  <Box width={1 / 4}>
-    <BackgroundImageFilled
+  <Box width={1 / 3} mr={2}>
+    <Card
       pb={0}
-      src={img}
+      backgroundImage={`url(${img})`}
+      css={{ height: '100%' }}
     />
   </Box>
 );
 
-const FeedDate = ({ text }) => (
-  <Text fontSize={1} fontWeight="lighter">{text}</Text>
-);
-
 class ArticleTeaser extends PureComponent {
   render() {
-    const { item } = this.props;
-
     const {
       id,
       title,
       teaser,
-      image_url,
+      image_url: imageUrl,
       image,
       link,
       source,
       date
-    } = item;
+    } = this.props.item;
 
-    const img = image ? image.url : image_url;
+    const img = image ? image.url : imageUrl;
     const url = link || `${ARTICLE_PATH}/${id}`;
 
     return (
-      <StyledLink href={url} color="black">
-        <Flex bg="white" p={2} m={2}>
+      <Flex bg="white" p={3} m={2}>
+        <StyledLink href={url} color="black">
           {img && <FeedImage img={img} />}
-          <Box width={3 / 4} px={2}>
-            <FeedTitle text={title} />
-            <FeedTeaser text={teaser} />
-            {source && <FeedAttribution text={source.name} />}
-            <FeedDate text={date} />
+          <Box>
+            <Box mb={1}>
+              {source && (
+                <Text as="span" mr={2} fontSize={1} color="main" fontWeight="bold">{source.name}</Text>
+              )}
+              <Text as="span" fontSize={1} fontWeight="lighter">{formatDate(date)}</Text>
+            </Box>
+
+            <Text className="teaser__title" fontSize={3} fontWeight="bold" mb={2}>{title}</Text>
+            <Text fontSize={1} fontWeight="normal">{teaser}</Text>
           </Box>
-          <FavButton item={item} />
-        </Flex>
-      </StyledLink>
+        </StyledLink>
+        <FavButton item={this.props.item} />
+      </Flex>
     );
   }
 }

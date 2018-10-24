@@ -1,33 +1,49 @@
 import React, { PureComponent } from 'react';
-import {
-  Box, ButtonCircle
-} from 'rebass';
-
+import { Box, Button } from 'rebass';
 import { connect } from 'unistore/react';
+import styled from 'styled-components';
+
 import { favsActions } from '~/pages/Favorites/actions';
 
-import Loader from '~/components/Loader';
+const StyledButton = styled(Button)`
+  color: ${props => (props.isFav ? 'yellow' : 'white')};
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
+`;
 
 class FavButton extends PureComponent {
   addToFavorites = (evt) => {
     evt.preventDefault();
-    const { addOrRemoveFav, item } = this.props;
-    addOrRemoveFav(item);
+    this.props.addOrRemoveFav(this.props.item);
   }
 
   render() {
     const { item, favs } = this.props;
-    if (item) {
-      const isFav = favs.find(f => f.id === item.id);
-      const favColor = isFav ? 'yellow' : 'white';
 
-      return (
-        <Box ml="auto">
-          <ButtonCircle color={favColor} onClick={this.addToFavorites}>★</ButtonCircle>
-        </Box>
-      );
+    if (!item) {
+      return null;
     }
-    return '';
+
+    const isFav = favs.find(f => f.id === item.id);
+
+    return (
+      <Box ml="auto">
+        <StyledButton bg="main" isFav={isFav} onClick={this.addToFavorites}>
+          ★
+        </StyledButton>
+      </Box>
+    );
   }
 }
 

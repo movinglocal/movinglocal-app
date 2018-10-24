@@ -1,16 +1,22 @@
 import React, { PureComponent } from 'react';
-import {
-  Subhead,
-  Text,
-  Switch,
-  Flex,
-  Box
-} from 'rebass';
+import { Heading, Text, Flex, Box } from 'rebass';
+import styled from 'styled-components';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
+import Switch from 'rc-switch';
 
 import { connect } from 'unistore/react';
 import { settingsActions } from '~/pages/Settings/actions';
+
+import 'rc-switch/assets/index.css';
+
+const StyledSwitch = styled(Switch)`
+  &&&.rc-switch-checked {
+    border: 1px solid ${props => props.theme.colors.main};
+    background: ${props => props.theme.colors.main};
+  }
+`;
+
 
 function renderSource(source, toggleSource) {
   const {
@@ -28,7 +34,7 @@ function renderSource(source, toggleSource) {
         </Text>
       </Box>
       <Box>
-        <Switch checked={active} onClick={() => toggleSource(id)} />
+        <StyledSwitch checked={active} onClick={() => toggleSource(id)} />
       </Box>
     </Flex>
   );
@@ -39,7 +45,7 @@ class Settings extends PureComponent {
     const { sources, toggleSource, isLoading } = this.props;
     return (
       <ScrollWrapper p={3}>
-        <Subhead>Quellen:</Subhead>
+        <Heading>Quellen:</Heading>
         {isLoading ? <Loader /> : sources.map(s => renderSource(s, toggleSource))}
       </ScrollWrapper>
     );

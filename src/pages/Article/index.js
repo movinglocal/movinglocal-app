@@ -7,14 +7,10 @@ import { Text, Box, Image } from 'rebass';
 import { connect } from 'unistore/react';
 import { actions } from '~/pages/Article/actions';
 
-import styled from 'styled-components';
-
 function renderAuthor(source) {
   return (
     <Text fontSize={1} fontWeight="normal" mb={2}>
-      Author:
-      {' '}
-      {source.name}
+      Author: {source.name}
     </Text>
   );
 }
@@ -45,7 +41,7 @@ class Article extends PureComponent {
     const { item } = this.props;
 
     return (
-      <ScrollWrapper bg="gray">
+      <ScrollWrapper bg="lightgray">
         {item ? renderItem(item) : <Loader />}
       </ScrollWrapper>
     );
