@@ -41,7 +41,7 @@ class TagChooser extends PureComponent {
     if (!this.state.tags.length) {
       return <Loader />;
     }
-    
+
     return (
       <Fragment>
         <Heading mb={3}>Tags auswählen</Heading>

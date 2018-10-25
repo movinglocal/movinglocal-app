@@ -6,10 +6,11 @@ const USER_STORE_ITEM = `${STORE_PREFIX}user`;
 
 // for developing/ testing purposes
 window.store = store;
-window.__reset = () => {
+
+export function reset() {
   store.remove(USER_STORE_ITEM);
   window.location.reload();
-};
+}
 
 export async function initUser() {
   const storageUser = store.get(USER_STORE_ITEM);
@@ -37,5 +38,6 @@ export async function updateUser(changes) {
 
 export default {
   initUser,
-  updateUser
+  updateUser,
+  reset
 };
