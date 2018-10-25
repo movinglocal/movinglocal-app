@@ -25,12 +25,12 @@ class TopicChooser extends PureComponent {
         prevState.userTopics.filter(topic => topic.id !== item.id) :
         [...prevState.userTopics, item];
 
-      const tagIds = userTopics.reduce((res, t) => res.concat(t.tags.map(tag => tag.id)), []);
+      const tags = userTopics.reduce((res, t) => res.concat(t.tags), []);
 
       if (exists) {
-        this.props.removeTags(tagIds);
+        this.props.removeTags(tags);
       } else {
-        this.props.addTags(tagIds);
+        this.props.addTags(tags);
       }
 
       return {

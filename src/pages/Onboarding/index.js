@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
 
-import { updateRelation } from '~/services/apiUser';
 import { actions } from '~/pages/Feed/actions';
 import Privacy from '~/pages/Onboarding/steps/Privacy';
 import TopicChooser from '~/pages/Onboarding/steps/TopicChooser';

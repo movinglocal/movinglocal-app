@@ -3,7 +3,7 @@ import { Box, Flex, Heading } from 'rebass';
 import { connect } from 'unistore/react';
 
 import { load } from '~/services/api';
-import actions from '~/pages/Settings/actions';
+import { settingsActions } from '~/pages/Settings/actions';
 import Switch from '~/components/Switch';
 import Loader from '~/components/Loader';
 import Button from '~/components/Button';
@@ -17,12 +17,22 @@ class TagChooser extends PureComponent {
     load('tags').then(tags => this.setState({ tags }));
   }
 
+  onToggleTag(item) {
+    const exists = this.props.userTags.find(tag => tag.id === item.id);
+
+    if (exists) {
+      return this.props.removeTags(item);
+    }
+
+    this.props.addTags(item);
+  }
+
   renderTag = (item) => {
-    const isChecked = this.props.userTags.find(userTagId => userTagId === item.id);
+    const isChecked = this.props.userTags.find(userTag => userTag.id === item.id);
     return (
       <Flex key={item.id} mb={3}>
         <Box width={1 / 2}>{item.name}</Box>
-        <Switch checked={!!isChecked} onClick={() => this.props.toggleTag(item.id)} />
+        <Switch checked={!!isChecked} onClick={() => this.onToggleTag(item)} />
       </Flex>
     );
   };
@@ -32,9 +42,11 @@ class TagChooser extends PureComponent {
       return <Loader />;
     }
 
+    console.log(this.props.userTags)
+
     return (
       <Fragment>
-        <Heading mb={3}>Tags ausählen</Heading>
+        <Heading mb={3}>Tags auswählen</Heading>
         {this.state.tags.map(this.renderTag)}
         {this.props.nextStep && <Button onClick={this.props.nextStep}>Weiter</Button>}
       </Fragment>
@@ -45,5 +57,5 @@ class TagChooser extends PureComponent {
 
 export default connect(
   state => ({ userTags: state.userTags }),
-  actions
+  settingsActions
 )(TagChooser);

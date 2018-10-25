@@ -1,13 +1,13 @@
-import uniq from 'lodash.uniq';
+import uniqBy from 'lodash.uniqby';
 import { updateRelation } from '~/services/apiUser';
 
 export const settingsActions = () => ({
-  addTags: async (state, ids) => {
-    const idArray = Array.isArray(ids) ? ids : [ids];
-    const uniqIds = uniq(idArray);
-    const userTags = [...state.userTags, ...uniqIds];
+  addTags: async (state, tags) => {
+    const tagArray = Array.isArray(tags) ? tags : [tags];
+    const uniqTags = uniqBy(tagArray, 'id');
+    const userTags = [...state.userTags, ...uniqTags];
 
-    updateRelation('tags', userTags);
+    updateRelation('tags', userTags.map(t => t.id));
 
     return {
       userTags
@@ -15,11 +15,11 @@ export const settingsActions = () => ({
   },
 
   removeTags: async (state, ids) => {
-    const idArray = Array.isArray(ids) ? ids : [ids];
-    const uniqIds = uniq(idArray);
-    const userTags = state.userTags.filter(tagId => uniqIds.includes(tagId));
+    const tagArray = Array.isArray(ids) ? ids : [ids];
+    const uniqTags = uniqBy(tagArray, 'id');
+    const userTags = state.userTags.filter(tag => uniqTags.find(t => t.id !== tag.id));
 
-    updateRelation('tags', userTags);
+    updateRelation('tags', userTags.map(t => t.id));
 
     return {
       userTags
