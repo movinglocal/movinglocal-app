@@ -14,7 +14,7 @@ class TopicChooser extends PureComponent {
   }
 
   componentDidMount() {
-    load('topic').then(topics => this.setState({ topics }));
+    load('topics').then(topics => this.setState({ topics }));
   }
 
   renderTopic = (item) => {

@@ -27,7 +27,7 @@ function createURL(state) {
   } = state;
 
   const sort = currentSortOption.concat(currentSortDirection);
-  let url = `${BASE_URL}/article?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
+  let url = `${BASE_URL}/articles?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
 
   url = appendSearch(url, searchTerm);
   url = appendSources(url, sources);
@@ -54,7 +54,7 @@ export async function loadItems() {
 
 export async function countItems() {
   const { sources, searchTerm } = Store.getState();
-  let url = `${BASE_URL}/article/count?`;
+  let url = `${BASE_URL}/articles/count?`;
   url = appendSources(url, sources);
   url = appendSearch(url, searchTerm);
 
@@ -74,7 +74,7 @@ export async function loadItem({ id }) {
 
   let item = null;
   try {
-    item = await fetch(`${BASE_URL}/article/${id}`)
+    item = await fetch(`${BASE_URL}/articles/${id}`)
       .then(r => r.json());
   } catch (err) {
     console.log(err);

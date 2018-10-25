@@ -14,7 +14,7 @@ class TagChooser extends PureComponent {
   }
 
   componentDidMount() {
-    load('tag').then(tags => this.setState({ tags }));
+    load('tags').then(tags => this.setState({ tags }));
   }
 
   renderTag = (item) => {
