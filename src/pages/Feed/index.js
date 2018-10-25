@@ -1,8 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Box } from 'rebass';
+import Redirect from 'react-router-dom/Redirect';
 
-import Onboarding from '~/pages/Onboarding';
 import { actions } from '~/pages/Feed/actions';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ArticleTeaser from '~/components/ArticleTeaser';
@@ -13,14 +12,6 @@ import Loader from '~/components/Loader';
 class Feed extends PureComponent {
   componentDidMount() {
     this.props.initData();
-  }
-
-  renderOnboarding() {
-    return (
-      <Box p={3} css={{ flexGrow: 1 }}>
-        {this.props.isLoading ? <Loader /> : <Onboarding />}
-      </Box>
-    );
   }
 
   render() {
@@ -37,8 +28,8 @@ class Feed extends PureComponent {
     const hasNext = pageStart + pageSize < count;
     const showMoreButton = !isLoading && hasNext;
 
-    if (isInitial) {
-      return this.renderOnboarding();
+    if (isInitial && !isLoading) {
+      return <Redirect to={config.ONBOARDING_PATH} />;
     }
 
     return (

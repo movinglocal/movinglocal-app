@@ -23,5 +23,6 @@
   "IMPRINT_PATH": "/impressum",
   "PRIVACY_PATH": "/datenschutz",
   "FEEDBACK_PATH": "/feedback",
+  "ONBOARDING_PATH": "/onboarding",
   "DEXIE_VERSION": 1
 }

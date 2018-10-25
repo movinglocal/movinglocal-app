@@ -41,9 +41,7 @@ class TagChooser extends PureComponent {
     if (!this.state.tags.length) {
       return <Loader />;
     }
-
-    console.log(this.props.userTags)
-
+    
     return (
       <Fragment>
         <Heading mb={3}>Tags auswählen</Heading>

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Heading, Text } from 'rebass';
 import { connect } from 'unistore/react';
+import Redirect from 'react-router-dom/Redirect';
+import { Heading, Text } from 'rebass';
 
 import { settingsActions } from '~/pages/Settings/actions';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
@@ -11,7 +12,11 @@ import Loader from '~/components/Loader';
 
 class Settings extends PureComponent {
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, isInitial } = this.props;
+
+    if (isInitial && !isLoading) {
+      return <Redirect to={config.ONBOARDING_PATH} />;
+    }
 
     if (isLoading) {
       return (
@@ -34,7 +39,8 @@ class Settings extends PureComponent {
 
 export default connect(
   state => ({
-    sources: state.sources
+    isLoading: state.isLoading,
+    isInitial: state.isInitial
   }),
   settingsActions
 )(Settings);

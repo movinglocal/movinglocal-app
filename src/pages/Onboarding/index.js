@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
+import { Box } from 'rebass';
+import Redirect from 'react-router-dom/Redirect';
 
 import { actions } from '~/pages/Feed/actions';
 import Privacy from '~/pages/Onboarding/steps/Privacy';
@@ -34,13 +36,21 @@ class Onboarding extends PureComponent {
   }
 
   render() {
+    if (!this.props.isInitial) {
+      return <Redirect to="/" />;
+    }
+
     const StepComponent = stepComponents[this.state.stepIndex];
     return (
-      <StepComponent
-        nextStep={this.nextStep}
-      />
+      <Box p={3} css={{ flexGrow: 1 }}>
+        <StepComponent
+          nextStep={this.nextStep}
+        />
+      </Box>
     );
   }
 }
 
-export default connect(() => {}, actions)(Onboarding);
+export default connect(state => ({
+  isInitial: state.isInitial
+}), actions)(Onboarding);

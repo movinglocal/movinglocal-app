@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
 import { Text } from 'rebass';
+import Redirect from 'react-router-dom/Redirect';
 
 import ScrollWrapper from '~/components/ScrollWrapper';
 import ArticleTeaser from '~/components/ArticleTeaser';
@@ -9,6 +10,10 @@ import { favsActions } from '~/pages/Favorites/actions';
 
 class Favorites extends PureComponent {
   render() {
+    if (this.props.isInitial && !this.props.isLoading) {
+      return <Redirect to={config.ONBOARDING_PATH} />;
+    }
+
     const { userFavs, isLoading } = this.props;
     return (
       <ScrollWrapper bg="lightgray">
@@ -23,7 +28,8 @@ class Favorites extends PureComponent {
 export default connect(
   state => ({
     userFavs: state.userFavs,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    isInitial: state.isInitial
   }),
   favsActions
 )(Favorites);
