@@ -7,7 +7,12 @@ import TopicChooser from '~/pages/Settings/pages/TopicChooser';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
 import PositionChooser from '~/pages/Settings/pages/PositionChooser';
 
-const stepCount = 4;
+const stepComponents = [
+  Privacy,
+  TopicChooser,
+  TagChooser,
+  PositionChooser
+];
 
 class Onboarding extends PureComponent {
   state = {
@@ -15,7 +20,7 @@ class Onboarding extends PureComponent {
   }
 
   nextStep = () => {
-    if (this.state.stepIndex === stepCount - 1) {
+    if (this.state.stepIndex === stepComponents.length - 1) {
       return this.onOnboardingEnd();
     }
 
@@ -29,13 +34,8 @@ class Onboarding extends PureComponent {
   }
 
   renderStep() {
-    switch (this.state.stepIndex) {
-      case 0: return <Privacy nextStep={this.nextStep} />;
-      case 1: return <TopicChooser nextStep={this.nextStep} />;
-      case 2: return <TagChooser nextStep={this.nextStep} />;
-      case 3: return <PositionChooser nextStep={this.nextStep} />;
-      default: return null;
-    }
+    const StepComponent = stepComponents[this.state.stepIndex];
+    return <StepComponent nextStep={this.nextStep} />;
   }
 
   render() {
