@@ -2,16 +2,13 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
 import { withTheme } from 'styled-components';
 import { Box, Flex } from 'rebass';
-import SearchIcon from 'react-feather/dist/icons/search';
 import ArrowDown from 'react-feather/dist/icons/chevron-down';
 import ArrowUp from 'react-feather/dist/icons/chevron-up';
 
-import Input from '~/components/Input';
 import Select from '~/components/Select';
 import Button from '~/components/Button';
+import Search from '~/components/Search';
 import { actions } from '~/pages/Feed/actions';
-
-const SearchBorderRad = '30px';
 
 const LightButton = props => (
   <Button
@@ -34,10 +31,8 @@ class FeedControls extends PureComponent {
     isExtended: false
   }
 
-  onSubmit = (evt) => {
-    evt.preventDefault();
-
-    const searchTerm = evt.target.elements.input.value;
+  onSubmit = (searchTerm) => {
+    console.log('feedcontrl onsubmit');
     this.props.search(searchTerm);
     this.props.initData();
   }
@@ -67,19 +62,10 @@ class FeedControls extends PureComponent {
       <Box p={2} css={{ borderBottom: `1px solid ${theme.colors.gray}` }}>
         {isExtended && (
           <Fragment>
-            <form onSubmit={this.onSubmit}>
-              <Flex>
-                <Input style={{ borderRadius: `${SearchBorderRad} 0 0 ${SearchBorderRad}` }} placeholder="Suche..." name="input" defaultValue={searchTerm} />
-                <Button
-                  width="75px"
-                  bg="main"
-                  type="submit"
-                  borderRadius={`0 ${SearchBorderRad} ${SearchBorderRad} 0`}
-                >
-                  <SearchIcon />
-                </Button>
-              </Flex>
-            </form>
+            <Search
+              onSubmit={this.onSubmit}
+              defaultValue={searchTerm}
+            />
 
             <Box>
               <Flex pt={1}>

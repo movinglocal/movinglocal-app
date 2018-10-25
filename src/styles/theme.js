@@ -13,7 +13,7 @@ export default {
     main: '#6450E5',
     lightgray: '#f1f1f1',
     gray: '#d2d2d2',
-    darkgray: '#888',
+    darkgray: '#999',
     black: '#222'
   }
 };

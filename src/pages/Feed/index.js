@@ -1,10 +1,11 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Box, Heading } from 'rebass';
+import { Box } from 'rebass';
 
+import Onboarding from '~/pages/Onboarding';
 import { actions } from '~/pages/Feed/actions';
-import ArticleTeaser from '~/components/ArticleTeaser';
 import FeedControls from '~/pages/Feed/components/FeedControls';
+import ArticleTeaser from '~/components/ArticleTeaser';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Button from '~/components/Button';
 import Loader from '~/components/Loader';
@@ -14,15 +15,10 @@ class Feed extends PureComponent {
     this.props.initData();
   }
 
-  onOnboardingEnd = () => {
-    this.props.finishOnboarding();
-  }
-
   renderOnboarding() {
     return (
       <Box p={3} css={{ flexGrow: 1 }}>
-        <Heading>Onboarding</Heading>
-        <Button onClick={this.onOnboardingEnd}>beenden</Button>
+        {this.props.isLoading ? <Loader /> : <Onboarding />}
       </Box>
     );
   }
@@ -41,7 +37,7 @@ class Feed extends PureComponent {
     const hasNext = pageStart + pageSize < count;
     const showMoreButton = !isLoading && hasNext;
 
-    if (isInitial && !isLoading) {
+    if (isInitial) {
       return this.renderOnboarding();
     }
 

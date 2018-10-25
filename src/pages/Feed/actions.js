@@ -3,7 +3,7 @@ import { updateConfig } from '~/services/db';
 
 export const actions = store => ({
   initData: async (state) => {
-    if (state.data.length > 0) return {};
+    if (state.data.length > 0 || state.isInitial) return {};
 
     const count = await countItems();
     const data = await loadItems();

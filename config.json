@@ -5,14 +5,23 @@
     "viewport": "width=device-width, initial-scale=1",
     "robots": "noindex,nofollow"
   },
+  "map": {
+    "center": [53.0934, 8.8083],
+    "tileurl": "https://maps.tilehosting.com/styles/bright/{z}/{x}/{y}.png?key=IA1qWrAbZAe6JUuSfLgB",
+    "userRadius": 3000
+  },
+  "HERE_APP_ID": "WOhEXnd20kbhT8Lxx4n4",
+  "HERE_APP_CODE": "uFkDYK0WKXBPZgG8mRb9Rg",
+  "showReset": true,
   "SOURCES_COLLECTION": "sources",
   "FAVS_COLLECTION": "favs",
-  "DB_NAME": "movinglocal",
+  "DB_NAME": "movinglocal_db",
   "BASE_URL": "https://movinglocal-api.herokuapp.com",
   "ARTICLE_PATH": "/artikel",
   "FAVORITE_PATH": "/favoriten",
   "FILTER_PATH": "/filter",
   "IMPRINT_PATH": "/impressum",
   "PRIVACY_PATH": "/datenschutz",
-  "FEEDBACK_PATH": "/feedback"
+  "FEEDBACK_PATH": "/feedback",
+  "DEXIE_VERSION": 1
 }

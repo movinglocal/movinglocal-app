@@ -96,9 +96,23 @@ export async function loadSources() {
   return sources;
 }
 
+export async function load(itemName) {
+  let items = [];
+
+  try {
+    items = await fetch(`${BASE_URL}/${itemName}`)
+      .then(r => r.json());
+  } catch (err) {
+    console.log(err);
+  }
+
+  return items;
+}
+
 export default {
   loadItems,
   countItems,
   loadItem,
-  loadSources
+  loadSources,
+  load
 };

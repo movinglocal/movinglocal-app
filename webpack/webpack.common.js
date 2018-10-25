@@ -31,7 +31,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: Path.resolve(__dirname, '../src/index.html'),
-      meta: Config.meta
+      meta: Config.meta,
+      title: Config.title
     })
   ],
   resolve: {

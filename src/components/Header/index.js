@@ -25,6 +25,7 @@ class Header extends PureComponent {
               <MenuIcon />
             </Button>
             <Text ml={2} fontWeight="bold">Moving Local</Text>
+            {config.showReset && <Button ml="auto" bg="white" color="black" onClick={() => window.__reset()}>Reset</Button>}
           </Flex>
         </Box>
         <Menu

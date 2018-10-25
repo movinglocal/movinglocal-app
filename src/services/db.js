@@ -2,13 +2,18 @@ import Dexie from 'dexie';
 
 const db = new Dexie(config.DB_NAME);
 
-db.version(1).stores({
+db.version(config.DEXIE_VERSION).stores({
   favs: 'id,name',
   sources: 'id,active',
   config: '++id,isInitial'
 });
 
-window.db = db;
+// for developing/ testing purposes
+window.__db = db;
+window.__reset = () => {
+  db.config.update(1, { isInitial: true });
+  window.location.reload();
+};
 
 export async function add(collection, fav) {
   try {

@@ -1,22 +1,13 @@
 import React, { PureComponent } from 'react';
-import { Heading, Text, Flex, Box } from 'rebass';
-import styled from 'styled-components';
+import {
+  Heading, Text, Flex, Box
+} from 'rebass';
+import { connect } from 'unistore/react';
+
+import { settingsActions } from '~/pages/Settings/actions';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
-import Switch from 'rc-switch';
-
-import { connect } from 'unistore/react';
-import { settingsActions } from '~/pages/Settings/actions';
-
-import 'rc-switch/assets/index.css';
-
-const StyledSwitch = styled(Switch)`
-  &&&.rc-switch-checked {
-    border: 1px solid ${props => props.theme.colors.main};
-    background: ${props => props.theme.colors.main};
-  }
-`;
-
+import Switch from '~/components/Switch';
 
 function renderSource(source, toggleSource) {
   const {
@@ -34,7 +25,7 @@ function renderSource(source, toggleSource) {
         </Text>
       </Box>
       <Box>
-        <StyledSwitch checked={active} onClick={() => toggleSource(id)} />
+        <Switch checked={active} onClick={() => toggleSource(id)} />
       </Box>
     </Flex>
   );

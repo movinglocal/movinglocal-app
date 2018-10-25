@@ -17,7 +17,13 @@ export const Store = createStore({
   sources: [],
   searchTerm: '',
   favs: [],
-  isInitial: false
+  isInitial: true,
+
+  // user settings
+  userTopics: [],
+  userTags: [],
+  userPosition: null,
+  userOrganisations: []
 });
 
 export default {

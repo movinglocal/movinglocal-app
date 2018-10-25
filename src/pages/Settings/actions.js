@@ -17,7 +17,17 @@ export const settingsActions = () => ({
         active: s.id === id ? !s.active : s.active
       }))
     };
-  }
+  },
+
+  toggleTopic: async ({ userTopics }, item) => {
+    return {
+      userTopics
+    };
+  },
+
+  updateUserPosition: (state, userPosition) => ({
+    userPosition
+  })
 });
 
 export default {
