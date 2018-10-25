@@ -6,7 +6,7 @@ import { Flex } from 'rebass';
 
 import theme from '~/styles/theme';
 import { actions } from '~/actions';
-import { initConfig } from '~/services/db';
+import { initUser } from '~/services/storage';
 
 import Feed from '~/pages/Feed';
 import Article from '~/pages/Article';
@@ -34,7 +34,7 @@ const Wrapper = styled(Flex)`
 
 class App extends PureComponent {
   componentDidMount() {
-    initConfig().then(userConfig => this.props.init(userConfig));
+    initUser().then(user => this.props.init(user));
   }
 
   render() {

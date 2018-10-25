@@ -14,13 +14,12 @@ export const Store = createStore({
     { label: 'Quelle', value: 'source' }
   ],
   sortDirections: [':ASC', ':DESC'],
-  sources: [],
   searchTerm: '',
-  favs: [],
-  isInitial: true,
 
   // user settings
+  isInitial: true,
   userTopics: [],
+  userFavs: [],
   userTags: [],
   userPosition: null,
   userOrganisations: []

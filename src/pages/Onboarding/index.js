@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
 
+import { updateRelation } from '~/services/apiUser';
 import { actions } from '~/pages/Feed/actions';
-import Privacy from '~/pages/Onboarding/components/Privacy';
-import TopicChooser from '~/pages/Settings/pages/TopicChooser';
+import Privacy from '~/pages/Onboarding/steps/Privacy';
+import TopicChooser from '~/pages/Onboarding/steps/TopicChooser';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
 import PositionChooser from '~/pages/Settings/pages/PositionChooser';
 
@@ -33,13 +34,13 @@ class Onboarding extends PureComponent {
     this.props.finishOnboarding();
   }
 
-  renderStep() {
-    const StepComponent = stepComponents[this.state.stepIndex];
-    return <StepComponent nextStep={this.nextStep} />;
-  }
-
   render() {
-    return this.renderStep();
+    const StepComponent = stepComponents[this.state.stepIndex];
+    return (
+      <StepComponent
+        nextStep={this.nextStep}
+      />
+    );
   }
 }
 

@@ -7,30 +7,18 @@ function appendSearch(url, searchTerm) {
   return (searchTerm.length > 0) ? url.concat(`&_q=${searchTerm}`) : url;
 }
 
-function appendSources(url, sources) {
-  let newUrl = url;
-  sources.forEach((source) => {
-    if (!source.active) newUrl = newUrl.concat(`&source_ne=${source.id}`);
-  });
-
-  return newUrl;
-}
-
 function createURL(state) {
   const {
     pageSize,
     pageStart,
     currentSortOption,
     currentSortDirection,
-    searchTerm,
-    sources
+    searchTerm
   } = state;
 
   const sort = currentSortOption.concat(currentSortDirection);
   let url = `${BASE_URL}/articles?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
-
   url = appendSearch(url, searchTerm);
-  url = appendSources(url, sources);
   return url;
 }
 
@@ -53,9 +41,8 @@ export async function loadItems() {
 }
 
 export async function countItems() {
-  const { sources, searchTerm } = Store.getState();
+  const { searchTerm } = Store.getState();
   let url = `${BASE_URL}/articles/count?`;
-  url = appendSources(url, sources);
   url = appendSearch(url, searchTerm);
 
   let count = null;
@@ -82,20 +69,6 @@ export async function loadItem({ id }) {
   return item;
 }
 
-export async function loadSources() {
-  let sources = [];
-
-  try {
-    sources = await fetch(`${BASE_URL}/source`)
-      .then(r => r.json())
-      .then(r => r.map(s => ({ ...s, active: true })));
-  } catch (err) {
-    console.log(err);
-  }
-
-  return sources;
-}
-
 export async function load(itemName) {
   let items = [];
 
@@ -113,6 +86,5 @@ export default {
   loadItems,
   countItems,
   loadItem,
-  loadSources,
   load
 };

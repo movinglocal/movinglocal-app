@@ -1,26 +1,18 @@
-import { add, get, remove } from '~/services/db';
-
-const { FAVS_COLLECTION } = config;
+import { updateRelation } from '~/services/apiUser';
 
 export const favsActions = () => ({
-  addOrRemoveFav: async (state, fav) => {
-    const found = state.favs.find(f => f.id === fav.id);
+  removeFav: (state, fav) => {
+    const userFavs = state.userFavs.filter(f => f.id !== fav.id);
+    updateRelation('favorites', userFavs.map(f => f.id));
 
-    if (found) {
-      remove(FAVS_COLLECTION, fav.id);
-    } else {
-      add(FAVS_COLLECTION, fav);
-    }
-
-    const favs = await get(FAVS_COLLECTION);
-
-    return { favs };
+    return { userFavs };
   },
 
-  removeFav: (state, { id }) => {
-    const favs = remove(FAVS_COLLECTION, id);
+  addFav: async (state, fav) => {
+    const userFavs = [...state.userFavs, fav];
+    updateRelation('favorites', userFavs.map(f => f.id));
 
-    return { favs };
+    return { userFavs };
   }
 });
 

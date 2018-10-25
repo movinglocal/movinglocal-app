@@ -18,11 +18,11 @@ class TagChooser extends PureComponent {
   }
 
   renderTag = (item) => {
-    const isChecked = this.props.userTags.find(userTag => userTag.id === item.id);
+    const isChecked = this.props.userTags.find(userTagId => userTagId === item.id);
     return (
       <Flex key={item.id} mb={3}>
         <Box width={1 / 2}>{item.name}</Box>
-        <Switch checked={isChecked} onClick={() => this.props.toggleTag(item.id)} />
+        <Switch checked={!!isChecked} onClick={() => this.props.toggleTag(item.id)} />
       </Flex>
     );
   };

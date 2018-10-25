@@ -22,17 +22,24 @@ const StyledButton = styled(Button)`
 class FavButton extends PureComponent {
   addToFavorites = (evt) => {
     evt.preventDefault();
-    this.props.addOrRemoveFav(this.props.item);
+
+    const exists = this.props.userFavs.find(fav => fav.id === this.props.item.id);
+
+    if (exists) {
+      return this.props.removeFav(this.props.item);
+    }
+
+    this.props.addFav(this.props.item);
   }
 
   render() {
-    const { item, favs } = this.props;
+    const { item, userFavs } = this.props;
 
     if (!item) {
       return null;
     }
 
-    const isFav = favs.find(f => f.id === item.id);
+    const isFav = userFavs.find(f => f.id === item.id);
 
     return (
       <Box ml="auto">

@@ -1,5 +1,5 @@
 import { loadItems, countItems } from '~/services/api';
-import { updateConfig } from '~/services/db';
+import { updateUser } from '~/services/storage';
 
 export const actions = store => ({
   initData: async (state) => {
@@ -54,8 +54,8 @@ export const actions = store => ({
     isLoading: true
   }),
 
-  finishOnboarding: (state) => {
-    updateConfig({ isInitial: false });
+  finishOnboarding: () => {
+    updateUser({ isInitial: false });
     return {
       isInitial: false
     };

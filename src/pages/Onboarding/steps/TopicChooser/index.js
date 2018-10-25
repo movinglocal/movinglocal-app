@@ -3,26 +3,48 @@ import { Box, Flex, Heading } from 'rebass';
 import { connect } from 'unistore/react';
 
 import { load } from '~/services/api';
-import actions from '~/pages/Settings/actions';
+import { settingsActions } from '~/pages/Settings/actions';
 import Switch from '~/components/Switch';
 import Loader from '~/components/Loader';
 import Button from '~/components/Button';
 
 class TopicChooser extends PureComponent {
   state = {
-    topics: []
+    topics: [],
+    userTopics: []
   }
 
   componentDidMount() {
     load('topics').then(topics => this.setState({ topics }));
   }
 
+  onToggleTopic = (item) => {
+    this.setState((prevState) => {
+      const exists = this.state.userTopics.find(topic => topic.id === item.id);
+      const userTopics = exists ?
+        prevState.userTopics.filter(topic => topic.id !== item.id) :
+        [...prevState.userTopics, item];
+
+      const tagIds = userTopics.reduce((res, t) => res.concat(t.tags.map(tag => tag.id)), []);
+
+      if (exists) {
+        this.props.removeTags(tagIds);
+      } else {
+        this.props.addTags(tagIds);
+      }
+
+      return {
+        userTopics
+      };
+    });
+  }
+
   renderTopic = (item) => {
-    const isChecked = this.props.userTopics.find(userTopic => userTopic.id === item.id);
+    const isChecked = this.state.userTopics.find(topic => topic.id === item.id);
     return (
       <Flex key={item.id} mb={3}>
         <Box width={1 / 2}>{item.name}</Box>
-        <Switch checked={isChecked} onClick={() => this.props.toggleTopic(item.id)} />
+        <Switch checked={!!isChecked} onClick={() => this.onToggleTopic(item)} />
       </Flex>
     );
   };
@@ -44,6 +66,6 @@ class TopicChooser extends PureComponent {
 
 
 export default connect(
-  state => ({ userTopics: state.userTopics }),
-  actions
+  () => {},
+  settingsActions
 )(TopicChooser);

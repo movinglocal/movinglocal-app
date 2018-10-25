@@ -1,27 +1,28 @@
-import { add, remove } from '~/services/db';
-
-const { SOURCES_COLLECTION } = config;
+import uniq from 'lodash.uniq';
+import { updateRelation } from '~/services/apiUser';
 
 export const settingsActions = () => ({
-  toggleSource: async ({ sources }, id) => {
-    const found = sources.find(s => s.id === id);
-    if (found.active) await add(SOURCES_COLLECTION, { id, active: false });
-    else await remove(SOURCES_COLLECTION, id);
+  addTags: async (state, ids) => {
+    const idArray = Array.isArray(ids) ? ids : [ids];
+    const uniqIds = uniq(idArray);
+    const userTags = [...state.userTags, ...uniqIds];
+
+    updateRelation('tags', userTags);
 
     return {
-      data: [],
-      isLoading: true,
-      pageStart: 0,
-      sources: sources.map(s => ({
-        ...s,
-        active: s.id === id ? !s.active : s.active
-      }))
+      userTags
     };
   },
 
-  toggleTopic: async ({ userTopics }, item) => {
+  removeTags: async (state, ids) => {
+    const idArray = Array.isArray(ids) ? ids : [ids];
+    const uniqIds = uniq(idArray);
+    const userTags = state.userTags.filter(tagId => uniqIds.includes(tagId));
+
+    updateRelation('tags', userTags);
+
     return {
-      userTopics
+      userTags
     };
   },
 

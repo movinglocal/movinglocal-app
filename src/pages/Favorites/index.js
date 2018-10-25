@@ -9,12 +9,12 @@ import { favsActions } from '~/pages/Favorites/actions';
 
 class Favorites extends PureComponent {
   render() {
-    const { favs, isLoading } = this.props;
+    const { userFavs, isLoading } = this.props;
     return (
       <ScrollWrapper bg="lightgray">
         {isLoading && <Loader />}
-        {(favs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Noch keine Favoriten vorhanden... </Text>}
-        {favs.map(fav => (<ArticleTeaser item={fav} key={fav.id} />))}
+        {(userFavs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Noch keine Favoriten vorhanden... </Text>}
+        {userFavs.map(fav => (<ArticleTeaser item={fav} key={fav.id} />))}
       </ScrollWrapper>
     );
   }
@@ -22,7 +22,7 @@ class Favorites extends PureComponent {
 
 export default connect(
   state => ({
-    favs: state.favs,
+    userFavs: state.userFavs,
     isLoading: state.isLoading
   }),
   favsActions

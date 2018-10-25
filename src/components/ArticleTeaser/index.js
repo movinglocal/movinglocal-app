@@ -29,6 +29,8 @@ const FeedImage = ({ img }) => (
     <Card
       pb={0}
       backgroundImage={`url(${img})`}
+      backgroundSize="cover"
+      backgroundPosition="center center"
       css={{ height: '100%' }}
     />
   </Box>
