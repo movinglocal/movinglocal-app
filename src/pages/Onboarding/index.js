@@ -1,17 +1,15 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
-import { Box } from 'rebass';
 import Redirect from 'react-router-dom/Redirect';
 
 import { actions } from '~/pages/Feed/actions';
 import Privacy from '~/pages/Onboarding/steps/Privacy';
-import TopicChooser from '~/pages/Onboarding/steps/TopicChooser';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
 import PositionChooser from '~/pages/Settings/pages/PositionChooser';
+import ScrollWrapper from '~/components/ScrollWrapper';
 
 const stepComponents = [
   Privacy,
-  TopicChooser,
   TagChooser,
   PositionChooser
 ];
@@ -42,11 +40,12 @@ class Onboarding extends PureComponent {
 
     const StepComponent = stepComponents[this.state.stepIndex];
     return (
-      <Box p={3} css={{ flexGrow: 1 }}>
+      <ScrollWrapper p={3} css={{ flexGrow: 1 }}>
         <StepComponent
           nextStep={this.nextStep}
+          isOnboarding
         />
-      </Box>
+      </ScrollWrapper>
     );
   }
 }
