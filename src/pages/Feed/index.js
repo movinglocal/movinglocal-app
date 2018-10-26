@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import Redirect from 'react-router-dom/Redirect';
 
 import { actions } from '~/pages/Feed/actions';
 import FeedControls from '~/pages/Feed/components/FeedControls';
@@ -21,16 +20,11 @@ class Feed extends PureComponent {
       loadNextPage,
       count,
       pageSize,
-      pageStart,
-      isInitial
+      pageStart
     } = this.props;
 
     const hasNext = pageStart + pageSize < count;
     const showMoreButton = !isLoading && hasNext;
-
-    if (isInitial && !isLoading) {
-      return <Redirect to={config.ONBOARDING_PATH} />;
-    }
 
     return (
       <Fragment>

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
 import styled, { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Flex } from 'rebass';
 
 import theme from '~/styles/theme';
@@ -33,21 +33,37 @@ const Wrapper = styled(Flex)`
   display: flex;
 `;
 
+// when the user is not initalized we want to force the onboarding
+function OnboardingRedirect({ component: Component, isInitial, isLoading, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        ((isInitial && !isLoading) ?
+          <Redirect to={ONBOARDING_PATH} /> :
+          <Component {...props} />
+        )
+      }
+    />
+  );
+}
+
 class App extends PureComponent {
   componentDidMount() {
     initUser().then(user => this.props.init(user));
   }
 
   render() {
+    const { isInitial, isLoading } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <Router>
           <Wrapper flexDirection="column" mx="auto">
             <Header />
             <Switch>
-              <Route exact path="/" component={Feed} />
-              <Route exact path={FAVORITE_PATH} component={Favorites} />
-              <Route exact path={FILTER_PATH} component={Settings} />
+              <OnboardingRedirect exact path="/" component={Feed} isInitial={isInitial} isLoading={isLoading} />
+              <OnboardingRedirect exact path={FAVORITE_PATH} component={Favorites} isInitial={isInitial} isLoading={isLoading} />
+              <OnboardingRedirect exact path={FILTER_PATH} component={Settings} isInitial={isInitial} isLoading={isLoading} />
               <Route exact path={IMPRINT_PATH} component={Imprint} />
               <Route exact path={PRIVACY_PATH} component={Privacy} />
               <Route exact path={FEEDBACK_PATH} component={Feedback} />
@@ -63,4 +79,7 @@ class App extends PureComponent {
   }
 }
 
-export default connect(() => {}, actions)(App);
+export default connect(state => ({
+  isInitial: state.isInitial,
+  isLoading: state.isLoading
+}), actions)(App);

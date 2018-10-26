@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
-import Redirect from 'react-router-dom/Redirect';
 import { Heading, Text } from 'rebass';
 
 import { reset } from '~/services/storage';
@@ -13,11 +12,7 @@ import Button from '~/components/Button';
 
 class Settings extends PureComponent {
   render() {
-    const { isLoading, isInitial } = this.props;
-
-    if (isInitial && !isLoading) {
-      return <Redirect to={config.ONBOARDING_PATH} />;
-    }
+    const { isLoading } = this.props;
 
     if (isLoading) {
       return (
