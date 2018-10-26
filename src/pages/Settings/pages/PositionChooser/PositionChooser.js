@@ -1,8 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Heading } from 'rebass';
-import styled from 'styled-components';
+import { Heading, Flex, Text } from 'rebass';
+import styled, { withTheme } from 'styled-components';
 import { Map, TileLayer, Circle } from 'react-leaflet';
+import CloseIcon from 'react-feather/dist/icons/x';
 
 import { settingsActions } from '~/pages/Settings/actions';
 import Search from '~/components/Search';
@@ -28,8 +29,30 @@ class PositionChooser extends PureComponent {
     }
   }
 
+  renderResetButton() {
+    if (!this.props.userPosition) {
+      return null;
+    }
+
+    return (
+      <Button
+        css={{ display: 'flex !important', alignItems: 'center', position: 'absolute', zIndex: 600, top: '10px', right: '10px'  }}
+        bg="white"
+        onClick={() => this.props.updateUserPosition(false)}
+        color="main"
+        fontSize={1}
+        fontWeight="normal"
+        p={2}
+        borderRadius={50}
+      >
+        <CloseIcon size={20} />
+        <Text ml="1">Ort zurücksetzen</Text>
+      </Button>
+    );
+  }
+
   render() {
-    const { userPosition, nextStep = false } = this.props;
+    const { userPosition, nextStep, isOnboarding } = this.props;
     return (
       <Fragment>
         <Heading mb={3}>Ort auswählen</Heading>
@@ -47,10 +70,19 @@ class PositionChooser extends PureComponent {
               url={config.map.tileurl}
               attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
             />
-            {userPosition && <Circle radius={config.map.userRadius} center={userPosition} />}
+            {userPosition && (
+              <Circle
+                fillColor={this.props.theme.colors.main}
+                color={this.props.theme.colors.main}
+                radius={config.map.userRadius}
+                center={userPosition}
+              />
+            )}
+            {this.renderResetButton()}
           </Map>
+
         </MapContainer>
-        {nextStep && <Button onClick={nextStep}>Weiter</Button>}
+        {isOnboarding && <Button onClick={nextStep}>Weiter</Button>}
       </Fragment>
     );
   }
@@ -59,4 +91,4 @@ class PositionChooser extends PureComponent {
 export default connect(
   state => ({ userPosition: state.userPosition }),
   settingsActions
-)(PositionChooser);
+)(withTheme(PositionChooser));

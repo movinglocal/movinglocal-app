@@ -52,8 +52,32 @@ export async function getUser(id) {
   }
 }
 
+export async function updatePosition(pos) {
+  const { userId } = Store.getState();
+
+  const data = pos ? { location: [pos[1], pos[0]] } : {};
+
+  try {
+    const response = await fetch(`${BASE_URL}/appusers/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data })
+    });
+    const json = await response.json();
+
+    return json;
+  } catch (err) {
+    console.log(err);
+
+    return null;
+  }
+}
+
 export default {
   createUser,
   getUser,
-  updateRelation
+  updateRelation,
+  updatePosition
 };

@@ -14,6 +14,7 @@ export const actions = store => ({
       userFavs: user.favorites,
       userOrganisations: user.organisations,
       userTags: user.tags,
+      userPosition: user.data.location ? [user.data.location[1], user.data.location[0]] : null,
       isLoading: false,
       isAppLoading: false,
       isInitial: user.isInitial

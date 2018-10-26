@@ -1,8 +1,14 @@
+import React from 'react';
 import { Box } from 'rebass';
-import styled from 'styled-components';
 
-export default styled(Box)`
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  flex-grow: 1;
-`;
+export default props => (
+  <Box
+    css={{
+      overflowY: 'auto',
+      '-webkit-overflow-scrolling': 'touch',
+      flexGrow: 1
+    }}
+    {...props}
+  />
+);
+

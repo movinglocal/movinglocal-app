@@ -6,7 +6,7 @@ export default ({ css, ...props }) => (
     bg="main"
     css={{
       cursor: 'pointer',
-      '&:hover': { opacity: 0.75 },
+      '&:hover': { opacity: 0.85 },
       '&:focus': { outline: 'none', border: 'none' },
       ...css
     }}

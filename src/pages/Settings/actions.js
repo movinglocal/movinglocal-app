@@ -1,5 +1,5 @@
 import uniqBy from 'lodash.uniqby';
-import { updateRelation } from '~/services/apiUser';
+import { updateRelation, updatePosition } from '~/services/apiUser';
 
 export const settingsActions = () => ({
   addTags: async (state, tags) => {
@@ -26,9 +26,13 @@ export const settingsActions = () => ({
     };
   },
 
-  updateUserPosition: (state, userPosition) => ({
-    userPosition
-  })
+  updateUserPosition: (state, userPosition) => {
+    updatePosition(userPosition);
+
+    return {
+      userPosition
+    };
+  }
 });
 
 export default {

@@ -34,12 +34,12 @@ const Wrapper = styled(Flex)`
 `;
 
 // when the user is not initalized we want to force the onboarding
-function OnboardingRedirect({ component: Component, isInitial, isLoading, ...rest }) {
+function ForceOnboardingRoute({ component: Component, forceOnboarding, ...rest }) {
   return (
     <Route
       {...rest}
       render={props =>
-        ((isInitial && !isLoading) ?
+        (forceOnboarding ?
           <Redirect to={ONBOARDING_PATH} /> :
           <Component {...props} />
         )
@@ -55,15 +55,17 @@ class App extends PureComponent {
 
   render() {
     const { isInitial, isLoading } = this.props;
+    const forceOnboarding = isInitial && !isLoading;
+
     return (
       <ThemeProvider theme={theme}>
         <Router>
           <Wrapper flexDirection="column" mx="auto">
             <Header />
             <Switch>
-              <OnboardingRedirect exact path="/" component={Feed} isInitial={isInitial} isLoading={isLoading} />
-              <OnboardingRedirect exact path={FAVORITE_PATH} component={Favorites} isInitial={isInitial} isLoading={isLoading} />
-              <OnboardingRedirect exact path={FILTER_PATH} component={Settings} isInitial={isInitial} isLoading={isLoading} />
+              <ForceOnboardingRoute exact path="/" component={Feed} forceOnboarding={forceOnboarding} />
+              <ForceOnboardingRoute exact path={FAVORITE_PATH} component={Favorites} forceOnboarding={forceOnboarding} />
+              <ForceOnboardingRoute exact path={FILTER_PATH} component={Settings} forceOnboarding={forceOnboarding} />
               <Route exact path={IMPRINT_PATH} component={Imprint} />
               <Route exact path={PRIVACY_PATH} component={Privacy} />
               <Route exact path={FEEDBACK_PATH} component={Feedback} />

@@ -82,7 +82,7 @@ class TagChooser extends PureComponent {
             fontSize={1}
             bg="transparent"
             fontWeight="normal"
-            color="gray"
+            color="main"
             ml="auto"
             onClick={() => this.onToggleTopic(topic)}
           >
