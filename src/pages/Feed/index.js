@@ -20,7 +20,9 @@ class Feed extends PureComponent {
       loadNextPage,
       count,
       pageSize,
-      pageStart
+      pageStart,
+      userFavs,
+      onToggleFav
     } = this.props;
 
     const hasNext = pageStart + pageSize < count;
@@ -30,7 +32,7 @@ class Feed extends PureComponent {
       <Fragment>
         <FeedControls />
         <ScrollWrapper bg="lightgray">
-          {data.map(item => <ArticleTeaser item={item} key={item.id} />)}
+          {data.map(item => <ArticleTeaser item={item} key={item.id} userFavs={userFavs} onToggleFav={onToggleFav} />)}
           {isLoading && <Loader />}
           {showMoreButton && (
             <Button
@@ -49,6 +51,14 @@ class Feed extends PureComponent {
 }
 
 export default connect(
-  state => state,
+  state => ({
+    isLoading: state.isLoading,
+    data: state.data,
+    loadNextPage: state.loadNextPage,
+    count: state.count,
+    pageSize: state.pageSize,
+    pageStart: state.pageStart,
+    userFavs: state.userFavs
+  }),
   actions
 )(Feed);

@@ -1,5 +1,20 @@
 import { loadItems, countItems } from '~/services/api';
 import { updateUser } from '~/services/storage';
+import { updateRelation } from '~/services/apiUser';
+
+function removeFav(state, fav) {
+  const userFavs = state.userFavs.filter(f => f.id !== fav.id);
+  updateRelation('favorites', userFavs.map(f => f.id));
+
+  return { userFavs };
+}
+
+function addFav(state, fav) {
+  const userFavs = [...state.userFavs, fav];
+  updateRelation('favorites', userFavs.map(f => f.id));
+
+  return { userFavs };
+}
 
 export const actions = store => ({
   initData: async (state) => {
@@ -59,6 +74,18 @@ export const actions = store => ({
     return {
       isInitial: false
     };
+  },
+
+  removeFav,
+  addFav,
+  onToggleFav: (state, fav) => {
+    const exists = state.userFavs.find(userFav => userFav.id === fav.id);
+
+    if (exists) {
+      return removeFav(state, fav);
+    }
+
+    return addFav(state, fav);
   }
 });
 

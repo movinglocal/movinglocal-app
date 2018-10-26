@@ -5,16 +5,16 @@ import { Text } from 'rebass';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import ArticleTeaser from '~/components/ArticleTeaser';
 import Loader from '~/components/Loader';
-import { favsActions } from '~/pages/Favorites/actions';
+import { actions } from '~/pages/Feed/actions';
 
 class Favorites extends PureComponent {
   render() {
-    const { userFavs, isLoading } = this.props;
+    const { userFavs, isLoading, onToggleFav } = this.props;
     return (
       <ScrollWrapper bg="lightgray">
         {isLoading && <Loader />}
         {(userFavs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Noch keine Favoriten vorhanden... </Text>}
-        {userFavs.map(fav => (<ArticleTeaser item={fav} key={fav.id} />))}
+        {userFavs.map(fav => (<ArticleTeaser item={fav} key={fav.id} userFavs={userFavs} onToggleFav={onToggleFav} />))}
       </ScrollWrapper>
     );
   }
@@ -26,5 +26,5 @@ export default connect(
     isLoading: state.isLoading,
     isInitial: state.isInitial
   }),
-  favsActions
+  actions
 )(Favorites);

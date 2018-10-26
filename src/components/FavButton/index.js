@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'unistore/react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Box } from 'rebass';
 
 import Button from '~/components/Button';
-import { favsActions } from '~/pages/Favorites/actions';
 
 const StyledButton = styled(Button)`
   color: ${props => (props.isFav ? 'white' : props.theme.colors.darkgray)};
@@ -20,32 +18,24 @@ const StyledButton = styled(Button)`
 `;
 
 class FavButton extends PureComponent {
-  addToFavorites = (evt) => {
+  onToggle = (evt) => {
     evt.preventDefault();
 
-    const exists = this.props.userFavs.find(fav => fav.id === this.props.item.id);
-
-    if (exists) {
-      return this.props.removeFav(this.props.item);
-    }
-
-    this.props.addFav(this.props.item);
+    this.props.onToggle(this.props.item);
   }
 
   render() {
-    const { item, userFavs } = this.props;
+    const { item, isFav } = this.props;
 
     if (!item) {
       return null;
     }
 
-    const isFav = userFavs.find(f => f.id === item.id);
-
     return (
       <Box ml="auto">
         <StyledButton
           isFav={isFav}
-          onClick={this.addToFavorites}
+          onClick={this.onToggle}
         >
           ★
         </StyledButton>
@@ -54,7 +44,4 @@ class FavButton extends PureComponent {
   }
 }
 
-export default connect(
-  state => state,
-  favsActions
-)(withTheme(FavButton));
+export default FavButton;

@@ -51,6 +51,7 @@ class ArticleTeaser extends PureComponent {
 
     const img = image ? image.url : imageUrl;
     const url = link || `${config.ARTICLE_PATH}/${id}`;
+    const isFav = this.props.userFavs.find(fav => fav.id === id);
 
     return (
       <Flex bg="white" p={3} m={2}>
@@ -68,7 +69,7 @@ class ArticleTeaser extends PureComponent {
             <Text fontSize={1} fontWeight="normal">{teaser}</Text>
           </Box>
         </StyledLink>
-        <FavButton item={this.props.item} />
+        <FavButton item={this.props.item} isFav={isFav} onToggle={this.props.onToggleFav} />
       </Flex>
     );
   }
