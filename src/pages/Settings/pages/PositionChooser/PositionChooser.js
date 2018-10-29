@@ -55,7 +55,7 @@ class PositionChooser extends PureComponent {
     const { userPosition, nextStep, isOnboarding } = this.props;
     return (
       <Fragment>
-        <Heading mb={3}>Ort auswählen</Heading>
+        <Heading mb={3}>Ort auswählen:</Heading>
         <Search
           onSubmit={this.onSubmit}
           placeholder="Adresse eingeben ..."
