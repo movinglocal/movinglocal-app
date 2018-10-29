@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Heading, Flex, Text } from 'rebass';
+import { Heading, Text } from 'rebass';
 import styled, { withTheme } from 'styled-components';
 import { Map, TileLayer, Circle } from 'react-leaflet';
 import CloseIcon from 'react-feather/dist/icons/x';
@@ -34,9 +34,18 @@ class PositionChooser extends PureComponent {
       return null;
     }
 
+    const buttonCSS = {
+      display: 'flex !important',
+      alignItems: 'center',
+      position: 'absolute',
+      zIndex: 600,
+      top: '10px',
+      right: '10px'
+    };
+
     return (
       <Button
-        css={{ display: 'flex !important', alignItems: 'center', position: 'absolute', zIndex: 600, top: '10px', right: '10px'  }}
+        css={buttonCSS}
         bg="white"
         onClick={() => this.props.updateUserPosition(false)}
         color="main"

@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
-import { Box, Flex, Heading, Text } from 'rebass';
+import {
+ Box, Flex, Heading, Text
+} from 'rebass';
 import { connect } from 'unistore/react';
 import Alert from 'react-feather/dist/icons/alert-triangle';
 
@@ -52,9 +54,9 @@ class TagChooser extends PureComponent {
   onToggleTopic = (item) => {
     this.setState((prevState) => {
       const exists = this.state.userTopics.find(topic => topic.id === item.id);
-      const userTopics = exists ?
-        prevState.userTopics.filter(topic => topic.id !== item.id) :
-        [...prevState.userTopics, item];
+      const userTopics = exists
+        ? prevState.userTopics.filter(topic => topic.id !== item.id)
+        : [...prevState.userTopics, item];
 
       if (exists) {
         this.props.removeTags(item.tags);
@@ -71,6 +73,7 @@ class TagChooser extends PureComponent {
   renderTopic = (topic) => {
     const exists = this.state.userTopics.find(userTopic => userTopic.id === topic.id);
     const multiSelectLabel = exists ? 'abwählen' : 'auswählen';
+    const toggleTopicLabel = `Alle ${multiSelectLabel}`;
 
     return (
       <Box mb={3} key={topic.id}>
@@ -86,7 +89,7 @@ class TagChooser extends PureComponent {
             ml="auto"
             onClick={() => this.onToggleTopic(topic)}
           >
-            Alle {multiSelectLabel}
+            {toggleTopicLabel}
           </Button>
         </Flex>
         <Flex flexWrap="wrap">
@@ -115,7 +118,7 @@ class TagChooser extends PureComponent {
   }
 
   renderNextButton() {
-    if (!this.props.isOnboarding) {
+    if (!this.props.isOnboarding) {
       return null;
     }
 

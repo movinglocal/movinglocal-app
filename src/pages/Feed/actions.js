@@ -18,7 +18,7 @@ function addFav(state, fav) {
 
 export const actions = store => ({
   initData: async (state) => {
-    if (state.data.length > 0 || state.isInitial) return {};
+    if (state.data.length > 0 || state.isInitial) return {};
 
     const count = await countItems();
     const data = await loadItems();

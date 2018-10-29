@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'unistore/react';
 import styled, { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+ BrowserRouter as Router, Route, Switch, Redirect
+} from 'react-router-dom';
 import { Flex } from 'rebass';
 
 import theme from '~/styles/theme';
@@ -38,10 +40,9 @@ function ForceOnboardingRoute({ component: Component, forceOnboarding, ...rest }
   return (
     <Route
       {...rest}
-      render={props =>
-        (forceOnboarding ?
-          <Redirect to={ONBOARDING_PATH} /> :
-          <Component {...props} />
+      render={props => (forceOnboarding
+          ? <Redirect to={ONBOARDING_PATH} />
+          : <Component {...props} />
         )
       }
     />
@@ -63,9 +64,24 @@ class App extends PureComponent {
           <Wrapper flexDirection="column" mx="auto">
             <Header />
             <Switch>
-              <ForceOnboardingRoute exact path="/" component={Feed} forceOnboarding={forceOnboarding} />
-              <ForceOnboardingRoute exact path={FAVORITE_PATH} component={Favorites} forceOnboarding={forceOnboarding} />
-              <ForceOnboardingRoute exact path={FILTER_PATH} component={Settings} forceOnboarding={forceOnboarding} />
+              <ForceOnboardingRoute
+                exact
+                path="/"
+                component={Feed}
+                forceOnboarding={forceOnboarding}
+              />
+              <ForceOnboardingRoute
+                exact
+                path={FAVORITE_PATH}
+                component={Favorites}
+                forceOnboarding={forceOnboarding}
+              />
+              <ForceOnboardingRoute
+                exact
+                path={FILTER_PATH}
+                component={Settings}
+                forceOnboarding={forceOnboarding}
+              />
               <Route exact path={IMPRINT_PATH} component={Imprint} />
               <Route exact path={PRIVACY_PATH} component={Privacy} />
               <Route exact path={FEEDBACK_PATH} component={Feedback} />

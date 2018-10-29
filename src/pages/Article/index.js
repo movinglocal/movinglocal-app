@@ -10,7 +10,8 @@ import { actions } from '~/pages/Article/actions';
 function renderAuthor(source) {
   return (
     <Text fontSize={1} fontWeight="normal" mb={2}>
-      Author: {source.name}
+      Author:
+      {source.name}
     </Text>
   );
 }
