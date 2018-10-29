@@ -28,6 +28,7 @@ const Drawer = styled(Box)`
   width: 300px;
   transform: translate(${props => (props.open ? '0' : '-100%')}, 0);
   transition: transform .2s;
+  z-index: 2000;
 `;
 
 class Menu extends PureComponent {

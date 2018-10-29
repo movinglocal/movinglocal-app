@@ -25,13 +25,12 @@ const StyledLink = styled(Link)`
 `;
 
 const FeedImage = ({ img }) => (
-  <Box style={{ minWidth: '25%', width: '25%' }} mr={2}>
+  <Box style={{ minWidth: '30%', width: '30%' }} mr={2}>
     <Card
-      pb={0}
+      pb="72.5%"
       backgroundImage={`url(${img})`}
       backgroundSize="cover"
       backgroundPosition="center center"
-      css={{ height: '100%' }}
     />
   </Box>
 );
@@ -55,7 +54,7 @@ class ArticleTeaser extends PureComponent {
 
     return (
       <Flex bg="white" p={3} m={2}>
-        <StyledLink href={url} color="black">
+        <StyledLink href={url} color="black" target="_blank">
           {img && <FeedImage img={img} />}
           <Box>
             <Box mb={1}>
