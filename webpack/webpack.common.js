@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const Config = require('../config.json');
+const Config = require('../config');
 
 module.exports = {
   entry: {
@@ -21,12 +21,15 @@ module.exports = {
     }
   },
   plugins: [
+    new Webpack.DefinePlugin({
+      'process.env.BASE_URL': JSON.stringify(process.env.BASE_URL)
+    }),
     new CleanWebpackPlugin(['build'], { root: Path.resolve(__dirname, '..') }),
     new CopyWebpackPlugin([
       { from: Path.resolve(__dirname, '../public'), to: 'public' }
     ]),
     new Webpack.ProvidePlugin({
-      config: '~/../config.json'
+      config: '~/../config.js'
     }),
     new HtmlWebpackPlugin({
       inject: true,
