@@ -1,13 +1,6 @@
-import React, { PureComponent } from 'react';
+import Loadable from 'react-loadable';
 
-class OrganisationChooser extends PureComponent {
-  render() {
-    return (
-      <div>
-        OrganisationChooser
-      </div>
-    );
-  }
-}
-
-export default OrganisationChooser;
+export default Loadable({
+  loader: () => /* webpackChunkName: "organisationchooser" */ import('./OrganisationChooser'),
+  loading: () => null
+});

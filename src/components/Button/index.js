@@ -7,7 +7,7 @@ export default ({ css, ...props }) => (
     css={{
       cursor: 'pointer',
       '&:hover': { opacity: 0.85 },
-      '&:focus': { outline: 'none', border: 'none' },
+      '&:focus': { outline: 'none' },
       ...css
     }}
     {...props}
