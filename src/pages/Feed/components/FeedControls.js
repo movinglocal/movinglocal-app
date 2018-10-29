@@ -32,7 +32,6 @@ class FeedControls extends PureComponent {
   }
 
   onSubmit = (searchTerm) => {
-    console.log('feedcontrl onsubmit');
     this.props.search(searchTerm);
     this.props.initData();
   }
@@ -57,6 +56,7 @@ class FeedControls extends PureComponent {
     const sortDirection = currentSortDirection === ':DESC' ? 'down' : 'up';
     const extendedLabel = isExtended ? 'ausblenden' : 'anzeigen';
     const extendedIcon = isExtended ? <ArrowUp /> : <ArrowDown />;
+    const filterOptionLabel = `Filteroptionen ${extendedLabel}`;
 
     return (
       <Box p={2} css={{ borderBottom: `1px solid ${theme.colors.gray}` }}>
@@ -86,7 +86,8 @@ class FeedControls extends PureComponent {
 
         <Flex>
           <LightButton onClick={this.toggleExtended}>
-            Filteroptionen {extendedLabel} {extendedIcon}
+            {filterOptionLabel}
+            {extendedIcon}
           </LightButton>
         </Flex>
       </Box>

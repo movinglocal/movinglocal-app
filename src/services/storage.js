@@ -14,7 +14,7 @@ export function reset() {
 
 export async function initUser() {
   const storageUser = store.get(USER_STORE_ITEM);
-  const isInitial = typeof storageUser === 'undefined' || storageUser.isInitial;
+  const isInitial = typeof storageUser === 'undefined' || storageUser.isInitial;
 
   if (!isInitial) {
     const user = await getUser(storageUser.id);

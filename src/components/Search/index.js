@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from 'react-feather/dist/icons/search';
-import { Flex, Box } from 'rebass';
+import { Flex } from 'rebass';
 
 import Input from '~/components/Input';
 import Button from '~/components/Button';
@@ -9,7 +9,6 @@ import Button from '~/components/Button';
 const SearchBorderRad = '30px';
 
 class Search extends PureComponent {
-
   static propTypes = {
     onSubmit: PropTypes.func,
     placeholder: PropTypes.string,

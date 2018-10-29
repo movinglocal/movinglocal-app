@@ -32,7 +32,14 @@ class Feed extends PureComponent {
       <Fragment>
         <FeedControls />
         <ScrollWrapper bg="lightgray">
-          {data.map(item => <ArticleTeaser item={item} key={item.id} userFavs={userFavs} onToggleFav={onToggleFav} />)}
+          {data.map(item => (
+            <ArticleTeaser
+              item={item}
+              key={item.id}
+              userFavs={userFavs}
+              onToggleFav={onToggleFav}
+            />
+          ))}
           {isLoading && <Loader />}
           {showMoreButton && (
             <Button

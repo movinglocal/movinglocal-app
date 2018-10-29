@@ -14,7 +14,9 @@ class Favorites extends PureComponent {
       <ScrollWrapper bg="lightgray">
         {isLoading && <Loader />}
         {(userFavs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Noch keine Favoriten vorhanden... </Text>}
-        {userFavs.map(fav => (<ArticleTeaser item={fav} key={fav.id} userFavs={userFavs} onToggleFav={onToggleFav} />))}
+        {userFavs.map(fav => (
+          <ArticleTeaser item={fav} key={fav.id} userFavs={userFavs} onToggleFav={onToggleFav} />
+        ))}
       </ScrollWrapper>
     );
   }
