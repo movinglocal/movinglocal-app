@@ -1,4 +1,4 @@
-import { loadItems, countItems } from '~/services/api';
+import { loadItems } from '~/services/api';
 import { updateUser } from '~/services/storage';
 import { updateRelation } from '~/services/apiUser';
 
@@ -17,26 +17,17 @@ function addFav(state, fav) {
 }
 
 export const actions = store => ({
-  initData: async (state) => {
-    if (state.data.length > 0 || state.isInitial) return {};
-
-    const count = await countItems();
-    const data = await loadItems();
-
-    return {
-      data,
-      count,
-      isLoading: false,
-      isAppLoading: false
-    };
-  },
-
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
     const data = await loadItems();
 
-    return { data: state.data.concat(data), isLoading: false };
+    return {
+      data: state.data.concat(data),
+      isLoading: false,
+      isAppLoading: false,
+      endOfFeed: data.length === 0
+    };
   },
 
   sort: async (state, event) => {

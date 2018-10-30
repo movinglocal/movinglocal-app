@@ -7,10 +7,11 @@ import ArticleTeaser from '~/components/ArticleTeaser';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Button from '~/components/Button';
 import Loader from '~/components/Loader';
+import EndOfFeedLabel from '~/components/EndOfFeedLabel';
 
 class Feed extends PureComponent {
   componentDidMount() {
-    this.props.initData();
+    this.props.loadNextPage();
   }
 
   render() {
@@ -18,15 +19,14 @@ class Feed extends PureComponent {
       isLoading,
       data,
       loadNextPage,
-      count,
-      pageSize,
-      pageStart,
       userFavs,
-      onToggleFav
+      onToggleFav,
+      endOfFeed
     } = this.props;
 
-    const hasNext = pageStart + pageSize < count;
-    const showMoreButton = !isLoading && hasNext;
+    console.log(endOfFeed);
+
+    const showMoreButton = !isLoading && !endOfFeed;
 
     return (
       <Fragment>
@@ -51,6 +51,7 @@ class Feed extends PureComponent {
               Mehr laden...
             </Button>
           )}
+          {endOfFeed && <EndOfFeedLabel />}
         </ScrollWrapper>
       </Fragment>
     );
@@ -61,11 +62,8 @@ export default connect(
   state => ({
     isLoading: state.isLoading,
     data: state.data,
-    loadNextPage: state.loadNextPage,
-    count: state.count,
-    pageSize: state.pageSize,
-    pageStart: state.pageStart,
-    userFavs: state.userFavs
+    userFavs: state.userFavs,
+    endOfFeed: state.endOfFeed
   }),
   actions
 )(Feed);

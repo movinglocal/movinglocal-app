@@ -11,7 +11,8 @@ const Teaser = (props) => {
       {...props}
       css={{
         borderLeft: borderColor ? `5px solid ${borderColor}` : 'none',
-        borderRadius: '2px'
+        borderRadius: '2px',
+        overflow: 'hidden'
       }}
     />
   );

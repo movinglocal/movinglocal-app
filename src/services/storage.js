@@ -12,8 +12,12 @@ export function reset() {
   window.location.reload();
 }
 
+export function getStorageUser() {
+  return store.get(USER_STORE_ITEM);
+}
+
 export async function initUser() {
-  const storageUser = store.get(USER_STORE_ITEM);
+  const storageUser = getStorageUser();
   const isInitial = typeof storageUser === 'undefined' || storageUser.isInitial;
 
   if (!isInitial) {
@@ -39,5 +43,6 @@ export async function updateUser(changes) {
 export default {
   initUser,
   updateUser,
+  getStorageUser,
   reset
 };

@@ -1,5 +1,6 @@
 import fetch from 'unfetch';
 import { Store } from '~/Store';
+import { getStorageUser } from '~/services/storage';
 
 const { BASE_URL } = config;
 
@@ -16,8 +17,10 @@ function createURL(state) {
     searchTerm
   } = state;
 
+  const { id } = getStorageUser();
+
   const sort = currentSortOption.concat(currentSortDirection);
-  let url = `${BASE_URL}/articles?_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
+  let url = `${BASE_URL}/articles/feed?appuser=${id}&_limit=${pageSize}&_start=${pageStart}&_sort=${sort}`;
   url = appendSearch(url, searchTerm);
   return url;
 }

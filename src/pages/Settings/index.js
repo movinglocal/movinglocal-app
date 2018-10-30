@@ -29,8 +29,8 @@ class Settings extends PureComponent {
         <Text my={3}>Hier kannst du deine Suche nach deinen persönlichen Vorlieben anpassen.</Text>
         <TagChooser />
         <PositionChooser />
-        <Button mt={3} bg="main" color="white" onClick={reset}>Anwendung zurücksetzen</Button>
         <OrganisationChooser />
+        <Button mt={3} bg="main" color="white" onClick={reset}>Anwendung zurücksetzen</Button>
       </ScrollWrapper>
     );
   }
