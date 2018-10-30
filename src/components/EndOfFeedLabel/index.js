@@ -1,8 +1,11 @@
 import React from 'react';
+import { Flex } from 'rebass';
+
+import CheckIcon from 'react-feather/dist/icons/check';
 
 export default () => (
-  <div>
-    <span role="img" aria-label="emoji">🎉</span>
+  <Flex p={3} m={2}>
+    <CheckIcon />
     Glückwunsch! Du hast alle wichtigen Nachrichten des Tages gelesen!
-  </div>
+  </Flex>
 );

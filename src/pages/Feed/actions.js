@@ -20,6 +20,7 @@ export const actions = store => ({
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
+
     const data = await loadItems();
 
     return {
