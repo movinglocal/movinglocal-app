@@ -33,7 +33,6 @@ class FeedControls extends PureComponent {
 
   onSubmit = (searchTerm) => {
     this.props.search(searchTerm);
-    this.props.initData();
   }
 
   toggleExtended = () => {

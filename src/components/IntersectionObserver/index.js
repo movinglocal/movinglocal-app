@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import 'intersection-observer';
+
 class IntersectionObserverWrapper extends PureComponent {
   static propTypes = {
     threshold: PropTypes.number,
