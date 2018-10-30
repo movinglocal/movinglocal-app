@@ -10,10 +10,6 @@ import EndOfFeedLabel from '~/components/EndOfFeedLabel';
 import IntersectionObserver from '~/components/IntersectionObserver';
 
 class Feed extends PureComponent {
-  componentDidMount() {
-    this.props.loadNextPage();
-  }
-
   render() {
     const {
       isLoading,
