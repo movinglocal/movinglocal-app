@@ -5,9 +5,9 @@ import { actions } from '~/pages/Feed/actions';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ArticleTeaser from '~/components/ArticleTeaser';
 import ScrollWrapper from '~/components/ScrollWrapper';
-import Button from '~/components/Button';
 import Loader from '~/components/Loader';
 import EndOfFeedLabel from '~/components/EndOfFeedLabel';
+import IntersectionObserver from '~/components/IntersectionObserver';
 
 class Feed extends PureComponent {
   componentDidMount() {
@@ -23,8 +23,6 @@ class Feed extends PureComponent {
       onToggleFav,
       endOfFeed
     } = this.props;
-
-    console.log(endOfFeed);
 
     const showMoreButton = !isLoading && !endOfFeed;
 
@@ -42,14 +40,9 @@ class Feed extends PureComponent {
           ))}
           {isLoading && <Loader />}
           {showMoreButton && (
-            <Button
-              bg="main"
-              onClick={loadNextPage}
-              width={1}
-              borderRadius={0}
-            >
-              Mehr laden...
-            </Button>
+            <IntersectionObserver threshold={0.5} onEnter={loadNextPage}>
+              <Loader />
+            </IntersectionObserver>
           )}
           {endOfFeed && <EndOfFeedLabel />}
         </ScrollWrapper>

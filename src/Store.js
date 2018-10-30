@@ -4,7 +4,7 @@ export const Store = createStore({
   isAppLoading: true,
   isLoading: true,
   data: [],
-  pageSize: 3,
+  pageSize: 10,
   pageStart: 0,
   endOfFeed: false,
   count: -1,
