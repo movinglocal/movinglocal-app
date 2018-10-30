@@ -1,13 +1,15 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withTheme } from 'styled-components';
 import {
   Box, Flex, Text, Heading
  } from 'rebass';
+import { connect } from 'unistore/react';
 
 import { load } from '~/services/api';
+import { settingsActions } from '~/pages/Settings/actions';
 
 import Button from '~/components/Button';
+import FollowButton from './FollowButton';
 
 class OrganisationChooser extends PureComponent {
   state = {
@@ -29,29 +31,23 @@ class OrganisationChooser extends PureComponent {
   }
 
   toggleOrganisation(data) {
-    console.log('todo: toggle organisation', data);
-    return this;
+    this.props.toggleOrganisation(data);
   }
 
   renderOrganisation(data) {
+    const { userOrgIds } = this.props;
+    const onClick = () => this.toggleOrganisation(data);
+    const isActive = userOrgIds.includes(data.id);
+    const label = isActive ? 'Entfolgen' : 'Folgen';
+
     return (
       <Flex mb={3} alignItems="center" key={data.name}>
         <Text>{data.name}</Text>
-        <Button
-          py={2}
-          px={2}
-          fontSize={1}
-          bg="transparent"
-          fontWeight="bold"
-          color="main"
-          borderColor="main"
-          borderRadius={4}
-          border={2}
-          ml="auto"
-          onClick={() => this.toggleOrganisation(data)}
-        >
-          Folgen
-        </Button>
+        <FollowButton
+          onClick={onClick}
+          isActive={isActive}
+          label={label}
+        />
       </Flex>
     );
   }
@@ -73,4 +69,6 @@ class OrganisationChooser extends PureComponent {
   }
 }
 
-export default withTheme(OrganisationChooser);
+export default connect(state => ({
+  userOrgIds: state.userOrganisations.map(org => org.id)
+}), settingsActions)(OrganisationChooser);
