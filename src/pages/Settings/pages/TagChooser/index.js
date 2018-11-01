@@ -6,6 +6,7 @@ import {
 } from 'rebass';
 import { connect } from 'unistore/react';
 import Alert from 'react-feather/dist/icons/alert-triangle';
+import ArrowRight from 'react-feather/dist/icons/arrow-right';
 
 import { load } from '~/services/api';
 import { settingsActions } from '~/pages/Settings/actions';
@@ -133,7 +134,13 @@ class TagChooser extends PureComponent {
       );
     }
 
-    return <Button onClick={this.props.nextStep}>Weiter</Button>;
+    return (
+      <Flex>
+        <Button ml="auto" onClick={this.props.nextStep}>
+          Speichern und weiter
+        </Button>
+      </Flex>
+    );
   }
 
   render() {

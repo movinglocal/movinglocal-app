@@ -15,6 +15,7 @@ export const actions = store => ({
       userOrganisations: user.organisations,
       userTags: user.tags,
       userPosition: user.data.location ? [user.data.location[1], user.data.location[0]] : null,
+      userPositionRadius: user.radius ? user.radius : config.map.userRadius,
       isLoading: false,
       isAppLoading: false,
       isInitial: user.isInitial

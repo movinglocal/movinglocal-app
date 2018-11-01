@@ -26,11 +26,11 @@ export const settingsActions = () => ({
     };
   },
 
-  updateUserPosition: (state, userPosition) => {
-    updatePosition(userPosition);
+  updateUserPosition: (state, userPositionParams) => {
+    updatePosition(userPositionParams);
 
     return {
-      userPosition
+      ...userPositionParams
     };
   },
 

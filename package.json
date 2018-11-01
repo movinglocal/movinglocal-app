@@ -54,6 +54,7 @@
     "lodash.uniq": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "prop-types": "^15.6.2",
+    "rc-slider": "^8.6.3",
     "rc-switch": "^1.8.0",
     "react": "^16.4.2",
     "react-dev-utils": "^5.0.2",

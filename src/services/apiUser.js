@@ -52,10 +52,15 @@ export async function getUser(id) {
   }
 }
 
-export async function updatePosition(pos) {
+export async function updatePosition(params) {
   const { userId } = Store.getState();
 
-  const data = pos ? { location: [pos[1], pos[0]] } : {};
+  const location = params.userPosition ? { data: { location: [params.userPosition[1], params.userPosition[0]] } } : { data: {} };
+  const data = { ...location };
+
+  if (params.userPositionRadius) {
+    data.radius = params.userPositionRadius;
+  }
 
   try {
     const response = await fetch(`${BASE_URL}/appusers/${userId}`, {
@@ -63,7 +68,7 @@ export async function updatePosition(pos) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ data })
+      body: JSON.stringify(data)
     });
     const json = await response.json();
 
