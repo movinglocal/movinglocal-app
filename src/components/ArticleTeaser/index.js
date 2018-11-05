@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import FavButton from '~/components/FavButton';
 import Teaser from '~/components/ArticleTeaser/Teaser';
-import { formatDate } from '~/utils';
+import { formatDate, clipText } from '~/utils';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -53,6 +53,7 @@ class ArticleTeaser extends PureComponent {
     const img = image ? image.url : imageUrl;
     const url = link || `${config.ARTICLE_PATH}/${id}`;
     const isFav = this.props.userFavs.find(fav => fav.id === id);
+    const teaserText = clipText(teaser, 200, '...');
 
     return (
       <Teaser
@@ -72,7 +73,7 @@ class ArticleTeaser extends PureComponent {
             </Box>
 
             <Text className="teaser__title" fontSize={3} fontWeight="bold" mb={2}>{title}</Text>
-            <Text fontSize={1} fontWeight="normal">{teaser}</Text>
+            <Text fontSize={1} fontWeight="normal">{teaserText}</Text>
           </Box>
         </StyledLink>
         <FavButton item={this.props.item} isFav={isFav} onToggle={this.props.onToggleFav} />
