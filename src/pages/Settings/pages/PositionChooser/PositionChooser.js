@@ -1,6 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
-import { Heading, Text, Flex, Box } from 'rebass';
+import {
+ Heading, Text, Flex, Box
+} from 'rebass';
 import styled, { withTheme } from 'styled-components';
 import { Map, TileLayer, Circle } from 'react-leaflet';
 import Slider from 'rc-slider/lib/Slider';

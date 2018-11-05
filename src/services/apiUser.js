@@ -55,7 +55,10 @@ export async function getUser(id) {
 export async function updatePosition(params) {
   const { userId } = Store.getState();
 
-  const location = params.userPosition ? { data: { location: [params.userPosition[1], params.userPosition[0]] } } : { data: {} };
+  const location = params.userPosition
+    ? { data: { location: [params.userPosition[1], params.userPosition[0]] } }
+    : { data: {} };
+
   const data = { ...location };
 
   if (params.userPositionRadius) {

@@ -6,7 +6,6 @@ import {
 } from 'rebass';
 import { connect } from 'unistore/react';
 import Alert from 'react-feather/dist/icons/alert-triangle';
-import ArrowRight from 'react-feather/dist/icons/arrow-right';
 
 import { load } from '~/services/api';
 import { settingsActions } from '~/pages/Settings/actions';
