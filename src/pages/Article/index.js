@@ -5,7 +5,9 @@ import FavButton from '~/components/FavButton';
 import { Text, Box, Image } from 'rebass';
 
 import { connect } from 'unistore/react';
-import { actions } from '~/pages/Article/actions';
+import { actions as ArticleActions } from '~/pages/Article/actions';
+import { actions as FeedActions } from '~/pages/Feed/actions';
+
 
 function renderAuthor(source) {
   return (
@@ -16,10 +18,12 @@ function renderAuthor(source) {
   );
 }
 
-function renderItem(item) {
+function renderItem(item, props) {
   const {
-    title, content, image, source
+    title, content, image, source, id
   } = item;
+
+  const isFav = props.userFavs.find(fav => fav.id === id);
 
   return (
     <Box bg="white" p={2} m={2}>
@@ -27,7 +31,7 @@ function renderItem(item) {
       <Text fontSize={1} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />
       {source && renderAuthor(source)}
       {image && <Image src={image.url} />}
-      <FavButton item={item} />
+      <FavButton item={item} onToggle={props.onToggleFav} isFav={isFav} />
     </Box>
   );
 }
@@ -43,7 +47,7 @@ class Article extends PureComponent {
 
     return (
       <ScrollWrapper>
-        {item ? renderItem(item) : <Loader />}
+        {item ? renderItem(item, this.props) : <Loader />}
       </ScrollWrapper>
     );
   }
@@ -51,5 +55,7 @@ class Article extends PureComponent {
 
 export default connect(
   state => state,
-  actions
+  store => (
+    Object.assign({}, FeedActions(store), ArticleActions(store))
+  ),
 )(Article);
