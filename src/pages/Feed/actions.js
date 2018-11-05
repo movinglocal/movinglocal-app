@@ -18,7 +18,6 @@ function addFav(state, fav) {
 
 export const actions = store => ({
   loadNextPage: async (state) => {
-    console.log(state.pageStart);
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
 

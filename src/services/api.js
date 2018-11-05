@@ -85,6 +85,24 @@ export async function load(itemName) {
   return items;
 }
 
+export async function sendFeedback(email, text) {
+  const body = {
+    email,
+    text
+  };
+
+  const response = await fetch(`${BASE_URL}/feedbacks`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  return response;
+}
+
 export default {
   loadItems,
   countItems,
