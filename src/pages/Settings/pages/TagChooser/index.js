@@ -133,7 +133,13 @@ class TagChooser extends PureComponent {
       );
     }
 
-    return <Button onClick={this.props.nextStep}>Weiter</Button>;
+    return (
+      <Flex>
+        <Button ml="auto" onClick={this.props.nextStep}>
+          Speichern und weiter
+        </Button>
+      </Flex>
+    );
   }
 
   render() {

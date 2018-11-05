@@ -5,28 +5,22 @@ import { actions } from '~/pages/Feed/actions';
 import FeedControls from '~/pages/Feed/components/FeedControls';
 import ArticleTeaser from '~/components/ArticleTeaser';
 import ScrollWrapper from '~/components/ScrollWrapper';
-import Button from '~/components/Button';
 import Loader from '~/components/Loader';
+import EndOfFeedLabel from '~/components/EndOfFeedLabel';
+import IntersectionObserver from '~/components/IntersectionObserver';
 
 class Feed extends PureComponent {
-  componentDidMount() {
-    this.props.initData();
-  }
-
   render() {
     const {
       isLoading,
       data,
       loadNextPage,
-      count,
-      pageSize,
-      pageStart,
       userFavs,
-      onToggleFav
+      onToggleFav,
+      endOfFeed
     } = this.props;
 
-    const hasNext = pageStart + pageSize < count;
-    const showMoreButton = !isLoading && hasNext;
+    const showMoreButton = !isLoading && !endOfFeed;
 
     return (
       <Fragment>
@@ -42,15 +36,11 @@ class Feed extends PureComponent {
           ))}
           {isLoading && <Loader />}
           {showMoreButton && (
-            <Button
-              bg="main"
-              onClick={loadNextPage}
-              width={1}
-              borderRadius={0}
-            >
-              Mehr laden...
-            </Button>
+            <IntersectionObserver threshold={0.5} onEnter={loadNextPage}>
+              <Loader />
+            </IntersectionObserver>
           )}
+          {endOfFeed && <EndOfFeedLabel />}
         </ScrollWrapper>
       </Fragment>
     );
@@ -61,11 +51,8 @@ export default connect(
   state => ({
     isLoading: state.isLoading,
     data: state.data,
-    loadNextPage: state.loadNextPage,
-    count: state.count,
-    pageSize: state.pageSize,
-    pageStart: state.pageStart,
-    userFavs: state.userFavs
+    userFavs: state.userFavs,
+    endOfFeed: state.endOfFeed
   }),
   actions
 )(Feed);

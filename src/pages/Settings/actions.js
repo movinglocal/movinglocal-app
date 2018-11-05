@@ -26,11 +26,25 @@ export const settingsActions = () => ({
     };
   },
 
-  updateUserPosition: (state, userPosition) => {
-    updatePosition(userPosition);
+  updateUserPosition: (state, userPositionParams) => {
+    updatePosition(userPositionParams);
 
     return {
-      userPosition
+      ...userPositionParams
+    };
+  },
+
+  toggleOrganisation: (state, orgData) => {
+    const stateOrganisations = state.userOrganisations;
+
+    const userOrganisations = stateOrganisations.find(org => org.id === orgData.id)
+      ? stateOrganisations.filter(org => org.id !== orgData.id)
+      : stateOrganisations.concat([orgData]);
+
+    updateRelation('organisations', userOrganisations.map(org => org.id));
+
+    return {
+      userOrganisations
     };
   }
 });

@@ -21,9 +21,9 @@ class TopicChooser extends PureComponent {
   onToggleTopic = (item) => {
     this.setState((prevState) => {
       const exists = this.state.userTopics.find(topic => topic.id === item.id);
-      const userTopics = exists ?
-        prevState.userTopics.filter(topic => topic.id !== item.id) :
-        [...prevState.userTopics, item];
+      const userTopics = exists
+        ? prevState.userTopics.filter(topic => topic.id !== item.id)
+        : [...prevState.userTopics, item];
 
       const tags = userTopics.reduce((res, t) => res.concat(t.tags), []);
 
