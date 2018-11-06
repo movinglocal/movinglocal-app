@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   Box, Flex, Text, Heading
@@ -57,14 +57,20 @@ class OrganisationChooser extends PureComponent {
     const { organisations } = this.state;
 
     return (
-      <Fragment>
+      <Box mb={this.props.isOnboarding ? 0 : 4}>
         <Heading mb={3}>Organisationen auswählen:</Heading>
         <Box mb={3}>
           {organisations.map(d => this.renderOrganisation(d))}
         </Box>
-        {isOnboarding && <Button onClick={nextStep}>Weiter</Button>}
-      </Fragment>
-
+        {isOnboarding && (
+          <Flex>
+            <Box ml="auto">
+              <Button mr={3} bg="transparent" color="main" onClick={nextStep}>Überspringen</Button>
+              <Button onClick={nextStep}>Speichern und weiter</Button>
+            </Box>
+          </Flex>
+        )}
+      </Box>
     );
   }
 }

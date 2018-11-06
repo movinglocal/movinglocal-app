@@ -30,7 +30,7 @@ class Settings extends PureComponent {
         <TagChooser />
         <PositionChooser />
         <OrganisationChooser />
-        <Button mt={3} bg="main" color="white" onClick={reset}>Anwendung zurücksetzen</Button>
+        <Button mt={3} bg="secondary" color="white" onClick={reset}>Anwendung zurücksetzen</Button>
       </ScrollWrapper>
     );
   }

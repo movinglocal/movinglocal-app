@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import {
@@ -148,11 +148,11 @@ class TagChooser extends PureComponent {
     }
 
     return (
-      <Fragment>
-        {this.props.isOnboarding && <Heading mb={3}>Tags auswählen</Heading>}
+      <Box mb={this.props.isOnboarding ? 0 : 4}>
+        {<Heading mb={3}>Tags auswählen</Heading>}
         {this.state.topics.map(this.renderTopic)}
         {this.renderNextButton()}
-      </Fragment>
+      </Box>
     );
   }
 }
