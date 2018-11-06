@@ -11,7 +11,7 @@ export default {
   },
   colors: {
     main: '#6450E5',
-    secondary: '#ff5722',
+    secondary: '#ff5755',
     kollektive: '#26a69a',
     news: '#2196f3',
     lightgray: '#f1f1f1',

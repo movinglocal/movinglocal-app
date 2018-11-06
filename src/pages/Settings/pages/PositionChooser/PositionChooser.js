@@ -161,7 +161,7 @@ class PositionChooser extends PureComponent {
             </Box>
           </Flex>
         ) : (
-          <Flex>
+          <Flex mb={4}>
             <Button onClick={this.onSave} mb={3}>Speichern</Button>
           </Flex>
         )}
