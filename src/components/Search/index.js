@@ -1,10 +1,13 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'unistore/react';
 import PropTypes from 'prop-types';
 import SearchIcon from 'react-feather/dist/icons/search';
 import { Flex } from 'rebass';
 
 import Input from '~/components/Input';
 import Button from '~/components/Button';
+
+import { actions } from '~/components/Search/actions';
 
 const SearchBorderRad = '30px';
 
@@ -23,7 +26,7 @@ class Search extends PureComponent {
 
   onSubmit = (evt) => {
     evt.preventDefault();
-    this.props.onSubmit(evt.target.elements.search.value);
+    this.props.search(evt.target.elements.search.value);
   }
 
   render() {
@@ -51,4 +54,7 @@ class Search extends PureComponent {
   }
 }
 
-export default Search;
+export default connect(
+  state => state,
+  actions
+)(Search);
