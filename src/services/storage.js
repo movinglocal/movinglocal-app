@@ -22,7 +22,9 @@ export async function initUser() {
 
   if (!isInitial) {
     const user = await getUser(storageUser.id);
-    return { ...user, isInitial: false };
+    if (user.id) {
+      return { ...user, isInitial: false };
+    }
   }
 
   const user = await createUser();

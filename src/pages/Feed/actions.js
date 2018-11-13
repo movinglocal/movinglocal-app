@@ -54,12 +54,20 @@ export const actions = store => ({
     };
   },
 
-  search: (state, searchTerm) => ({
-    searchTerm,
-    data: [],
-    pageStart: 0,
-    isLoading: true
-  }),
+  search: async (state, searchTerm) => {
+    store.setState({
+      searchTerm,
+      data: [],
+      pageStart: 0,
+      isLoading: true
+    });
+    const data = await loadItems();
+
+    return {
+      data,
+      isLoading: false
+    };
+  },
 
   finishOnboarding: () => {
     updateUser({ isInitial: false });

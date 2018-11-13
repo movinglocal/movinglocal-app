@@ -41,8 +41,18 @@ class Onboarding extends PureComponent {
     }
 
     const StepComponent = stepComponents[this.state.stepIndex];
+    const remainingSteps = stepComponents.length - this.state.stepIndex;
     return (
-      <ScrollWrapper css={{ flexGrow: 1 }} p={3}>
+      <ScrollWrapper p={3}>
+        <h3>
+          Noch
+          {' '}
+          {remainingSteps}
+          {' '}
+          Schritt
+          {remainingSteps !== 1 && 'e'}
+          ...
+        </h3>
         <StepComponent
           nextStep={this.nextStep}
           isOnboarding
