@@ -29,10 +29,10 @@ const {
 } = config;
 
 const Wrapper = styled(Flex)`
-  min-height: 100%;
   max-width: 700px;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
   display: flex;
+  height: 100%;
 `;
 
 // when the user is not initalized we want to force the onboarding
