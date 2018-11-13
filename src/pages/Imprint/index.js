@@ -7,7 +7,7 @@ import {
 } from 'rebass';
 
 const SubHeading = props => (
-  <Text fontSize={3} fontWeight="bold" pt={4}>
+  <Text fontSize={3} fontWeight="bold" pt={4} pb={1}>
     {props.children}
   </Text>
 );
@@ -30,11 +30,13 @@ class Imprint extends PureComponent {
           <br />
           28359 Bremen
           <br />
+          <br />
           Prof. Dr. Andreas Hepp
           <br />
           E-Mail: andreas.hepp[at]uni-bremen.de
           <br />
           Telefon: 0421-218-67601
+          <br />
           <br />
           Inhaltlich Verantwortlicher gemäß § 10 Absatz 3 MDStV:
           Prof. Dr. Andreas Hepp, Sprecher des ZeMKI (Anschrift wie oben).
