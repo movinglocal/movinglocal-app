@@ -39,7 +39,7 @@ class Menu extends PureComponent {
         bg="white"
       >
         <MenuHeader onClose={this.props.onClose} />
-        <Box>
+        <Box onClick={this.props.onClose}>
           <StyledLink exact to="/">News Feed</StyledLink>
           <StyledLink exact to={config.FAVORITE_PATH}>Favoriten</StyledLink>
           <StyledLink exact to={config.FILTER_PATH}>Filter</StyledLink>
