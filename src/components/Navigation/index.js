@@ -23,7 +23,7 @@ const NavItem = ({
   text, to, color, noBorder
 }) => (
   <Box
-    width={1 / 4}
+    width={1 / 3}
     css={{
       borderRight: noBorder ? 'none' : `1px solid ${color}`,
       cursor: 'pointer'
@@ -43,7 +43,6 @@ class Navigation extends PureComponent {
         <Flex>
           <NavItem text="News Feed" to="/" color={lightgray} />
           <NavItem text="Favoriten" to={config.FAVORITE_PATH} color={lightgray} />
-          <NavItem text="Feedback" to={config.FEEDBACK_PATH} color={lightgray} />
           <NavItem text="Filter" to={config.FILTER_PATH} noBorder color={lightgray} />
         </Flex>
       </Box>
