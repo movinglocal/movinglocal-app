@@ -1,4 +1,7 @@
 import createStore from 'unistore';
+import { getStorageUser } from '~/services/storage';
+
+const user = getStorageUser();
 
 export const Store = createStore({
   isAppLoading: true,
@@ -18,7 +21,7 @@ export const Store = createStore({
   searchTerm: '',
 
   // user settings
-  isInitial: true,
+  isInitial: user && user.isInitial,
   userId: null,
   userTopics: [],
   userFavs: [],
