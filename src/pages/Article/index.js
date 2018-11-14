@@ -2,17 +2,18 @@ import React, { PureComponent } from 'react';
 import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
 import FavButton from '~/components/FavButton';
-import { Text, Box, Image } from 'rebass';
+import { Flex, Text, Box } from 'rebass';
 
 import { connect } from 'unistore/react';
 import { actions as ArticleActions } from '~/pages/Article/actions';
 import { actions as FeedActions } from '~/pages/Feed/actions';
 
+import Image from '~/components/Image';
 
 function renderAuthor(source) {
   return (
     <Text fontSize={1} fontWeight="normal" mb={2}>
-      Author:
+      <span>Autor: </span>
       {source.name}
     </Text>
   );
@@ -23,15 +24,23 @@ function renderItem(item, props) {
     title, content, image, source, id
   } = item;
 
+  console.log(item);
+
   const isFav = props.userFavs.find(fav => fav.id === id);
 
   return (
     <Box bg="white" p={2} m={2}>
-      <Text fontSize={3} fontWeight="normal" mb={2}>{title}</Text>
-      <Text fontSize={1} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />
-      {source && renderAuthor(source)}
       {image && <Image src={image.url} />}
-      <FavButton item={item} onToggle={props.onToggleFav} isFav={isFav} />
+      <Flex justifyContent="space-between" alignItems="center">
+        <Box>
+          <Text fontSize={5} fontWeight="700" mt={2} mb={1}>{title}</Text>
+          {source && renderAuthor(source)}
+        </Box>
+        <Box>
+          <FavButton item={item} onToggle={props.onToggleFav} isFav={isFav} />
+        </Box>
+      </Flex>
+      <Text fontSize={2} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />
     </Box>
   );
 }
