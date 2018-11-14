@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
-import ScrollWrapper from '~/components/ScrollWrapper';
-import Loader from '~/components/Loader';
-import FavButton from '~/components/FavButton';
 import { Flex, Text, Box } from 'rebass';
-
 import { connect } from 'unistore/react';
+
 import { actions as ArticleActions } from '~/pages/Article/actions';
 import { actions as FeedActions } from '~/pages/Feed/actions';
 
+import ScrollWrapper from '~/components/ScrollWrapper';
+import Loader from '~/components/Loader';
+import FavButton from '~/components/FavButton';
+import Sharer from '~/components/Sharer';
 import Image from '~/components/Image';
 
 function renderAuthor(source) {
@@ -24,8 +25,6 @@ function renderItem(item, props) {
     title, content, image, source, id
   } = item;
 
-  console.log(item);
-
   const isFav = props.userFavs.find(fav => fav.id === id);
 
   return (
@@ -38,6 +37,7 @@ function renderItem(item, props) {
         </Box>
         <Box>
           <FavButton item={item} onToggle={props.onToggleFav} isFav={isFav} />
+          <Sharer />
         </Box>
       </Flex>
       <Text fontSize={2} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { Box } from 'rebass';
+import { MdStarBorder, MdStar } from 'react-icons/md';
 
 import Button from '~/components/Button';
 
@@ -37,7 +38,7 @@ class FavButton extends PureComponent {
           isFav={isFav}
           onClick={this.onToggle}
         >
-          ★
+          {isFav ? <MdStar /> : <MdStarBorder />}
         </StyledButton>
       </Box>
     );
