@@ -56,23 +56,23 @@ class ArticleTeaser extends PureComponent {
 
   onSwipedLeft = () => {
     const { transformX } = this.state;
-    const { addFav, item } = this.props;
+    const { onToggleFav, item } = this.props;
 
     this.setState({ transformX: 0 });
 
     if (Math.abs(transformX) > 0) {
-      addFav(item);
+      onToggleFav(item);
     }
   }
 
   onSwipedRight = () => {
     const { transformX } = this.state;
-    const { removeFav, item } = this.props;
+    const { onToggleFav, item } = this.props;
 
     this.setState({ transformX: 0 });
 
     if (Math.abs(transformX) > 0) {
-      removeFav(item);
+      onToggleFav(item);
     }
   }
 

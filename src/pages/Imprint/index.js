@@ -53,7 +53,7 @@ class Imprint extends PureComponent {
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG Umsatzsteuer-Nr.: DE 811 245 070
         </Text>
 
-        <SubHeading>Webdesign / Programmierung</SubHeading>
+        <SubHeading>Programmierung</SubHeading>
         <Link href="https://webkid.io">Webkid</Link>
 
         <SubHeading>Haftungsausschluss</SubHeading>
