@@ -5,6 +5,7 @@ export default props => (
   <Box
     css={{
       overflowY: 'auto',
+      overflowX: 'hidden',
       '-webkit-overflow-scrolling': 'touch',
       flexGrow: 1
     }}

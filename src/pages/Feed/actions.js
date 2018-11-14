@@ -17,6 +17,18 @@ function addFav(state, fav) {
 }
 
 export const actions = store => ({
+  loadInitalPage: async () => {
+    store.setState({ pageStart: 0 });
+    const data = await loadItems();
+
+    return {
+      data,
+      isLoading: false,
+      isAppLoading: false,
+      endOfFeed: data.length === 0
+    };
+  },
+
   loadNextPage: async (state) => {
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
