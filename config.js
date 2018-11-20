@@ -24,5 +24,6 @@ module.exports = {
   PRIVACY_PATH: '/datenschutz',
   FEEDBACK_PATH: '/feedback',
   ONBOARDING_PATH: '/onboarding',
+  ORGANISATION_PATH: '/organisation',
   DEXIE_VERSION: 1
 };
