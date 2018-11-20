@@ -10,6 +10,10 @@ import EndOfFeedLabel from '~/components/EndOfFeedLabel';
 import IntersectionObserver from '~/components/IntersectionObserver';
 
 class Feed extends PureComponent {
+  componentDidMount() {
+    this.props.loadInitalPage();
+  }
+
   render() {
     const {
       isLoading,
@@ -17,6 +21,8 @@ class Feed extends PureComponent {
       loadNextPage,
       userFavs,
       onToggleFav,
+      addFav,
+      removeFav,
       endOfFeed
     } = this.props;
 
@@ -32,6 +38,8 @@ class Feed extends PureComponent {
               key={item.id}
               userFavs={userFavs}
               onToggleFav={onToggleFav}
+              addFav={addFav}
+              removeFav={removeFav}
             />
           ))}
           {isLoading && <Loader />}

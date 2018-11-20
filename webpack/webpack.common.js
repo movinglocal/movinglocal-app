@@ -27,7 +27,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(['build'], { root: Path.resolve(__dirname, '..') }),
     new CopyWebpackPlugin([
-      { from: Path.resolve(__dirname, '../public'), to: 'public' }
+      { from: Path.resolve(__dirname, '../public'), to: 'public' },
+      { from: Path.resolve(__dirname, '../manifest.json'), to: 'manifest.json' }
     ]),
     new Webpack.ProvidePlugin({
       config: '~/../config.js'

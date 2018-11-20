@@ -29,6 +29,11 @@ const SliderWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
+const SearchError = styled.div`
+  color: red;
+  font-size: 12px;
+`;
+
 const StyledSlider = styled(Slider)`
   .rc-slider-track, .rc-slider-rail {
     background: ${props => props.theme.colors.lightgray};
@@ -44,21 +49,43 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
+function getZoomByCircleRadius(radius) {
+  if (radius > 20000) {
+    return 8;
+  }
+
+  if (radius > 13000) {
+    return 9;
+  }
+  if (radius > 6000) {
+    return 10;
+  }
+
+  return 11;
+}
+
 class PositionChooser extends PureComponent {
   constructor(props) {
     super();
 
     this.state = {
       userPosition: props.userPosition,
-      userPositionRadius: props.userPositionRadius
+      userPositionRadius: props.userPositionRadius,
+      userPositionError: false
     };
   }
 
   onSubmit = async (address) => {
+    this.setState({ userPositionError: false });
+
     const userPosition = await geocode(address);
+
+    console.log(userPosition);
 
     if (!userPosition.error) {
       this.setState({ userPosition });
+    } else {
+      this.setState({ userPositionError: true });
     }
   }
 
@@ -74,6 +101,11 @@ class PositionChooser extends PureComponent {
     if (this.props.isOnboarding) {
       this.props.nextStep();
     }
+  }
+
+  handleResetButton() {
+    this.props.updateUserPosition(false);
+    this.setState({ userPosition: false });
   }
 
   renderResetButton() {
@@ -94,7 +126,7 @@ class PositionChooser extends PureComponent {
       <Button
         css={buttonCSS}
         bg="white"
-        onClick={() => this.props.updateUserPosition(false)}
+        onClick={() => this.handleResetButton()}
         color="main"
         fontSize={1}
         fontWeight="normal"
@@ -108,8 +140,10 @@ class PositionChooser extends PureComponent {
   }
 
   render() {
-    const { userPosition } = this.state;
+    const { userPosition, userPositionError } = this.state;
     const { isOnboarding, nextStep, userPositionRadius } = this.props;
+
+    const zoom = getZoomByCircleRadius(this.state.userPositionRadius);
 
     return (
       <Fragment>
@@ -119,6 +153,7 @@ class PositionChooser extends PureComponent {
           placeholder="Adresse eingeben ..."
           style={{ marginBottom: '16px' }}
         />
+        { userPositionError && <SearchError>Adresse konnte nicht gefunden werden.</SearchError> }
         <SliderWrapper>
           <StyledSlider
             min={3000}
@@ -135,7 +170,13 @@ class PositionChooser extends PureComponent {
         <MapContainer>
           <Map
             center={userPosition || config.map.center}
-            zoom={11}
+            zoom={zoom}
+            doubleClickZoom={false}
+            dragging={false}
+            keyboard={false}
+            scrollWheelZoom={false}
+            tap={false}
+            touchZoom={false}
           >
             <TileLayer
               url={config.map.tileurl}

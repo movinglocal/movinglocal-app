@@ -26,7 +26,7 @@ class Search extends PureComponent {
 
   onSubmit = (evt) => {
     evt.preventDefault();
-    this.props.search(evt.target.elements.search.value);
+    this.props.onSubmit(evt.target.elements.search.value);
   }
 
   render() {
