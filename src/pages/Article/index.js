@@ -1,5 +1,10 @@
 import React, { PureComponent } from 'react';
-import { Flex, Text, Box } from 'rebass';
+import {
+  Flex,
+  Text,
+  Box,
+  Link
+} from 'rebass';
 import { connect } from 'unistore/react';
 
 import { actions as ArticleActions } from '~/pages/Article/actions';
@@ -12,10 +17,12 @@ import Sharer from '~/components/Sharer';
 import Image from '~/components/Image';
 
 function renderAuthor(source) {
+  const url = `${config.ORGANISATION_PATH}/${source.organisation}`;
+
   return (
     <Text fontSize={1} fontWeight="normal" mb={2}>
       <span>Autor: </span>
-      {source.name}
+      <Link href={url}>{source.name}</Link>
     </Text>
   );
 }
@@ -30,17 +37,25 @@ function renderItem(item, props) {
   return (
     <Box bg="white" p={2} m={2}>
       {image && <Image src={image.url} />}
-      <Flex justifyContent="space-between" alignItems="center">
+      <Flex justifyContent="space-between">
         <Box>
           <Text fontSize={5} fontWeight="700" mt={2} mb={1}>{title}</Text>
           {source && renderAuthor(source)}
         </Box>
-        <Box>
+        <Box my={2}>
           <FavButton item={item} onToggle={props.onToggleFav} isFav={isFav} />
-          <Sharer />
         </Box>
       </Flex>
+      <Sharer item={item} />
       <Text fontSize={2} fontWeight="normal" mb={2} dangerouslySetInnerHTML={{ __html: content }} />
+      <Flex flexWrap="wrap">
+        {item.tags.map(tag => (
+          <Box px={2} py={1} key={`ArticleTag__${tag.id}`} css={{ 'font-weight': '700' }}>
+            #
+            {tag.name}
+          </Box>
+        ))}
+      </Flex>
     </Box>
   );
 }

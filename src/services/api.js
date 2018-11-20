@@ -72,6 +72,17 @@ export async function loadItem({ id }) {
   return item;
 }
 
+export async function loadOrganisation(id) {
+  let item = null;
+  try {
+    item = await fetch(`${BASE_URL}/organisations/${id}`)
+      .then(r => r.json());
+  } catch (err) {
+    console.log(err);
+  }
+  return item;
+}
+
 export async function load(itemName) {
   let items = [];
 
@@ -107,5 +118,6 @@ export default {
   loadItems,
   countItems,
   loadItem,
+  loadOrganisation,
   load
 };
