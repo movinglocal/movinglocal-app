@@ -40,11 +40,11 @@ class Menu extends PureComponent {
       >
         <MenuHeader onClose={this.props.onClose} />
         <Box onClick={this.props.onClose}>
-          <StyledLink exact to="/">News Feed</StyledLink>
-          <StyledLink exact to={config.FAVORITE_PATH}>Favoriten</StyledLink>
-          <StyledLink exact to={config.FILTER_PATH}>Filter</StyledLink>
+          <StyledLink exact to="/">Meine Molos</StyledLink>
+          <StyledLink exact to={config.FAVORITE_PATH}>Später lesen</StyledLink>
+          <StyledLink exact to={config.FILTER_PATH}>Meine Auswahl</StyledLink>
           <StyledLink exact to={config.FEEDBACK_PATH}>Feedback</StyledLink>
-          <StyledLink exact to={config.PRIVACY_PATH}>Datenschutz</StyledLink>
+          <StyledLink exact to={config.PRIVACY_PATH}>Datenschutzerklärung</StyledLink>
           <StyledLink exact to={config.IMPRINT_PATH}>Impressum</StyledLink>
         </Box>
       </Drawer>

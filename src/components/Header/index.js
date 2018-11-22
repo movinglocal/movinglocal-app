@@ -33,7 +33,7 @@ class Header extends PureComponent {
             <Button onClick={this.toggleMenu} bg="transparent" m={0} css={{ padding: 0 }}>
               <MenuIcon />
             </Button>
-            <Text ml={2} fontWeight="bold">Moving Local</Text>
+            <Text ml={2} fontWeight="bold">molo.news</Text>
           </Flex>
         </Box>
         <Menu

@@ -53,9 +53,8 @@ class FeedControls extends PureComponent {
     } = this.props;
     const { isExtended } = this.state;
     const sortDirection = currentSortDirection === ':DESC' ? 'down' : 'up';
-    const extendedLabel = isExtended ? 'ausblenden' : 'anzeigen';
     const extendedIcon = isExtended ? <ArrowUp /> : <ArrowDown />;
-    const filterOptionLabel = `Filteroptionen ${extendedLabel}`;
+    const filterOptionLabel = 'Sortieren nach';
 
     return (
       <Box p={2} css={{ borderBottom: `1px solid ${theme.colors.gray}` }}>

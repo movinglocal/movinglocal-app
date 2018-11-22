@@ -41,8 +41,8 @@ class Navigation extends PureComponent {
     return (
       <Box css={{ borderTop: `1px solid ${gray}` }}>
         <Flex>
-          <NavItem text="News Feed" to="/" color={lightgray} />
-          <NavItem text="Favoriten" to={config.FAVORITE_PATH} color={lightgray} />
+          <NavItem text="Meine Molos" to="/" color={lightgray} />
+          <NavItem text="Später lesen" to={config.FAVORITE_PATH} color={lightgray} />
           <NavItem text="Filter" to={config.FILTER_PATH} noBorder color={lightgray} />
         </Flex>
       </Box>

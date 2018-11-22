@@ -16,6 +16,6 @@ export default props => (
     >
       <CloseIcon />
     </Button>
-    <Text fontWeight="bold">Menu</Text>
+    <Text fontWeight="bold">Menü</Text>
   </Box>
 );

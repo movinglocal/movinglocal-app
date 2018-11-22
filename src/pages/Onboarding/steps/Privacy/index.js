@@ -7,7 +7,7 @@ class OnboardingPrivacy extends PureComponent {
   render() {
     return (
       <Box>
-        <Heading>Datenschutzerklärung</Heading>
+        <Heading>Datenschutzerklärung von molo.news</Heading>
         <Text my={3}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod temporincididunt ut

@@ -13,7 +13,7 @@ class Favorites extends PureComponent {
     return (
       <ScrollWrapper bg="lightgray">
         {isLoading && <Loader />}
-        {(userFavs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Noch keine Favoriten vorhanden... </Text>}
+        {(userFavs.length === 0 && !isLoading) && <Text textAlign="center" my={2}> Hier kannst Du Molos speichern, die Dir besonders wichtig sind oder die du später lesen willst. </Text>}
         {userFavs.map(fav => (
           <ArticleTeaser item={fav} key={fav.id} userFavs={userFavs} onToggleFav={onToggleFav} />
         ))}

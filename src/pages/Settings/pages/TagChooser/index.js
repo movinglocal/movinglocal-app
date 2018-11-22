@@ -127,7 +127,7 @@ class TagChooser extends PureComponent {
         <Flex color="main" mt={2} alignItems="center">
           <Alert />
           <Text ml={2} fontSize={1} fontWeight="bold">
-            Bitte wähle mindestens ein Tag aus um fortzufahren.
+            Wähle mindestens einen Tag, um fortzufahren.
           </Text>
         </Flex>
       );
@@ -149,8 +149,9 @@ class TagChooser extends PureComponent {
 
     return (
       <Box mb={this.props.isOnboarding ? 0 : 4}>
-        {<Heading mb={3}>Tags auswählen</Heading>}
-        {this.state.topics.map(this.renderTopic)}
+        {<Heading mb={3}>Wähle deine Tags.</Heading>}
+        {<Text my={3}>Hier kannst du auswählen, zu welchen Themen du Molos (Nachrichten und Informationen) erhalten möchtest</Text>}
+        {this.state.topics.sort((t, n) => t.rank > n.rank).map(this.renderTopic)}
         {this.renderNextButton()}
       </Box>
     );

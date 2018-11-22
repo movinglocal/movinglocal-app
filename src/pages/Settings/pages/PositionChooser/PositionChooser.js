@@ -147,10 +147,11 @@ class PositionChooser extends PureComponent {
 
     return (
       <Fragment>
-        <Heading mb={3}>Ort auswählen:</Heading>
+        <Heading mb={3}>Wähle deinen Ort.</Heading>
+        <Text my={3}>Hier kannst du Dein Zuhause auswählen oder einen anderen Ort, aus dessen Umkreis du Molos (Nachrichten und Informationen) erhalten möchtest.</Text>
         <Search
           onSubmit={this.onSubmit}
-          placeholder="Adresse eingeben ..."
+          placeholder="Gib eine Adresse ein"
           style={{ marginBottom: '16px' }}
         />
         { userPositionError && <SearchError>Adresse konnte nicht gefunden werden.</SearchError> }
