@@ -25,12 +25,12 @@ class Settings extends PureComponent {
 
     return (
       <ScrollWrapper p={3}>
-        <Heading>Filter</Heading>
-        <Text my={3}>Hier kannst du deine Suche nach deinen persönlichen Vorlieben anpassen.</Text>
+        <Heading>Meine Auswahl</Heading>
+        <Text my={3}>Hier kannst du die Auswahl in ‚Meine Molos‘ an deine persönlichen Interessen anpassen</Text>
         <TagChooser />
         <PositionChooser />
         <OrganisationChooser />
-        <Button mt={3} bg="secondary" color="white" onClick={reset}>Anwendung zurücksetzen</Button>
+        <Button mt={3} bg="secondary" color="white" onClick={reset}>Gesamte Auswahl löschen</Button>
       </ScrollWrapper>
     );
   }

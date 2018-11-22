@@ -6,6 +6,6 @@ import CheckIcon from 'react-feather/dist/icons/check';
 export default () => (
   <Flex p={3} m={2}>
     <CheckIcon />
-    Glückwunsch! Du hast alle wichtigen Nachrichten des Tages gelesen!
+    Du hast alle wichtigen Molos des Tages gelesen.
   </Flex>
 );

@@ -5,7 +5,7 @@ class Privacy extends PureComponent {
   render() {
     return (
       <Box css={{ flexGrow: 1 }} p={3}>
-        <Heading>Datenschutz</Heading>
+        <Heading>Datenschutzerklärung von molo.news</Heading>
       </Box>
     );
   }

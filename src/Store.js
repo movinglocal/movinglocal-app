@@ -14,8 +14,8 @@ export const Store = createStore({
   currentSortOption: 'date',
   currentSortDirection: ':DESC',
   sortOptions: [
-    { label: 'Datum', value: 'date' },
-    { label: 'Quelle', value: 'source' }
+    { label: 'Nach Aktualität sortieren', value: 'date' },
+    { label: 'Nach Medien und Kollektiven sortieren', value: 'source' }
   ],
   sortDirections: [':ASC', ':DESC'],
   searchTerm: '',
