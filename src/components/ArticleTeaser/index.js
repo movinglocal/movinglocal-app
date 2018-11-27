@@ -4,6 +4,7 @@ import {
 } from 'rebass';
 import Swipeable from 'react-swipeable';
 import styled from 'styled-components';
+import AlertIcon from 'react-feather/dist/icons/alert-circle';
 
 import FavButton from '~/components/FavButton';
 import Teaser from '~/components/ArticleTeaser/Teaser';
@@ -24,6 +25,12 @@ const StyledLink = styled(Link)`
       color: ${props => props.theme.colors.main};
     }
   }
+`;
+
+const StyledAlertIcon = styled(AlertIcon)`
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
 `;
 
 const FeedImage = ({ img }) => (
@@ -86,7 +93,8 @@ class ArticleTeaser extends PureComponent {
       link,
       source,
       date,
-      type
+      type,
+      isHot
     } = this.props.item;
 
     const img = image ? image.url : imageUrl;
@@ -122,7 +130,10 @@ class ArticleTeaser extends PureComponent {
               <Text fontSize={1} fontWeight="normal">{teaserText}</Text>
             </Box>
           </StyledLink>
-          <FavButton item={this.props.item} isFav={isFav} onToggle={this.props.onToggleFav} />
+          <Box>
+            <FavButton item={this.props.item} isFav={isFav} onToggle={this.props.onToggleFav} />
+            {isHot && <StyledAlertIcon />}
+          </Box>
         </Teaser>
       </Swipeable>
     );

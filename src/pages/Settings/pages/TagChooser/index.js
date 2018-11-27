@@ -33,8 +33,7 @@ class TagChooser extends PureComponent {
   }
 
   state = {
-    topics: [],
-    userTopics: []
+    topics: []
   }
 
   componentDidMount() {
@@ -51,27 +50,23 @@ class TagChooser extends PureComponent {
     this.props.addTags(item);
   }
 
+  userHasTopic = (item) => {
+    const userTagIds = this.props.userTags.map(ut => ut.id);
+    const userTopics = this.state.topics
+      .filter(stateTopic => stateTopic.tags.every(t => userTagIds.includes(t.id)));
+    return userTopics.find(userTopic => userTopic.id === item.id);
+  }
+
   onToggleTopic = (item) => {
-    this.setState((prevState) => {
-      const exists = this.state.userTopics.find(topic => topic.id === item.id);
-      const userTopics = exists
-        ? prevState.userTopics.filter(topic => topic.id !== item.id)
-        : [...prevState.userTopics, item];
+    if (this.userHasTopic(item)) {
+      return this.props.removeTags(item.tags);
+    }
 
-      if (exists) {
-        this.props.removeTags(item.tags);
-      } else {
-        this.props.addTags(item.tags);
-      }
-
-      return {
-        userTopics
-      };
-    });
+    this.props.addTags(item.tags);
   }
 
   renderTopic = (topic) => {
-    const exists = this.state.userTopics.find(userTopic => userTopic.id === topic.id);
+    const exists = this.userHasTopic(topic);
     const multiSelectLabel = exists ? 'abwählen' : 'auswählen';
     const toggleTopicLabel = `Alle ${multiSelectLabel}`;
 

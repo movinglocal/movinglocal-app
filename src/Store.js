@@ -27,7 +27,8 @@ export const Store = createStore({
   userFavs: [],
   userTags: [],
   userPosition: null,
-  userOrganisations: []
+  userOrganisations: [],
+  isFeedbackSent: false
 });
 
 export default {

@@ -30,6 +30,9 @@ export const actions = store => ({
   },
 
   loadNextPage: async (state) => {
+    if (state.isLoading) {
+      return {};
+    }
     const pageStart = state.pageStart + state.pageSize;
     store.setState({ pageStart });
 

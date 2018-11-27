@@ -28,6 +28,10 @@ class Feedback extends PureComponent {
       email: this.state.email,
       text: this.state.text
     });
+    this.setState({
+      email: '',
+      text: ''
+    });
   }
 
   render() {
@@ -37,13 +41,16 @@ class Feedback extends PureComponent {
         <Text mb={2}>Sag uns deine Meinung zu molo.news! Hier kannst du uns ein Feedback schicken.</Text>
 
         <form onSubmit={this.onSubmit}>
-          <Input onChange={this.onEmailChange} placeholder="Deine Emailadresse" name="email" style={{ margin: '16px 0 10px 0' }} />
-          <TextArea onChange={this.onTextChange} placeholder="Deine Nachricht" name="message" />
+          <Input onChange={this.onEmailChange} placeholder="Deine Emailadresse" name="email" style={{ margin: '16px 0 10px 0' }} value={this.state.email} />
+          <TextArea onChange={this.onTextChange} placeholder="Deine Nachricht" name="message" value={this.state.text} />
           <Button mt={2} type="submit" bg="main">Abschicken</Button>
         </form>
+        {this.props.isSent && <Text mt={2}>Dein Feedback wurde erfolgreich abgeschickt !</Text>}
       </Box>
     );
   }
 }
 
-export default connect(null, FeedbackActions)(Feedback);
+export default connect(state => ({
+  isSent: state.isFeedbackSent
+}), FeedbackActions)(Feedback);

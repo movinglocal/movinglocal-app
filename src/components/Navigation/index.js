@@ -43,7 +43,7 @@ class Navigation extends PureComponent {
         <Flex>
           <NavItem text="Meine Molos" to="/" color={lightgray} />
           <NavItem text="Später lesen" to={config.FAVORITE_PATH} color={lightgray} />
-          <NavItem text="Filter" to={config.FILTER_PATH} noBorder color={lightgray} />
+          <NavItem text="Folgen" to={config.FILTER_PATH} noBorder color={lightgray} />
         </Flex>
       </Box>
     );

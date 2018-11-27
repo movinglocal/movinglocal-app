@@ -20,6 +20,7 @@ import Privacy from '~/pages/Privacy';
 import Onboarding from '~/pages/Onboarding';
 import NoMatch from '~/pages/NoMatch';
 import Organisation from '~/pages/Organisation';
+import About from '~/pages/About';
 
 import Header from '~/components/Header';
 import Navigation from '~/components/Navigation';
@@ -27,7 +28,7 @@ import Navigation from '~/components/Navigation';
 const {
   ARTICLE_PATH, FILTER_PATH, FAVORITE_PATH,
   IMPRINT_PATH, PRIVACY_PATH, FEEDBACK_PATH, ONBOARDING_PATH,
-  ORGANISATION_PATH
+  ORGANISATION_PATH, ABOUT_PATH
 } = config;
 
 const Wrapper = styled(Flex)`
@@ -90,6 +91,7 @@ class App extends PureComponent {
               <Route exact path={ONBOARDING_PATH} component={Onboarding} />
               <Route path={`${ARTICLE_PATH}/:id`} component={Article} />
               <Route path={`${ORGANISATION_PATH}/:id`} component={Organisation} />
+              <Route path={ABOUT_PATH} component={About} />
               <Route component={NoMatch} />
             </Switch>
             <Navigation />
