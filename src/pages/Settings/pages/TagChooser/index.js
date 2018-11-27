@@ -59,10 +59,10 @@ class TagChooser extends PureComponent {
 
   onToggleTopic = (item) => {
     if (this.userHasTopic(item)) {
-      this.props.removeTags(item.tags);
-    } else {
-      this.props.addTags(item.tags);
+      return this.props.removeTags(item.tags);
     }
+
+    this.props.addTags(item.tags);
   }
 
   renderTopic = (topic) => {
