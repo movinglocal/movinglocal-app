@@ -25,5 +25,6 @@ module.exports = {
   FEEDBACK_PATH: '/feedback',
   ONBOARDING_PATH: '/onboarding',
   ORGANISATION_PATH: '/organisation',
+  ABOUT_PATH: '/about',
   DEXIE_VERSION: 1
 };
