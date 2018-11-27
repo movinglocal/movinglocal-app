@@ -31,6 +31,15 @@ class Feedback extends PureComponent {
   }
 
   render() {
+    if (this.props.isSent) {
+      return (
+        <Box p={3} css={{ flexGrow: 1 }}>
+          <Heading mb={2}>Feedback</Heading>
+          <Text mb={2}>Dein Feedback wurde erfolgreich geschickt !</Text>
+        </Box>
+      );
+    }
+
     return (
       <Box p={3} css={{ flexGrow: 1 }}>
         <Heading mb={2}>Feedback</Heading>
@@ -46,4 +55,6 @@ class Feedback extends PureComponent {
   }
 }
 
-export default connect(null, FeedbackActions)(Feedback);
+export default connect(state => ({
+  isSent: state.isFeedbackSent
+}), FeedbackActions)(Feedback);
