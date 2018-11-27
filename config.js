@@ -8,7 +8,7 @@ module.exports = {
   map: {
     center: [53.0934, 8.8083],
     tileurl: 'https://maps.tilehosting.com/styles/bright/{z}/{x}/{y}.png?key=IA1qWrAbZAe6JUuSfLgB',
-    userRadius: 3000
+    userRadius: 1000
   },
   HERE_APP_ID: 'WOhEXnd20kbhT8Lxx4n4',
   HERE_APP_CODE: 'uFkDYK0WKXBPZgG8mRb9Rg',
