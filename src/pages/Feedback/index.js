@@ -31,25 +31,21 @@ class Feedback extends PureComponent {
   }
 
   render() {
-    if (this.props.isSent) {
-      return (
-        <Box p={3} css={{ flexGrow: 1 }}>
-          <Heading mb={2}>Feedback</Heading>
-          <Text mb={2}>Dein Feedback wurde erfolgreich geschickt !</Text>
-        </Box>
-      );
-    }
-
     return (
       <Box p={3} css={{ flexGrow: 1 }}>
         <Heading mb={2}>Feedback</Heading>
-        <Text mb={2}>Sag uns deine Meinung zu molo.news! Hier kannst du uns ein Feedback schicken.</Text>
+        {this.props.isSent
+          ? <Text mb={2}>Dein Feedback wurde erfolgreich geschickt !</Text>
+          : <Text mb={2}>Sag uns deine Meinung zu molo.news! Hier kannst du uns ein Feedback schicken.</Text>
+        }
 
+        {!this.props.isSent && (
         <form onSubmit={this.onSubmit}>
           <Input onChange={this.onEmailChange} placeholder="Deine Emailadresse" name="email" style={{ margin: '16px 0 10px 0' }} />
           <TextArea onChange={this.onTextChange} placeholder="Deine Nachricht" name="message" />
           <Button mt={2} type="submit" bg="main">Abschicken</Button>
         </form>
+        )}
       </Box>
     );
   }
