@@ -80,13 +80,11 @@ class PositionChooser extends PureComponent {
 
     const userPosition = await geocode(address);
 
-    console.log(userPosition);
-
     if (!userPosition.error) {
-      this.setState({ userPosition });
-    } else {
-      this.setState({ userPositionError: true });
+      return this.setState({ userPosition });
     }
+
+    this.setState({ userPositionError: true });
   }
 
   onSliderChange = (userPositionRadius) => {
@@ -142,29 +140,31 @@ class PositionChooser extends PureComponent {
   render() {
     const { userPosition, userPositionError } = this.state;
     const { isOnboarding, nextStep, userPositionRadius } = this.props;
-
     const zoom = getZoomByCircleRadius(this.state.userPositionRadius);
 
     return (
       <Fragment>
         <Heading mb={3}>Wähle deinen Ort.</Heading>
-        <Text my={3}>Hier kannst du Dein Zuhause auswählen oder einen anderen Ort, aus dessen Umkreis du Molos (Nachrichten und Informationen) erhalten möchtest.</Text>
+        <Text my={3}>
+          Hier kannst du Dein Zuhause auswählen oder einen anderen Ort,
+          aus dessen Umkreis du Molos (Nachrichten und Informationen) erhalten möchtest.
+        </Text>
         <Search
           onSubmit={this.onSubmit}
           placeholder="Gib eine Adresse ein"
           style={{ marginBottom: '16px' }}
         />
-        { userPositionError && <SearchError>Adresse konnte nicht gefunden werden.</SearchError> }
+        {userPositionError && <SearchError>Adresse konnte nicht gefunden werden.</SearchError>}
         <SliderWrapper>
           <StyledSlider
-            min={3000}
+            min={1000}
             max={30000}
             step={1000}
             defaultValue={userPositionRadius}
             onChange={this.onSliderChange}
           />
           <Flex>
-            <Text>3 km</Text>
+            <Text>1 km</Text>
             <Text ml="auto">30 km</Text>
           </Flex>
         </SliderWrapper>
