@@ -1,4 +1,4 @@
-import { loadItems, checkNewItems } from '~/services/api';
+import { loadItems } from '~/services/api';
 import { updateUser } from '~/services/storage';
 import { updateRelation } from '~/services/apiUser';
 import { setTimeout } from 'timers';
