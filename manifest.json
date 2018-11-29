@@ -2,15 +2,15 @@
   "short_name": "molo",
   "name": "molo.news",
   "icons": [{
-    "src": "https://via.placeholder.com/192x192",
+    "src": "/public/logo-192x192.png",
     "type": "image/png",
     "sizes": "192x192"
-  },{
-    "src": "https://via.placeholder.com/512x512",
+  }, {
+    "src": "/public/logo-512x512.png",
     "type": "image/png",
     "sizes": "512x512"
   }],
-  "background_color": "#0067ee",
+  "background_color": "#1a698a",
   "display": "standalone",
-  "theme_color": "#0067ee"
+  "theme_color": "#4c95ac"
 }

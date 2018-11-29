@@ -10,8 +10,8 @@ export default {
     bold: 700
   },
   colors: {
-    main: '#6450E5',
-    secondary: '#ff5755',
+    main: '#1a698a',
+    secondary: '#4c95ac',
     kollektive: '#26a69a',
     news: '#2196f3',
     lightgray: '#f1f1f1',
