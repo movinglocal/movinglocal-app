@@ -8,16 +8,20 @@ import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
 import EndOfFeedLabel from '~/components/EndOfFeedLabel';
 import IntersectionObserver from '~/components/IntersectionObserver';
+import Button from '~/components/Button';
 
 class Feed extends PureComponent {
   componentDidMount() {
     this.props.loadInitalPage();
+    this.props.watch();
   }
 
   render() {
     const {
+      loadInitalPage,
       isLoading,
       data,
+      newData,
       loadNextPage,
       userFavs,
       onToggleFav,
@@ -32,6 +36,7 @@ class Feed extends PureComponent {
       <Fragment>
         <FeedControls />
         <ScrollWrapper bg="lightgray">
+          {newData && <Button width={1} onClick={loadInitalPage}> Feed neu laden </Button>}
           {data.map(item => (
             <ArticleTeaser
               item={item}
@@ -59,6 +64,7 @@ export default connect(
   state => ({
     isLoading: state.isLoading,
     data: state.data,
+    newData: state.newData,
     userFavs: state.userFavs,
     endOfFeed: state.endOfFeed
   }),
