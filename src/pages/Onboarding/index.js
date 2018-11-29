@@ -7,13 +7,15 @@ import Privacy from '~/pages/Onboarding/steps/Privacy';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
 import PositionChooser from '~/pages/Settings/pages/PositionChooser';
 import OrganisationChooser from '~/pages/Settings/pages/OrganisationChooser';
+import Installation from '~/pages/Onboarding/steps/Installation';
 import ScrollWrapper from '~/components/ScrollWrapper';
 
 const stepComponents = [
   Privacy,
   TagChooser,
   PositionChooser,
-  OrganisationChooser
+  OrganisationChooser,
+  Installation
 ];
 
 class Onboarding extends PureComponent {
