@@ -18,7 +18,7 @@ const stepComponents = [
 ];
 
 const ua = window.navigator.userAgent;
-if ((ua.match('Chrome') && ua.match('Android')) || (ua.match('iPhone') || ua.match('iPad'))) {
+if ((ua.match('Chrome') && ua.match('Android')) || ((ua.match('iPhone') || ua.match('iPad')) && ua.match('Safari'))) {
   stepComponents.push(Installation);
 }
 

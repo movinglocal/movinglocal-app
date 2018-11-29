@@ -8,7 +8,7 @@ function getText() {
   if (ua.match('Chrome') && ua.match('Android')) {
     return 'Du kannst molo.news auf Deinem Startbildschirm installieren. Dazu musst du im Browser-Menü „zum Starbildschirm hinzufügen” auswählen. molo.news erscheint nun als Icon auf deinen Startbildschirm.';
   }
-  if (ua.match('iPhone') || ua.match('iPad')) {
+  if ((ua.match('iPhone') || ua.match('iPad')) && ua.match('Safari')) {
     return 'Du kannst molo.news auf Deinem Startbildschirm installieren. Dazu musst du auf das „Teilen”-Symbol gehen und dort „Zum Home-Bildschirm” auswählen. molo.news erscheint nun als Icon auf deinen Startbildschirm.';
   }
 }
