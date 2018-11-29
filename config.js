@@ -1,7 +1,7 @@
 module.exports = {
-  title: 'Moving Local App',
+  title: 'molo.news',
   meta: {
-    description: 'Moving Local App Description',
+    description: 'molo.news',
     viewport: 'width=device-width, initial-scale=1',
     robots: 'noindex,nofollow'
   },
