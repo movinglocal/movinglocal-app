@@ -14,9 +14,13 @@ const stepComponents = [
   Privacy,
   TagChooser,
   PositionChooser,
-  OrganisationChooser,
-  Installation
+  OrganisationChooser
 ];
+
+const ua = window.navigator.userAgent;
+if ((ua.match('Android') && ua.match('Chrome/[.0-9]* (?!Mobile)')) || (ua.match('iPhone') || ua.match('iPad'))) {
+  stepComponents.push(Installation);
+}
 
 class Onboarding extends PureComponent {
   state = {
