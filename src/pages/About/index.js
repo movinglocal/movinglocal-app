@@ -21,7 +21,7 @@ const LogoWrapper = styled(Box)`
 class About extends PureComponent {
   render() {
     return (
-      <Box p={3} css={{ flexGrow: 1, overflowY: 'auto' }}>
+      <Box p={3} css={{ flexGrow: 1, overflowY: 'auto', '-webkit-overflow-scrolling': 'touch' }}>
         <Heading>Über molo.news</Heading>
 
         <Text mt={3}>

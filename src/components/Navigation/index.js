@@ -24,6 +24,7 @@ const NavItem = ({
 }) => (
   <Box
     width={1 / 3}
+    bg="lightgray"
     css={{
       borderRight: noBorder ? 'none' : `1px solid ${color}`,
       cursor: 'pointer'
@@ -37,13 +38,13 @@ const NavItem = ({
 
 class Navigation extends PureComponent {
   render() {
-    const { lightgray, gray } = this.props.theme.colors;
+    const { gray } = this.props.theme.colors;
     return (
       <Box css={{ borderTop: `1px solid ${gray}` }}>
         <Flex>
-          <NavItem text="Meine Molos" to="/" color={lightgray} />
-          <NavItem text="Später lesen" to={config.FAVORITE_PATH} color={lightgray} />
-          <NavItem text="Folgen" to={config.FILTER_PATH} noBorder color={lightgray} />
+          <NavItem text="Meine Molos" to="/" color={gray} />
+          <NavItem text="Später lesen" to={config.FAVORITE_PATH} color={gray} />
+          <NavItem text="Folgen" to={config.FILTER_PATH} noBorder color={gray} />
         </Flex>
       </Box>
     );

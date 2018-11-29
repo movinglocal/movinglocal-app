@@ -26,7 +26,9 @@ class Settings extends PureComponent {
     return (
       <ScrollWrapper p={3}>
         <Heading>Folgen</Heading>
-        <Text my={3}>Hier kannst du die Auswahl in ‚Meine Molos‘ an deine persönlichen Interessen anpassen</Text>
+        <Text my={3}>
+          Hier kannst du die Auswahl in ‚Meine Molos‘ an deine persönlichen Interessen anpassen
+        </Text>
         <TagChooser />
         <PositionChooser />
         <OrganisationChooser />

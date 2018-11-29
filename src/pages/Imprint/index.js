@@ -15,7 +15,7 @@ const SubHeading = props => (
 class Imprint extends PureComponent {
   render() {
     return (
-      <Box p={3} css={{ flexGrow: 1, overflowY: 'auto' }}>
+      <Box p={3} css={{ flexGrow: 1, overflowY: 'auto', '-webkit-overflow-scrolling': 'touch' }}>
         <Heading>Impressum</Heading>
 
         <SubHeading>Anschrift</SubHeading>

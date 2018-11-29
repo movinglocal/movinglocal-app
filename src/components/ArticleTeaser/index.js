@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import {
-  Box, Card, Text, Link
+  Box, Card, Text, Link, Flex
 } from 'rebass';
 import Swipeable from 'react-swipeable';
 import styled from 'styled-components';
-import AlertIcon from 'react-feather/dist/icons/alert-circle';
+import AlertIcon from '../../../public/flame.svg';
 
 import FavButton from '~/components/FavButton';
 import Teaser from '~/components/ArticleTeaser/Teaser';
@@ -28,9 +28,10 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledAlertIcon = styled(AlertIcon)`
-  margin-top: 5px;
-  width: 30px;
-  height: 30px;
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  fill: ${props => props.theme.colors.orange};
 `;
 
 const FeedImage = ({ img }) => (
@@ -119,12 +120,15 @@ class ArticleTeaser extends PureComponent {
           <StyledLink href={url} color="black" target="_blank">
             {img && <FeedImage img={img} />}
             <Box>
-              <Box mb={1}>
-                {source && (
-                  <Text as="span" mr={2} fontSize={1} color={type.toLowerCase()} fontWeight="bold">{source.name}</Text>
-                )}
-                <Text as="span" fontSize={1} fontWeight="lighter">{formatDate(date)}</Text>
-              </Box>
+              <Flex>
+                {isHot && <StyledAlertIcon />}
+                <Box mb={1}>
+                  {source && (
+                    <Text as="span" mr={2} fontSize={1} color={type.toLowerCase()} fontWeight="bold">{source.name}</Text>
+                  )}
+                  <Text as="span" fontSize={1} fontWeight="lighter">{formatDate(date)}</Text>
+                </Box>
+              </Flex>
 
               <Text className="teaser__title" fontSize={3} fontWeight="bold" mb={2}>{title}</Text>
               <Text fontSize={1} fontWeight="normal">{teaserText}</Text>
@@ -132,7 +136,6 @@ class ArticleTeaser extends PureComponent {
           </StyledLink>
           <Box>
             <FavButton item={this.props.item} isFav={isFav} onToggle={this.props.onToggleFav} />
-            {isHot && <StyledAlertIcon />}
           </Box>
         </Teaser>
       </Swipeable>
