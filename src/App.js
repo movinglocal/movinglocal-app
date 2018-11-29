@@ -60,42 +60,45 @@ class App extends PureComponent {
   render() {
     const { isInitial, isLoading } = this.props;
     const forceOnboarding = isInitial && !isLoading;
+    const isUserInitialized = typeof isInitial !== 'undefined';
 
     return (
       <ThemeProvider theme={theme}>
         <Router>
-          <Wrapper flexDirection="column" mx="auto">
-            <Header />
-            <Switch>
-              <ForceOnboardingRoute
-                exact
-                path="/"
-                component={Feed}
-                forceOnboarding={forceOnboarding}
-              />
-              <ForceOnboardingRoute
-                exact
-                path={FAVORITE_PATH}
-                component={Favorites}
-                forceOnboarding={forceOnboarding}
-              />
-              <ForceOnboardingRoute
-                exact
-                path={FILTER_PATH}
-                component={Settings}
-                forceOnboarding={forceOnboarding}
-              />
-              <Route exact path={IMPRINT_PATH} component={Imprint} />
-              <Route exact path={PRIVACY_PATH} component={Privacy} />
-              <Route exact path={FEEDBACK_PATH} component={Feedback} />
-              <Route exact path={ONBOARDING_PATH} component={Onboarding} />
-              <Route path={`${ARTICLE_PATH}/:id`} component={Article} />
-              <Route path={`${ORGANISATION_PATH}/:id`} component={Organisation} />
-              <Route path={ABOUT_PATH} component={About} />
-              <Route component={NoMatch} />
-            </Switch>
-            <Navigation />
-          </Wrapper>
+          {isUserInitialized && (
+            <Wrapper flexDirection="column" mx="auto">
+              <Header />
+              <Switch>
+                <ForceOnboardingRoute
+                  exact
+                  path="/"
+                  component={Feed}
+                  forceOnboarding={forceOnboarding}
+                />
+                <ForceOnboardingRoute
+                  exact
+                  path={FAVORITE_PATH}
+                  component={Favorites}
+                  forceOnboarding={forceOnboarding}
+                />
+                <ForceOnboardingRoute
+                  exact
+                  path={FILTER_PATH}
+                  component={Settings}
+                  forceOnboarding={forceOnboarding}
+                />
+                <Route exact path={IMPRINT_PATH} component={Imprint} />
+                <Route exact path={PRIVACY_PATH} component={Privacy} />
+                <Route exact path={FEEDBACK_PATH} component={Feedback} />
+                <Route exact path={ONBOARDING_PATH} component={Onboarding} />
+                <Route path={`${ARTICLE_PATH}/:id`} component={Article} />
+                <Route path={`${ORGANISATION_PATH}/:id`} component={Organisation} />
+                <Route path={ABOUT_PATH} component={About} />
+                <Route component={NoMatch} />
+              </Switch>
+              <Navigation />
+            </Wrapper>
+          )}
         </Router>
       </ThemeProvider>
     );
