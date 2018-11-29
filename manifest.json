@@ -1,6 +1,6 @@
 {
-  "short_name": "ML",
-  "name": "Moving Local",
+  "short_name": "molo",
+  "name": "molo.news",
   "icons": [{
     "src": "https://via.placeholder.com/192x192",
     "type": "image/png",
