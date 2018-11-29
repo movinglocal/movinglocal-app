@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
+import { Box } from 'rebass';
 
 import { actions } from '~/pages/Feed/actions';
 import FeedControls from '~/pages/Feed/components/FeedControls';
@@ -8,16 +9,20 @@ import ScrollWrapper from '~/components/ScrollWrapper';
 import Loader from '~/components/Loader';
 import EndOfFeedLabel from '~/components/EndOfFeedLabel';
 import IntersectionObserver from '~/components/IntersectionObserver';
+import Button from '~/components/Button';
 
 class Feed extends PureComponent {
   componentDidMount() {
     this.props.loadInitalPage();
+    this.props.watch();
   }
 
   render() {
     const {
+      loadInitalPage,
       isLoading,
       data,
+      newData,
       loadNextPage,
       userFavs,
       onToggleFav,
@@ -31,6 +36,7 @@ class Feed extends PureComponent {
     return (
       <Fragment>
         <FeedControls />
+        {newData && <Box bg="lightgray" p={2}><Button width={1} onClick={loadInitalPage}>Es gibt neue Artikel: Feed neu laden</Button></Box>}
         <ScrollWrapper bg="lightgray">
           {data.map(item => (
             <ArticleTeaser
@@ -59,6 +65,7 @@ export default connect(
   state => ({
     isLoading: state.isLoading,
     data: state.data,
+    newData: state.newData,
     userFavs: state.userFavs,
     endOfFeed: state.endOfFeed
   }),

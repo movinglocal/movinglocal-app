@@ -25,11 +25,16 @@ function createURL(state) {
   return url;
 }
 
-export async function loadItems() {
-  Store.setState({ isLoading: true });
+export async function loadItems(reset = false) {
+  if (!reset) {
+    Store.setState({ isLoading: true });
+  }
+
   const state = Store.getState();
 
-  const url = createURL(state);
+  let url;
+  if (reset) url = createURL(Object.assign({}, state, { pageStart: 0 }));
+  else url = createURL(state);
 
   let data = null;
   try {

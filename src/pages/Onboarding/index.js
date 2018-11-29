@@ -7,6 +7,7 @@ import Privacy from '~/pages/Onboarding/steps/Privacy';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
 import PositionChooser from '~/pages/Settings/pages/PositionChooser';
 import OrganisationChooser from '~/pages/Settings/pages/OrganisationChooser';
+import Installation from '~/pages/Onboarding/steps/Installation';
 import ScrollWrapper from '~/components/ScrollWrapper';
 
 const stepComponents = [
@@ -15,6 +16,11 @@ const stepComponents = [
   PositionChooser,
   OrganisationChooser
 ];
+
+const ua = window.navigator.userAgent;
+if ((ua.match('Chrome') && ua.match('Android')) || ((ua.match('iPhone') || ua.match('iPad')) && ua.match('Safari'))) {
+  stepComponents.push(Installation);
+}
 
 class Onboarding extends PureComponent {
   state = {

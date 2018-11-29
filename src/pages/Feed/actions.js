@@ -1,6 +1,9 @@
 import { loadItems } from '~/services/api';
 import { updateUser } from '~/services/storage';
 import { updateRelation } from '~/services/apiUser';
+import { setTimeout } from 'timers';
+
+const { WATCH_INTERVAL } = config;
 
 function removeFav(state, fav) {
   const userFavs = state.userFavs.filter(f => f.id !== fav.id);
@@ -23,6 +26,7 @@ export const actions = store => ({
 
     return {
       data,
+      newData: null,
       isLoading: false,
       isAppLoading: false,
       endOfFeed: data.length === 0
@@ -44,6 +48,21 @@ export const actions = store => ({
       isAppLoading: false,
       endOfFeed: data.length === 0
     };
+  },
+
+  watch: async () => {
+    const watch = () => setTimeout(async () => {
+        const data = await loadItems(true);
+        const currentData = store.getState().data;
+        const newData = data.filter(d => !currentData.map(cd => cd.id).includes(d.id));
+
+        store.setState({
+          newData: newData.length > 0
+        });
+        watch();
+      }, WATCH_INTERVAL);
+
+    watch();
   },
 
   sort: async (state, event) => {

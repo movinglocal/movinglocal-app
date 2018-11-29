@@ -1,7 +1,7 @@
 module.exports = {
-  title: 'Moving Local App',
+  title: 'molo.news',
   meta: {
-    description: 'Moving Local App Description',
+    description: 'molo.news',
     viewport: 'width=device-width, initial-scale=1',
     robots: 'noindex,nofollow'
   },
@@ -26,5 +26,6 @@ module.exports = {
   ONBOARDING_PATH: '/onboarding',
   ORGANISATION_PATH: '/organisation',
   ABOUT_PATH: '/about',
+  WATCH_INTERVAL: 1000 * 60 * 5, // 5 min
   DEXIE_VERSION: 1
 };
