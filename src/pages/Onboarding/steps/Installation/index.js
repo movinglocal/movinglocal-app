@@ -5,7 +5,7 @@ import Button from '~/components/Button';
 
 function getText() {
   const ua = window.navigator.userAgent;
-  if (ua.match('Android') && ua.match('Chrome/[.0-9]* (?!Mobile)')) {
+  if (ua.match('Chrome') && ua.match('Android')) {
     return 'Du kannst molo.news auf Deinem Startbildschirm installieren. Dazu musst du im Browser-Menü „zum Starbildschirm hinzufügen” auswählen. molo.news erscheint nun als Icon auf deinen Startbildschirm.';
   }
   if (ua.match('iPhone') || ua.match('iPad')) {
