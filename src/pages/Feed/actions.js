@@ -55,7 +55,10 @@ export const actions = store => ({
         const data = await loadItems(true);
         const currentData = store.getState().data;
         const newData = data.filter(d => !currentData.map(cd => cd.id).includes(d.id));
-        store.setState({ newData });
+
+        store.setState({
+          newData: newData.length > 0
+        });
         watch();
       }, WATCH_INTERVAL);
 

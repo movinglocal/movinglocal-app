@@ -25,8 +25,11 @@ function createURL(state) {
   return url;
 }
 
-export async function loadItems(reset) {
-  Store.setState({ isLoading: true });
+export async function loadItems(reset = false) {
+  if (!reset) {
+    Store.setState({ isLoading: true });
+  }
+
   const state = Store.getState();
 
   let url;

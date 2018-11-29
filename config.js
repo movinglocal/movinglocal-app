@@ -26,6 +26,6 @@ module.exports = {
   ONBOARDING_PATH: '/onboarding',
   ORGANISATION_PATH: '/organisation',
   ABOUT_PATH: '/about',
-  WATCH_INTERVAL: 600000, // 10 min
+  WATCH_INTERVAL: 1000 * 60 * 5, // 5 min
   DEXIE_VERSION: 1
 };

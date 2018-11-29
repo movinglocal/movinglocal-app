@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'unistore/react';
+import { Box } from 'rebass';
 
 import { actions } from '~/pages/Feed/actions';
 import FeedControls from '~/pages/Feed/components/FeedControls';
@@ -35,8 +36,8 @@ class Feed extends PureComponent {
     return (
       <Fragment>
         <FeedControls />
+        {newData && <Box bg="lightgray" p={2}><Button width={1} onClick={loadInitalPage}>Es gibt neue Artikel: Feed neu laden</Button></Box>}
         <ScrollWrapper bg="lightgray">
-          {newData && <Button width={1} onClick={loadInitalPage}> Feed neu laden </Button>}
           {data.map(item => (
             <ArticleTeaser
               item={item}
