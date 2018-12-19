@@ -3,6 +3,7 @@ import { connect } from 'unistore/react';
 import Redirect from 'react-router-dom/Redirect';
 
 import { actions } from '~/pages/Feed/actions';
+import Welcome from '~/pages/Onboarding/steps/Welcome';
 import Privacy from '~/pages/Onboarding/steps/Privacy';
 import TagChooser from '~/pages/Settings/pages/TagChooser';
 import PositionChooser from '~/pages/Settings/pages/PositionChooser';
@@ -11,6 +12,7 @@ import Installation from '~/pages/Onboarding/steps/Installation';
 import ScrollWrapper from '~/components/ScrollWrapper';
 
 const stepComponents = [
+  Welcome,
   Privacy,
   TagChooser,
   PositionChooser,
