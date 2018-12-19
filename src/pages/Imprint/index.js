@@ -47,7 +47,7 @@ class Imprint extends PureComponent {
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG Umsatzsteuer-Nr.: DE 811 245 070
           <br />
           <br />
-          Inhaltlich verantwortlich gemäß § 55 Absatz 2 RStV: Prof. Dr. Andrea Hepp, Sprecher des ZeMKI
+          Inhaltlich verantwortlich gemäß § 55 Absatz 2 RStV: Prof. Dr. Andreas Hepp, Sprecher des ZeMKI
         </Text>
 
         <SubHeading>Inhalte des Onlineangebots</SubHeading>
