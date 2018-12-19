@@ -25,7 +25,7 @@ class About extends PureComponent {
         <Heading>Über molo.news</Heading>
 
         <Text mt={3}>
-          Molo.news wird als Redaktionsplattform und Web-App im Projekt „Tinder die Stadt“
+          molo.news wird als Redaktionsplattform und Web-App im Projekt „Tinder die Stadt“
           entwickelt, das vom Bundesministerium für Bildung und Forschung (BMBF) gefördert wird.
           Die Projektbeteiligten sind:
         </Text>

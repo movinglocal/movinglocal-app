@@ -146,7 +146,7 @@ class PositionChooser extends PureComponent {
       <Fragment>
         <Heading mb={3}>Wähle deinen Ort.</Heading>
         <Text my={3}>
-          Hier kannst du Dein Zuhause auswählen oder einen anderen Ort,
+          Hier kannst du dein Zuhause auswählen oder einen anderen Ort,
           aus dessen Umkreis du Molos (Nachrichten und Informationen) erhalten möchtest.
         </Text>
         <Search
