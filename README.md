@@ -1,6 +1,6 @@
 # Moving Local Prototype App
 
-A feed for local news.
+A progressive webapp based on the [webkid react-starterkit](https://github.com/wbkd/react-starter).
 
 ## Prerequisites
 
