@@ -61,12 +61,22 @@ class OrganisationChooser extends PureComponent {
     return (
       <Box mb={this.props.isOnboarding ? 0 : 4}>
         <Heading mb={3}>Welchen Medien willst du folgen?</Heading>
-        <Text my={3}>Wähle die Medien aus, deren Molos (Nachrichten und Informationen) dich interessieren. Von diesen Medien werden alle Inhalte angezeigt, auch wenn du den entsprechenden Tags nicht folgst.</Text>
+        <Text my={3}>
+          Wähle die Medien aus,
+          deren Molos (Nachrichten und Informationen)
+          dich interessieren. Von diesen Medien werden alle Inhalte angezeigt,
+          auch wenn du den entsprechenden Tags nicht folgst.
+        </Text>
         <Box mb={3}>
           {media.map(d => this.renderOrganisation(d))}
         </Box>
         <Heading mb={3}>Welchen Kollektiven willst du folgen?</Heading>
-        <Text my={3}>Wähle die Kollektive aus, deren Molos (Nachrichten und Informationen) dich interessieren. Von diesen Kollektiven werden alle Inhalte angezeigt, auch wenn du den entsprechenden Tags nicht folgst.</Text>
+        <Text my={3}>
+          Wähle die Kollektive aus, deren Molos
+          Nachrichten und Informationen) dich interessieren.
+          Von diesen Kollektiven werden alle Inhalte angezeigt,
+          auch wenn du den entsprechenden Tags nicht folgst.
+        </Text>
         <Box mb={3}>
           {collective.map(d => this.renderOrganisation(d))}
         </Box>

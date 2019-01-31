@@ -38,7 +38,10 @@ class Feedback extends PureComponent {
     return (
       <Box p={3} css={{ flexGrow: 1 }}>
         <Heading mb={2}>Feedback</Heading>
-        <Text mb={2}>Sag uns deine Meinung zu molo.news! Hier kannst du uns ein Feedback schicken.</Text>
+        <Text mb={2}>
+          Sag uns deine Meinung zu molo.news!
+          Hier kannst du uns ein Feedback schicken.
+        </Text>
 
         <form onSubmit={this.onSubmit}>
           <Input onChange={this.onEmailChange} placeholder="Deine Emailadresse" name="email" style={{ margin: '16px 0 10px 0' }} value={this.state.email} />

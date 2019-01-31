@@ -31,7 +31,7 @@ class About extends PureComponent {
         </Text>
 
         <Flex mt={3}>
-          <LogoWrapper width={1/4} mr={3}>
+          <LogoWrapper width={1 / 4} mr={3}>
             <Image src={ZeMKILogo} alt="ZeMKI logo" />
           </LogoWrapper>
           <Box>
@@ -49,7 +49,7 @@ class About extends PureComponent {
         </Flex>
 
         <Flex mt={3}>
-          <LogoWrapper width={1/4} mr={3}>
+          <LogoWrapper width={1 / 4} mr={3}>
             <Image src={ifibLogo} alt="ifib logo" />
           </LogoWrapper>
           <Box>
@@ -66,7 +66,7 @@ class About extends PureComponent {
         </Flex>
 
         <Flex mt={3}>
-          <LogoWrapper width={1/4} mr={3}>
+          <LogoWrapper width={1 / 4} mr={3}>
             <Image src={HBILogo} alt="Hans-Bredow-Institut logo" />
           </LogoWrapper>
           <Box>

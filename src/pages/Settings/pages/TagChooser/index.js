@@ -145,7 +145,12 @@ class TagChooser extends PureComponent {
     return (
       <Box mb={this.props.isOnboarding ? 0 : 4}>
         {<Heading mb={3}>Wähle deine Tags.</Heading>}
-        {<Text my={3}>Hier kannst du auswählen, zu welchen Themen du Molos (Nachrichten und Informationen) erhalten möchtest.</Text>}
+        {
+          <Text my={3}>
+            Hier kannst du auswählen, zu welchen Themen du Molos
+            (Nachrichten und Informationen) erhalten möchtest.
+          </Text>
+        }
         {this.state.topics.sort((t, n) => t.rank > n.rank).map(this.renderTopic)}
         {this.renderNextButton()}
       </Box>
