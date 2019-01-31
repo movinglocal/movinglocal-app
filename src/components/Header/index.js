@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import Button from '~/components/Button';
 import Menu from '~/components/Menu';
-import Logo from '~/../public/logo-512x512.png';
 import LogoText from '~/../public/logo-name-512x512.png';
 import HeaderSearch from '~/components/HeaderSearch';
 import { actions } from '~/pages/Feed/actions';
