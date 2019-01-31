@@ -1,24 +1,15 @@
 import React, { PureComponent } from 'react';
-import { Box, Heading, Text } from 'rebass';
+import { Box, Heading } from 'rebass';
 
 import Button from '~/components/Button';
+import PrivacyText from '~/pages/Privacy/PrivacyText';
 
 class OnboardingPrivacy extends PureComponent {
   render() {
     return (
       <Box>
         <Heading>Datenschutzerklärung von molo.news</Heading>
-        <Text my={3}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod temporincididunt ut
-          labore et dolore magna aliqua. Ut
-          enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur.
-        </Text>
-
+        <PrivacyText />
         <Button onClick={this.props.nextStep}>Ich stimme zu</Button>
       </Box>
     );
